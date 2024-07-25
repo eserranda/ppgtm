@@ -23,9 +23,12 @@ Route::post('login', [UserController::class, 'login'])->middleware('guest');
 Route::get('logout', [UserController::class, 'logout'])->name('logout');
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+// sementara
+Route::get('/', [ProgramKerjaController::class, 'index'])->name('home');
 
 Route::prefix('program-kerja')->controller(ProgramKerjaController::class)->group(function () {
     Route::get('/', 'index')->name('program-kerja.index');
