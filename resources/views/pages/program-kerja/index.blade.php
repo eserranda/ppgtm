@@ -12,7 +12,7 @@
         type="text/css" />
 @endpush
 @section('page_title')
-    Data Klasis
+    Program Kerja
 @endsection
 
 @section('content')
@@ -21,7 +21,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center mb-3">
-                        <h5 class="header-title"><b>Data Klasis</b></h5>
+                        <h5 class="header-title"><b>Data Program Kerja</b></h5>
                         <div>
                             <button type="button" class="btn btn-info waves-effect" id="btnPrint">Print</button>
                             <button type="button" class="btn btn-success waves-effect" id ="btnExcel">Excel</button>
@@ -35,8 +35,9 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Nama Klasis</th>
-                                <th>Alamat</th>
+                                <th>Program Kerja</th>
+                                <th>Sasaran</th>
+                                <th>Waktu dan tempat</th>
                                 <th>Opsi</th>
                             </tr>
                         </thead>
@@ -49,7 +50,7 @@
         </div>
     </div>
 
-    @include('pages.klasis.add')
+    @include('pages.program-kerja.add')
 @endsection
 
 @push('scripts')
@@ -87,7 +88,7 @@
                 buttons: [{
                         extend: 'excel',
                         exportOptions: {
-                            columns: [0, 1, 2]
+                            columns: [0, 1, 2, 4]
                         },
                         init: function(api, node, config) {
                             $(node).hide();
@@ -96,14 +97,14 @@
                     {
                         extend: 'print',
                         exportOptions: {
-                            columns: [0, 1, 2]
+                            columns: [0, 1, 2, 4]
                         },
                         init: function(api, node, config) {
                             $(node).hide();
                         }
                     },
                 ],
-                ajax: "{{ route('klasis.index') }}",
+                ajax: "{{ route('program-kerja.index') }}",
                 columns: [{
                         data: 'DT_RowIndex',
                         name: '#',
@@ -111,13 +112,18 @@
 
                     },
                     {
-                        data: 'nama_klasis',
-                        name: 'nama_klasis',
+                        data: 'program_kerja',
+                        name: 'program_kerja',
                         orderable: false,
                     },
                     {
-                        data: 'alamat',
-                        name: 'alamat',
+                        data: 'sasaran',
+                        name: 'sasaran',
+                        orderable: false,
+                    },
+                    {
+                        data: 'waktu_dan_tempat',
+                        name: 'waktu_dan_tempat',
                         orderable: false,
                     },
                     {
@@ -152,7 +158,7 @@
                 if (result.isConfirmed) {
                     var csrfToken = $('meta[name="csrf-token"]').attr('content');
                     $.ajax({
-                        url: '/klasis/destroy/' + id,
+                        url: '/program-kerja/destroy/' + id,
                         type: 'DELETE',
                         data: {
                             _token: csrfToken

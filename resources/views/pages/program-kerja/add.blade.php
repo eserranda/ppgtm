@@ -3,45 +3,48 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">Extra large modal</h5>
+                <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">Tambah Data Program Kerja</h5>
+
                 <button type="button" class="close" onclick="closeModalAdd()">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form id ="addForm">
+                <form id="addForm">
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                            <label for="id_klasis">Pilih Klasi</label>
-                            <select class="form-select" id="id_klasis" name="id_klasis"></select>
+                            <label for="program_kerja">Program Kerja</label>
+                            <input type="text" class="form-control" id="program_kerja" name="program_kerja"
+                                placeholder="Program Kerja">
+                            {{-- <textarea class="form-control" id="program_kerja" name="program_kerja" rows="3"></textarea> --}}
+                            <div class="invalid-feedback">
+                            </div>
                         </div>
-
                         <div class="col-md-6 mb-3">
-                            <label for="wilayah">Wilayah</label>
-                            <input type="text" class="form-control" id="wilayah" name="wilayah"
-                                placeholder="Wilayah">
+                            <label for="sasaran">Sasaran</label>
+                            <input type="text" class="form-control" id="sasaran" name="sasaran"
+                                placeholder="Sasaran">
                             <div class="invalid-feedback">
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                            <label for="koordinator">Koordinator</label>
-                            <input type="text" class="form-control" id="koordinator" name="koordinator"
-                                placeholder="Koordinator">
+                            <label for="waktu_dan_tempat">Waktu dan tempat</label>
+                            <input type="text" class="form-control" id="waktu_dan_tempat" name="waktu_dan_tempat"
+                                placeholder="Waktu dan Tempat">
                             <div class="invalid-feedback">
                             </div>
                         </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="no_telp">No Telp</label>
-                            <input type="number" class="form-control" id="no_telp" name="no_telp"
+                        {{-- <div class="col-md-6 mb-3">
+                            <label for="sasaran">Sasaran</label>
+                            <input type="text" class="form-control" id="sasaran" name="sasaran"
                                 placeholder="No Telp">
                             <div class="invalid-feedback">
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
-
-                    <button class="btn btn-primary" type="submit">Submit form</button>
+                    <button class="btn btn-primary" type="submit">Tambah</button>
                 </form>
             </div>
         </div>
@@ -75,7 +78,7 @@
             const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
 
             try {
-                const response = await fetch('/wilayah-pelayanan/store', {
+                const response = await fetch('/program-kerja/store', {
                     method: 'POST',
                     headers: {
                         'Accept': 'application/json',
@@ -89,9 +92,7 @@
                 if (!data.success) {
                     Object.keys(data.messages).forEach(fieldName => {
                         const inputField = document.getElementById(fieldName);
-                        if (inputField && fieldName === 'id_klasis') {
-                            inputField.classList.add('is-invalid');
-                        } else {
+                        if (inputField) {
                             inputField.classList.add('is-invalid');
                             if (inputField.nextElementSibling) {
                                 inputField.nextElementSibling.textContent = data.messages[
@@ -105,14 +106,13 @@
                     validFields.forEach(validField => {
                         const fieldName = validField.id;
                         if (!data.messages[fieldName]) {
-                            if (fieldName === 'id_klasis') {
-                                validField.classList.remove('is-invalid');
-                            } else {
-                                validField.classList.remove('is-invalid');
+                            validField.classList.remove('is-invalid');
+                            if (validField.nextElementSibling) {
                                 validField.nextElementSibling.textContent = '';
                             }
                         }
                     });
+
                 } else {
                     const invalidInputs = document.querySelectorAll('.is-invalid');
                     invalidInputs.forEach(invalidInput => {
@@ -128,31 +128,9 @@
                     $('#datatable').DataTable().ajax.reload();
                     $('#addModal').modal('hide');
                 }
-
-
             } catch (error) {
                 console.error(error);
             }
-        });
-
-        $(document).ready(function() {
-            $('#id_klasis').select2({
-                theme: "bootstrap-5",
-                placeholder: "Pilih Klasis",
-                minimumInputLength: 1,
-                // dropdownParent: $("#addModal"),
-                ajax: {
-                    url: '/klasis/get-all-klasis',
-                    dataType: 'json',
-                    delay: 250,
-                    processResults: function(data) {
-                        return {
-                            results: data
-                        };
-                    },
-                    cache: true
-                }
-            });
         });
     </script>
 @endpush

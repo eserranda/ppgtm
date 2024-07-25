@@ -10,7 +10,15 @@
     <!-- Responsive datatable examples -->
     <link href="{{ asset('assets') }}/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet"
         type="text/css" />
+
+    <!-- Select2 -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.rtl.min.css" />
 @endpush
+
 @section('page_title')
     Wilayah Pelayanan
 @endsection
@@ -21,91 +29,31 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center mb-3">
-                        <h5 class="header-title"><b>Data Theologi dan Kurikulum</b></h5>
+                        <h5 class="header-title"><b>Data Wilayah Pelayanan</b></h5>
                         <div>
                             <button type="button" class="btn btn-info waves-effect" id="btnPrint">Print</button>
                             <button type="button" class="btn btn-success waves-effect" id ="btnExcel">Excel</button>
 
                             <button type="button" class="btn btn-primary   waves-effect waves-light" data-toggle="modal"
-                                data-target=".bs-example-modal-xl">Tambah Data</button>
+                                data-target="#addModal">Tambah Data</button>
                         </div>
                     </div>
                     <table id="datatable" class="table table-bordered dt-responsive nowrap"
                         style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                         <thead>
                             <tr>
-                                <th>#</th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Username</th>
+                                <th>No</th>
+                                <th>Klasis</th>
+                                <th>Wilayah</th>
+                                <th>Koordinator</th>
+                                <th>No Telp</th>
+                                <th>Opsi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td>@twitter</td>
-                            </tr>
+
                         </tbody>
                     </table>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg-6">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="header-title">Dark table</h4>
-                    <p class="card-title-desc">You can also invert the colors—with light text on dark
-                        backgrounds—with <code>.table-dark</code>.
-                    </p>
-
-                    <div class="table-responsive">
-                        <table class="table table-dark mb-0">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
-                                    <th>Username</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>Larry</td>
-                                    <td>the Bird</td>
-                                    <td>@twitter</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
                 </div>
             </div>
         </div>
@@ -131,9 +79,11 @@
     <script src="{{ asset('assets') }}/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
     <script src="{{ asset('assets') }}/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
 
-    <!-- Datatable init js -->
-    <script src="{{ asset('assets') }}/js/pages/datatables.init.js"></script>
+    <!-- Select2 JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
+    <!-- Sweet Alerts js -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         var datatable;
         $(document).ready(function() {
@@ -149,7 +99,7 @@
                 buttons: [{
                         extend: 'excel',
                         exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5, 6]
+                            columns: [0, 1, 2, 3, 4]
                         },
                         init: function(api, node, config) {
                             $(node).hide();
@@ -158,7 +108,7 @@
                     {
                         extend: 'print',
                         exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5, 6]
+                            columns: [0, 1, 2, 3, 4]
                         },
                         init: function(api, node, config) {
                             $(node).hide();
@@ -173,33 +123,23 @@
 
                     },
                     {
-                        data: 'nama_kegiatan',
-                        name: 'nama_kegiatan',
+                        data: 'id_klasis',
+                        name: 'id_klasis',
                         orderable: false,
                     },
                     {
-                        data: 'waktu_dan_tempat',
-                        name: 'waktu_dan_tempat',
+                        data: 'wilayah',
+                        name: 'wilayah',
                         orderable: false,
                     },
                     {
-                        data: 'tujuan',
-                        name: 'tujuan',
+                        data: 'koordinator',
+                        name: 'koordinator',
                         orderable: false,
                     },
                     {
-                        data: 'sasaran_belanja',
-                        name: 'sasaran_belanja',
-                        orderable: false,
-                    },
-                    {
-                        data: 'sumber_biaya',
-                        name: 'sumber_biaya',
-                        orderable: false,
-                    },
-                    {
-                        data: 'penanggung_jawab',
-                        name: 'penanggung_jawab',
+                        data: 'no_telp',
+                        name: 'no_telp',
                         orderable: false,
                     },
                     {
@@ -219,5 +159,55 @@
         $('#btnPrint').on('click', function() {
             datatable.button('.buttons-print').trigger();
         });
+
+        async function hapus(id) {
+            Swal.fire({
+                title: 'Hapus Data?',
+                text: 'Data akan dihapus permanen!',
+                icon: 'warning',
+                showCancelButton: true,
+                cancelButtonText: 'Batal',
+                confirmButtonColor: '#D85F47',
+                cancelButtonColor: '#47D89C',
+                confirmButtonText: 'Ya, hapus!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    var csrfToken = $('meta[name="csrf-token"]').attr('content');
+                    $.ajax({
+                        url: '/wilayah-pelayanan/destroy/' + id,
+                        type: 'DELETE',
+                        data: {
+                            _token: csrfToken
+                        },
+                        success: function(response) {
+                            console.log('Response:', response);
+                            if (response.status) {
+                                Swal.fire(
+                                    'Terhapus!',
+                                    'Data berhasil dihapus.',
+                                    'success'
+                                );
+                                $('#datatable').DataTable().ajax.reload();
+
+                            } else {
+                                Swal.fire(
+                                    'Error!',
+                                    'Data gagal dihapus.',
+                                    'error'
+                                );
+                            }
+                        },
+                        error: function(error) {
+                            console.log(error);
+                            Swal.fire(
+                                'Gagal!',
+                                'Terjadi kesalahan saat menghapus data.',
+                                'error'
+                            );
+                        }
+                    });
+                }
+            });
+        }
     </script>
 @endpush

@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ProgramKerja;
 use Illuminate\Http\Request;
-use App\Models\WilayahPelayanan;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Validator;
 
-class WilayahPelayananController extends Controller
+class ProgramKerjaController extends Controller
 {
 
     public function index(Request $request)
@@ -21,7 +21,7 @@ class WilayahPelayananController extends Controller
             // }
 
             // $data = $query->latest('created_at')->get();
-            $data = WilayahPelayanan::latest('created_at')->get();
+            $data = ProgramKerja::latest('created_at')->get();
 
             return DataTables::of($data)
                 ->addIndexColumn()
@@ -40,20 +40,17 @@ class WilayahPelayananController extends Controller
                 ->rawColumns(['action'])
                 ->make(true);
         }
-        return view('pages.wilayah-pelayanan.index');
+        return view('pages.program-kerja.index');
     }
-
 
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'id_klasis' => 'required',
-            'wilayah' => 'required',
-            'koordinator' => 'required',
-            'no_telp' => 'required|numeric',
+            'program_kerja' => 'required',
+            'sasaran' => 'required',
+            'waktu_dan_tempat' => 'required',
         ], [
             'required' => ':attribute harus diisi',
-            'numeric' => ':attribute harus angka',
         ]);
 
         if ($validator->fails()) {
@@ -63,11 +60,10 @@ class WilayahPelayananController extends Controller
             ], 422);
         }
 
-        $save = WilayahPelayanan::create([
-            'id_klasis' => $request->id_klasis,
-            'wilayah' => $request->wilayah,
-            'koordinator' => $request->koordinator,
-            'no_telp' => $request->no_telp,
+        $save = ProgramKerja::create([
+            'program_kerja' => $request->program_kerja,
+            'sasaran' => $request->sasaran,
+            'waktu_dan_tempat' => $request->waktu_dan_tempat,
         ]);
 
         if ($save) {
@@ -86,7 +82,7 @@ class WilayahPelayananController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(WilayahPelayanan $wilayahPelayanan)
+    public function show(ProgramKerja $programKerja)
     {
         //
     }
@@ -94,7 +90,7 @@ class WilayahPelayananController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(WilayahPelayanan $wilayahPelayanan)
+    public function edit(ProgramKerja $programKerja)
     {
         //
     }
@@ -102,7 +98,7 @@ class WilayahPelayananController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, WilayahPelayanan $wilayahPelayanan)
+    public function update(Request $request, ProgramKerja $programKerja)
     {
         //
     }
@@ -110,10 +106,10 @@ class WilayahPelayananController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(WilayahPelayanan $wilayahPelayanan, $id)
+    public function destroy(ProgramKerja $programKerja, $id)
     {
         try {
-            $deleted = $wilayahPelayanan::findOrFail($id);
+            $deleted = $programKerja::findOrFail($id);
             $deleted->delete();
 
             return response()->json(['status' => true, 'message' => 'Data berhasil dihapus'], 200);

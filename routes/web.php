@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\KlasisController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\KlasisController;
+use App\Http\Controllers\ProgramKerjaController;
 use App\Http\Controllers\WilayahPelayananController;
 
 /*
@@ -26,12 +27,22 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::prefix('klasis')->controller(KlasisController::class)->group(function () {
-    Route::get('/', 'index')->name('wilayah-pelayanan.index');
+Route::prefix('program-kerja')->controller(ProgramKerjaController::class)->group(function () {
+    Route::get('/', 'index')->name('program-kerja.index');
     Route::post('/store', 'store');
     Route::get('/findById/{id}', 'findById');
     Route::post('/update', 'update');
     Route::delete('/destroy/{id}', 'destroy');
+    Route::get('/get-all-klasis', 'getAllKlasis');
+});
+
+Route::prefix('klasis')->controller(KlasisController::class)->group(function () {
+    Route::get('/', 'index')->name('klasis.index');
+    Route::post('/store', 'store');
+    Route::get('/findById/{id}', 'findById');
+    Route::post('/update', 'update');
+    Route::delete('/destroy/{id}', 'destroy');
+    Route::get('/get-all-klasis', 'getAllKlasis');
 });
 
 Route::prefix('wilayah-pelayanan')->controller(WilayahPelayananController::class)->group(function () {

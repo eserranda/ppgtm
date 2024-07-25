@@ -31,6 +31,13 @@
                   </li>
 
                   <li>
+                      <a href="program-kerja" class=" waves-effect">
+                          <i class="mdi mdi-calendar-month"></i>
+                          <span>Program Kerja</span>
+                      </a>
+                  </li>
+
+                  <li>
                       <a href="javascript: void(0);" class="has-arrow waves-effect">
                           <i class="mdi mdi-email-multiple-outline"></i>
                           <span>Email</span>

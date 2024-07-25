@@ -1,10 +1,11 @@
-<div class="modal fade bs-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel"
+<div id="addModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel"
     aria-hidden="true">
     <div class="modal-dialog ">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">Tambah Data Klasis</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+
+                <button type="button" class="close" onclick="closeModalAdd()">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -36,6 +37,23 @@
 
 @push('scripts')
     <script>
+        function closeModalAdd() {
+            const invalidInputs = document.querySelectorAll('.is-invalid');
+            invalidInputs.forEach(invalidInput => {
+                invalidInput.value = '';
+                invalidInput.classList.remove('is-invalid');
+                const errorNextSibling = invalidInput.nextElementSibling;
+                if (errorNextSibling && errorNextSibling.classList.contains(
+                        'invalid-feedback')) {
+                    errorNextSibling.textContent = '';
+                }
+            });
+
+            const form = document.getElementById('addForm');
+            form.reset();
+            $('#addModal').modal('hide');
+        }
+
         document.getElementById('addForm').addEventListener('submit', async (event) => {
             event.preventDefault();
 
