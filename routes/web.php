@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\KlasisController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\WilayahPelayananController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +16,30 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('login', [UserController::class, 'showLoginForm'])->name('login')->middleware('guest');
+Route::post('login', [UserController::class, 'login'])->middleware('guest');
+
+Route::get('logout', [UserController::class, 'logout'])->name('logout');
+
+
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::prefix('klasis')->controller(KlasisController::class)->group(function () {
+    Route::get('/', 'index')->name('wilayah-pelayanan.index');
+    Route::post('/store', 'store');
+    Route::get('/findById/{id}', 'findById');
+    Route::post('/update', 'update');
+    Route::delete('/destroy/{id}', 'destroy');
+});
+
+Route::prefix('wilayah-pelayanan')->controller(WilayahPelayananController::class)->group(function () {
+    // Route::group(['middleware' => 'auth'], function () {
+    Route::get('/', 'index')->name('wilayah-pelayanan.index');
+    Route::post('/store', 'store');
+    Route::get('/findById/{id}', 'findById');
+    Route::post('/update', 'update');
+    Route::delete('/destroy/{id}', 'destroy');
+    // });
 });
