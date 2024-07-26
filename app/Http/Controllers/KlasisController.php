@@ -27,6 +27,11 @@ class KlasisController extends Controller
         return view('pages.klasis.index');
     }
 
+    public function findById($id)
+    {
+        $klasis = Klasis::find($id);
+        return response()->json($klasis);
+    }
 
     public function getAllKlasis(Request $request)
     {
@@ -74,28 +79,39 @@ class KlasisController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Klasis $klasis)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Klasis $klasis)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Klasis $klasis)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'edit_nama_klasis' => 'required',
+            'edit_alamat' => 'required',
+        ], [
+            'required' => ':attribute harus diisi',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'messages' => $validator->errors()
+            ], 422);
+        }
+
+        $update = $klasis::findOrFail($request->id)->update([
+            'nama_klasis' => $request->edit_nama_klasis,
+            'alamat' => $request->edit_alamat,
+        ]);
+
+        if ($update) {
+            return response()->json([
+                'success' => true,
+                'messages' => 'Data Klasis Berhasil'
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'messages' => 'Data Klasis Gagal Disimpan'
+            ]);
+        }
     }
 
     /**

@@ -43,6 +43,12 @@ class ProgramKerjaController extends Controller
         return view('pages.program-kerja.index');
     }
 
+    public function findById($id)
+    {
+        $data = ProgramKerja::find($id);
+        return response()->json($data);
+    }
+
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -81,28 +87,43 @@ class ProgramKerjaController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(ProgramKerja $programKerja)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(ProgramKerja $programKerja)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, ProgramKerja $programKerja)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'edit_program_kerja' => 'required',
+            'edit_sasaran' => 'required',
+            'edit_tujuan' => 'required',
+            'edit_waktu_dan_tempat' => 'required',
+        ], [
+            'required' => ':attribute harus diisi',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'messages' => $validator->errors()
+            ], 422);
+        }
+
+        $update = $programKerja::findOrFail($request->id)->update([
+            'program_kerja' => $request->edit_program_kerja,
+            'sasaran' => $request->edit_sasaran,
+            'tujuan' => $request->edit_tujuan,
+            'waktu_dan_tempat' => $request->edit_waktu_dan_tempat,
+        ]);
+
+        if ($update) {
+            return response()->json([
+                'success' => true,
+                'messages' => 'Data Klasis Berhasil'
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'messages' => 'Data Klasis Gagal Disimpan'
+            ]);
+        }
     }
 
     /**

@@ -50,6 +50,7 @@
     </div>
 
     @include('pages.klasis.add')
+    @include('pages.klasis.edit')
 @endsection
 
 @push('scripts')
@@ -71,8 +72,19 @@
 
     <!-- Sweet Alerts js -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
     <script>
+        function edit(id) {
+            fetch('/klasis/findById/' + id)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('edit_id').value = data.id;
+                    document.getElementById('edit_nama_klasis').value = data.nama_klasis;
+                    document.getElementById('edit_alamat').value = data.alamat;
+                })
+                .catch(error => console.error(error));
+            $('#editModal').modal('show');
+        }
+
         var datatable;
         $(document).ready(function() {
             datatable = $('#datatable').DataTable({

@@ -54,6 +54,7 @@
     </div>
 
     @include('pages.program-kerja.add')
+    @include('pages.program-kerja.edit')
 @endsection
 
 @push('scripts')
@@ -77,6 +78,20 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
+        function edit(id) {
+            fetch('/program-kerja/findById/' + id)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('edit_id').value = data.id;
+                    document.getElementById('edit_program_kerja').value = data.program_kerja;
+                    document.getElementById('edit_sasaran').value = data.sasaran;
+                    document.getElementById('edit_tujuan').value = data.tujuan;
+                    document.getElementById('edit_waktu_dan_tempat').value = data.waktu_dan_tempat;
+                })
+                .catch(error => console.error(error));
+            $('#editModal').modal('show');
+        }
+
         var datatable;
         $(document).ready(function() {
             datatable = $('#datatable').DataTable({
