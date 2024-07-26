@@ -11,6 +11,7 @@ class ProgramKerja extends Model
     protected $fillable = [
         'program_kerja',
         'sasaran',
+        'tujuan',
         'waktu_dan_tempat',
     ];
 

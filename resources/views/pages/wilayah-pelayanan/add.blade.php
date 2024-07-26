@@ -41,7 +41,7 @@
                         </div>
                     </div>
 
-                    <button class="btn btn-primary" type="submit">Submit form</button>
+                    <button class="btn btn-primary" type="submit">Tambah</button>
                 </form>
             </div>
         </div>
@@ -125,11 +125,12 @@
                         }
                     });
 
+                    const form = document.getElementById('addForm');
+                    form.reset();
+
                     $('#datatable').DataTable().ajax.reload();
                     $('#addModal').modal('hide');
                 }
-
-
             } catch (error) {
                 console.error(error);
             }

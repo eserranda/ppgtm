@@ -30,6 +30,16 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6 mb-3">
+                            <label for="tujuan">Tujuan</label>
+                            <div>
+                                <textarea class="form-control" name="tujuan" id="tujuan" rows="3" placeholder="Tujuan"></textarea>
+                                <div class="invalid-feedback">
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
                             <label for="waktu_dan_tempat">Waktu dan tempat</label>
                             <input type="text" class="form-control" id="waktu_dan_tempat" name="waktu_dan_tempat"
                                 placeholder="Waktu dan Tempat">
@@ -124,6 +134,9 @@
                             errorNextSibling.textContent = '';
                         }
                     });
+
+                    const form = document.getElementById('addForm');
+                    form.reset();
 
                     $('#datatable').DataTable().ajax.reload();
                     $('#addModal').modal('hide');

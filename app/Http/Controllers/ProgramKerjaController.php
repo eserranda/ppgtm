@@ -49,6 +49,7 @@ class ProgramKerjaController extends Controller
             'program_kerja' => 'required',
             'sasaran' => 'required',
             'waktu_dan_tempat' => 'required',
+            'tujuan' => 'required',
         ], [
             'required' => ':attribute harus diisi',
         ]);
@@ -64,6 +65,7 @@ class ProgramKerjaController extends Controller
             'program_kerja' => $request->program_kerja,
             'sasaran' => $request->sasaran,
             'waktu_dan_tempat' => $request->waktu_dan_tempat,
+            'tujuan' => $request->tujuan,
         ]);
 
         if ($save) {

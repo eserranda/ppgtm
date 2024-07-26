@@ -39,6 +39,7 @@
                                 <th>#</th>
                                 <th>Program Kerja</th>
                                 <th>Sasaran</th>
+                                <th>Tujuan</th>
                                 <th>Waktu dan tempat</th>
                                 <th>Opsi</th>
                             </tr>
@@ -121,6 +122,11 @@
                     {
                         data: 'sasaran',
                         name: 'sasaran',
+                        orderable: false,
+                    },
+                    {
+                        data: 'tujuan',
+                        name: 'tujuan',
                         orderable: false,
                     },
                     {
