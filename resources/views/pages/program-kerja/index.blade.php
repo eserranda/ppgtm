@@ -23,7 +23,9 @@
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h5 class="header-title"><b>Data Program Kerja</b></h5>
                         <div>
-                            <button type="button" class="btn btn-info waves-effect" id="btnPrint">Print</button>
+                            <button type="button" class="btn btn-info waves-effect" id="btnPrint">
+                                <i class="mdi mdi-printer-check"></i>
+                            </button>
                             <button type="button" class="btn btn-success waves-effect" id ="btnExcel">Excel</button>
 
                             <button type="button" class="btn btn-primary   waves-effect waves-light" data-toggle="modal"

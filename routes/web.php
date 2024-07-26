@@ -30,6 +30,15 @@ Route::get('logout', [UserController::class, 'logout'])->name('logout');
 // sementara
 Route::get('/', [ProgramKerjaController::class, 'index'])->name('home');
 
+
+Route::prefix('users')->controller(UserController::class)->group(function () {
+    Route::get('/', 'index')->name('users.index')->middleware('role:admin');
+    Route::post('/register', 'register');
+    Route::get('/findById/{id}', 'findById');
+    Route::post('/update', 'update');
+    Route::delete('/destroy/{id}', 'destroy');
+});
+
 Route::prefix('program-kerja')->controller(ProgramKerjaController::class)->group(function () {
     Route::get('/', 'index')->name('program-kerja.index');
     Route::post('/store', 'store');

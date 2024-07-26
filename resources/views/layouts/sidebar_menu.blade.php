@@ -11,33 +11,32 @@
 
                   <li>
                       <a href="index.html" class="waves-effect">
-                          <i class="mdi mdi-view-dashboard"></i><span
-                              class="badge badge-pill badge-success float-right">3</span>
+                          <i class="mdi mdi-view-dashboard"></i>
                           <span>Dashboard</span>
                       </a>
                   </li>
                   <li>
                       <a href="klasis" class="waves-effect">
-                          <i class="mdi mdi-view-dashboard"></i>
+                          <i class="mdi mdi-home-flood"></i>
                           <span>Klasis</span>
                       </a>
                   </li>
 
                   <li>
                       <a href="wilayah-pelayanan" class=" waves-effect">
-                          <i class="mdi mdi-calendar-month"></i>
+                          <i class="mdi mdi-shield-cross-outline"></i>
                           <span>Wilayah Pelayanan</span>
                       </a>
                   </li>
 
                   <li>
                       <a href="program-kerja" class=" waves-effect">
-                          <i class="mdi mdi-calendar-month"></i>
+                          <i class="mdi mdi-format-float-left"></i>
                           <span>Program Kerja</span>
                       </a>
                   </li>
 
-                  <li>
+                  {{-- <li>
                       <a href="javascript: void(0);" class="has-arrow waves-effect">
                           <i class="mdi mdi-email-multiple-outline"></i>
                           <span>Email</span>
@@ -47,9 +46,9 @@
                           <li><a href="email-read.html">Email Read</a></li>
                           <li><a href="email-compose.html">Email Compose</a></li>
                       </ul>
-                  </li>
+                  </li> --}}
 
-                  <li>
+                  {{-- <li>
                       <a href="javascript: void(0);" class="has-arrow waves-effect">
                           <i class="mdi mdi-account-group"></i>
                           <span>Authentication</span>
@@ -60,9 +59,9 @@
                           <li><a href="auth-recoverpw.html">Recover Password</a></li>
                           <li><a href="auth-lock-screen.html">Lock Screen</a></li>
                       </ul>
-                  </li>
+                  </li> --}}
 
-                  <li>
+                  {{-- <li>
                       <a href="javascript: void(0);" class="has-arrow waves-effect">
                           <i class="mdi mdi-google-pages"></i>
                           <span>Pages</span>
@@ -78,11 +77,11 @@
                           <li><a href="pages-404.html">Error 404</a></li>
                           <li><a href="pages-500.html">Error 500</a></li>
                       </ul>
-                  </li>
+                  </li> --}}
 
-                  <li class="menu-title">Components</li>
+                  {{-- <li class="menu-title">Components</li> --}}
 
-                  <li>
+                  {{-- <li>
                       <a href="javascript: void(0);" class="has-arrow waves-effect">
                           <i class="mdi mdi-format-underline"></i>
                           <span>Bootstrap UI</span>
@@ -106,9 +105,9 @@
                           <li><a href="ui-typography.html">Typography</a></li>
                           <li><a href="ui-grid.html">Grid</a></li>
                       </ul>
-                  </li>
+                  </li> --}}
 
-                  <li>
+                  {{-- <li>
                       <a href="javascript: void(0);" class="has-arrow waves-effect">
                           <i class="mdi mdi-package-variant-closed"></i>
                           <span>Advanced UI</span>
@@ -122,9 +121,9 @@
                           <li><a href="advanced-lightbox.html">Lightbox</a></li>
                           <li><a href="advanced-maps.html">Maps</a></li>
                       </ul>
-                  </li>
+                  </li> --}}
 
-                  <li>
+                  {{-- <li>
                       <a href="javascript: void(0);" class="has-arrow waves-effect">
                           <i class="mdi mdi-black-mesa"></i>
                           <span>Icons</span>
@@ -135,9 +134,9 @@
                           <li><a href="icons-fontawesome.html">Font Awesome 5</a></li>
                           <li><a href="icons-themify.html">Themify</a></li>
                       </ul>
-                  </li>
+                  </li> --}}
 
-                  <li>
+                  {{-- <li>
                       <a href="javascript: void(0);" class="has-arrow waves-effect">
                           <i class="mdi mdi-table-settings"></i>
                           <span>Tables</span>
@@ -148,9 +147,9 @@
                           <li><a href="tables-responsive.html">Responsive Table</a></li>
                           <li><a href="tables-editable.html">Editable Table</a></li>
                       </ul>
-                  </li>
+                  </li> --}}
 
-                  <li>
+                  {{-- <li>
                       <a href="javascript: void(0);" class="waves-effect">
                           <i class="mdi mdi-file-document-box-check-outline"></i>
                           <span class="badge badge-pill badge-danger float-right">07</span>
@@ -165,9 +164,9 @@
                           <li><a href="form-mask.html">Form Mask</a></li>
                           <li><a href="form-summernote.html">Summernote</a></li>
                       </ul>
-                  </li>
+                  </li> --}}
 
-                  <li>
+                  {{-- <li>
                       <a href="javascript: void(0);" class="has-arrow waves-effect">
                           <i class="mdi mdi-poll"></i>
                           <span>Charts</span>
@@ -181,9 +180,9 @@
                           <li><a href="charts-sparkline.html">Sparkline</a></li>
                           <li><a href="charts-knob.html">Jquery Knob</a></li>
                       </ul>
-                  </li>
+                  </li> --}}
 
-                  <li>
+                  {{-- <li>
                       <a href="javascript: void(0);" class="has-arrow waves-effect">
                           <i class="mdi mdi-flip-horizontal"></i>
                           <span>Layouts</span>
@@ -195,9 +194,9 @@
                           <li><a href="layouts-dark-topbar.html">Dark Topbar</a></li>
                           <li><a href="layouts-boxed.html">Boxed Layout</a></li>
                       </ul>
-                  </li>
+                  </li> --}}
 
-                  <li>
+                  {{-- <li>
                       <a href="javascript: void(0);" class="has-arrow waves-effect">
                           <i class="mdi mdi-share-variant"></i>
                           <span>Multi Level</span>
@@ -211,11 +210,11 @@
                               </ul>
                           </li>
                       </ul>
-                  </li>
+                  </li> --}}
 
               </ul>
 
-              <div class="sidebar-section mt-5 mb-3">
+              {{-- <div class="sidebar-section mt-5 mb-3">
                   <h6 class="text-reset font-weight-medium">
                       Project Completed
                       <span class="float-right">67%</span>
@@ -224,7 +223,7 @@
                       <div class="progress-bar bg-warning" role="progressbar" style="width: 67%" aria-valuenow="67"
                           aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
-              </div>
+              </div> --}}
           </div>
           <!-- Sidebar -->
       </div>
