@@ -28,16 +28,16 @@ Route::get('logout', [UserController::class, 'logout'])->name('logout');
 // });
 
 // sementara
-Route::get('/', [ProgramKerjaController::class, 'index'])->name('home');
+Route::get('/', [ProgramKerjaController::class, 'index'])->name('home')->middleware('auth');
 
 
 Route::prefix('users')->controller(UserController::class)->group(function () {
-    Route::get('/', 'index')->name('users.index')->middleware('role:admin');
+    Route::get('/', 'index')->name('users.index')->middleware('auth');
     Route::post('/register', 'register');
     Route::get('/findById/{id}', 'findById');
     Route::post('/update', 'update');
     Route::delete('/destroy/{id}', 'destroy');
-});
+})->middleware('auth');
 
 Route::prefix('program-kerja')->controller(ProgramKerjaController::class)->group(function () {
     Route::get('/', 'index')->name('program-kerja.index');
@@ -46,7 +46,7 @@ Route::prefix('program-kerja')->controller(ProgramKerjaController::class)->group
     Route::post('/update', 'update');
     Route::delete('/destroy/{id}', 'destroy');
     Route::get('/get-all-klasis', 'getAllKlasis');
-});
+})->middleware('auth');
 
 Route::prefix('klasis')->controller(KlasisController::class)->group(function () {
     Route::get('/', 'index')->name('klasis.index');
@@ -55,7 +55,7 @@ Route::prefix('klasis')->controller(KlasisController::class)->group(function () 
     Route::post('/update', 'update');
     Route::delete('/destroy/{id}', 'destroy');
     Route::get('/get-all-klasis', 'getAllKlasis');
-});
+})->middleware('auth');
 
 Route::prefix('wilayah-pelayanan')->controller(WilayahPelayananController::class)->group(function () {
     // Route::group(['middleware' => 'auth'], function () {
@@ -65,4 +65,4 @@ Route::prefix('wilayah-pelayanan')->controller(WilayahPelayananController::class
     Route::post('/update', 'update');
     Route::delete('/destroy/{id}', 'destroy');
     // });
-});
+})->middleware('auth');
