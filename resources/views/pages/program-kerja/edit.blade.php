@@ -13,6 +13,27 @@
                 <form id="editForm">
                     <div class="row">
                         <div class="col-md-6 mb-3">
+                            <label class="form-label" for="bidang">Bidang</label>
+                            <select class="form-control costom-select" id="edit_bidang" name="edit_bidang">
+                                <option value="" selected disabled>Pilih bidang</option>
+                                <option value="Pembinaan, Kerohanian, Minat dan Bakat">Pembinaan, Kerohanian, Minat dan
+                                    Bakat</option>Z
+                                <option value="Kederisasi dan Pengembangan Organisasi">Kederisasi dan Pengembangan
+                                    Organisasi
+                                </option>
+                                <option value="Komunikasi dan Hubungan Antar Lembaga">Komunikasi dan Hubungan Antar
+                                    Lembaga</option>
+                                <option value="Kemandirian Dana dan Diakonia">Kemandirian Dana dan Diakonia</option>
+                                <option value="Kajian Strategis dan Lingkup Hidup">Kajian Strategis dan Lingkup Hidup
+                                </option>
+                            </select>
+
+                            <div class="invalid-feedback">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
                             <label for="edit_program_kerja">Program Kerja</label>
                             <input type="hidden" class="form-control" id="edit_id" name="id">
                             <input type="text" class="form-control" id="edit_program_kerja"

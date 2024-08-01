@@ -13,28 +13,21 @@ class ProgramKerjaController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            // $filterData = $request->input('filter');
+            $filterData = $request->input('filter');
 
-            // $query = WilayahPelayanan::query();
-            // if ($filterData) {
-            //     $query->where('wilayah', $filterData);
-            // }
+            $query = ProgramKerja::query();
+            if ($filterData) {
+                $query->where('bidang', $filterData);
+            }
 
-            // $data = $query->latest('created_at')->get();
-            $data = ProgramKerja::latest('created_at')->get();
-
+            $data = $query->latest('created_at')->get();
             return DataTables::of($data)
                 ->addIndexColumn()
-                ->addColumn('id_klasis', function ($row) {
-                    if ($row->id_klasis) {
-                        return $row->klasis->nama_klasis;
-                    } else {
-                        return '-';
-                    }
-                })
                 ->addColumn('action', function ($row) {
-                    $btn = '<a class="btn btn-outline-secondary btn-sm" title="Edit" onclick="edit(' . $row->id . ')"> <i class="fas fa-pencil-alt"></i> </a>';
-                    $btn .= '<a class="btn btn-outline-secondary btn-sm  text-danger mx-2" title="Hapus" onclick="hapus(' . $row->id . ')"> <i class="fas fa-trash-alt"></i> </a>';
+                    $btn = '<div class="d-flex justify-content-start align-items-center">';
+                    $btn .= '<a class="btn btn-outline-secondary btn-sm mx-1" title="Edit" onclick="edit(' . $row->id . ')"> <i class="fas fa-pencil-alt"></i> </a>';
+                    $btn .= '<a class="btn btn-outline-secondary btn-sm text-danger" title="Hapus" onclick="hapus(' . $row->id . ')"> <i class="fas fa-trash-alt"></i> </a>';
+                    $btn .= '</div>';
                     return $btn;
                 })
                 ->rawColumns(['action'])
@@ -56,6 +49,7 @@ class ProgramKerjaController extends Controller
             'sasaran' => 'required',
             'waktu_dan_tempat' => 'required',
             'tujuan' => 'required',
+            'bidang' => 'required',
         ], [
             'required' => ':attribute harus diisi',
         ]);
@@ -72,6 +66,7 @@ class ProgramKerjaController extends Controller
             'sasaran' => $request->sasaran,
             'waktu_dan_tempat' => $request->waktu_dan_tempat,
             'tujuan' => $request->tujuan,
+            'bidang' => $request->bidang,
         ]);
 
         if ($save) {
@@ -95,6 +90,7 @@ class ProgramKerjaController extends Controller
             'edit_sasaran' => 'required',
             'edit_tujuan' => 'required',
             'edit_waktu_dan_tempat' => 'required',
+            'edit_bidang' => 'required',
         ], [
             'required' => ':attribute harus diisi',
         ]);
@@ -111,6 +107,7 @@ class ProgramKerjaController extends Controller
             'sasaran' => $request->edit_sasaran,
             'tujuan' => $request->edit_tujuan,
             'waktu_dan_tempat' => $request->edit_waktu_dan_tempat,
+            'bidang' => $request->edit_bidang,
         ]);
 
         if ($update) {

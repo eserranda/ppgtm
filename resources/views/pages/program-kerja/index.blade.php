@@ -21,7 +21,31 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center mb-3">
-                        <h5 class="header-title"><b>Data Program Kerja</b></h5>
+                        <div class="d-flex align-items-center ">
+                            {{-- <label class="col-form-label col-md-3">Filter :</label> --}}
+                            <select class="form-control costom-select" id="filterData" name="filterData">
+                                <option value="" selected disabled>Pilih bidang</option>
+                                <option value="Pembinaan, Kerohanian, Minat dan Bakat">Pembinaan, Kerohanian, Minat dan
+                                    Bakat</option>Z
+                                <option value="Kederisasi dan Pengembangan Organisasi">Kederisasi dan Pengembangan
+                                    Organisasi
+                                </option>
+                                <option value="Komunikasi dan Hubungan Antar Lembaga">Komunikasi dan Hubungan Antar
+                                    Lembaga</option>
+                                <option value="Kemandirian Dana dan Diakonia">Kemandirian Dana dan Diakonia</option>
+                                <option value="Kajian Strategis dan Lingkup Hidup">Kajian Strategis dan Lingkup Hidup
+                                </option>
+                            </select>
+                            <button type="button" class="btn btn-light waves-effect mx-2 col-2" id="reload">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="20" height="20"
+                                    viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none"
+                                    stroke-linecap="round" stroke-linejoin="round">`
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4" />
+                                    <path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4" />
+                                </svg>
+                            </button>
+                        </div>
                         <div>
                             <button type="button" class="btn btn-info waves-effect" id="btnPrint">
                                 <i class="mdi mdi-printer-check"></i>
@@ -37,6 +61,7 @@
                         <thead>
                             <tr>
                                 <th>#</th>
+                                <th>Bidang</th>
                                 <th>Program Kerja</th>
                                 <th>Sasaran</th>
                                 <th>Tujuan</th>
@@ -85,6 +110,7 @@
                     document.getElementById('edit_id').value = data.id;
                     document.getElementById('edit_program_kerja').value = data.program_kerja;
                     document.getElementById('edit_sasaran').value = data.sasaran;
+                    document.getElementById('edit_bidang').value = data.bidang;
                     document.getElementById('edit_tujuan').value = data.tujuan;
                     document.getElementById('edit_waktu_dan_tempat').value = data.waktu_dan_tempat;
                 })
@@ -106,7 +132,7 @@
                 buttons: [{
                         extend: 'excel',
                         exportOptions: {
-                            columns: [0, 1, 2, 4]
+                            columns: [0, 1, 2, 4, 5]
                         },
                         init: function(api, node, config) {
                             $(node).hide();
@@ -115,7 +141,7 @@
                     {
                         extend: 'print',
                         exportOptions: {
-                            columns: [0, 1, 2, 4]
+                            columns: [0, 1, 2, 4, 5]
                         },
                         init: function(api, node, config) {
                             $(node).hide();
@@ -128,6 +154,11 @@
                         name: '#',
                         orderable: false,
 
+                    },
+                    {
+                        data: 'bidang',
+                        name: 'bidang',
+                        orderable: false,
                     },
                     {
                         data: 'program_kerja',
@@ -156,6 +187,18 @@
                         searchable: false
                     },
                 ],
+            });
+
+
+            $('#filterData').on('change', function() {
+                const selectedData = $(this).val();
+                datatable.ajax.url('{{ route('program-kerja.index') }}?filter=' + selectedData)
+                    .load();
+            });
+
+            $('#reload').on('click', function() {
+                $('#filterData').val('');
+                datatable.ajax.url('{{ route('program-kerja.index') }}').load();
             });
         });
 

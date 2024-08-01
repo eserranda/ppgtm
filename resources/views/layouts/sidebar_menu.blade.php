@@ -32,7 +32,7 @@
                   <li>
                       <a href="program-kerja" class=" waves-effect">
                           <i class="mdi mdi-format-float-left"></i>
-                          <span>Program Kerja</span>
+                          <span>Program Kerja Sinode</span>
                       </a>
                   </li>
 

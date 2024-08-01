@@ -13,6 +13,7 @@ class ProgramKerja extends Model
         'sasaran',
         'tujuan',
         'waktu_dan_tempat',
+        'bidang',
     ];
 
     use HasFactory;
