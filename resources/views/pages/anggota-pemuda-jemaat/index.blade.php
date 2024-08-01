@@ -28,7 +28,24 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center mb-3">
-                        <h5 class="header-title"><b> Anggota Pemuda Jemaat</b></h5>
+                        <div class="d-flex align-items-center ">
+                            <select class="form-control costom-select col-12" id="filterData" name="filterData">
+                                <option value="" selected disabled>Pilih Dapel</option>
+                                <option value="Dapel 1">Dapel 1</option>
+                                <option value="Dapel 2">Dapel 2</option>
+                                <option value="Dapel 3">Dapel 3</option>
+                                <option value="Dapel 4">Dapel 4</option>
+                            </select>
+                            <button type="button" class="btn btn-light waves-effect mx-2 col-4" id="reload">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="20" height="20"
+                                    viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none"
+                                    stroke-linecap="round" stroke-linejoin="round">`
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4" />
+                                    <path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4" />
+                                </svg>
+                            </button>
+                        </div>
                         <div>
                             <button type="button" class="btn btn-info waves-effect" id="btnPrint">Print</button>
                             <button type="button" class="btn btn-success waves-effect" id ="btnExcel">Excel</button>
@@ -217,13 +234,13 @@
 
             $('#filterData').on('change', function() {
                 const selectedFilter = $(this).val();
-                datatable.ajax.url('{{ route('jemaat.index') }}?filter=' + selectedFilter)
+                datatable.ajax.url('{{ route('anggota-pemuda-jemaat.index') }}?filter=' + selectedFilter)
                     .load();
             });
 
             $('#reload').on('click', function() {
                 $('#filterData').val('');
-                datatable.ajax.url('{{ route('jemaat.index') }}').load();
+                datatable.ajax.url('{{ route('anggota-pemuda-jemaat.index') }}').load();
             });
 
         });

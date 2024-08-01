@@ -57,7 +57,7 @@
                   <li>
                       <a href="anggota-pemuda-jemaat" class=" waves-effect">
                           <i class="mdi mdi-account-supervisor"></i>
-                          <span>Anngota PPGTM Jemaat</span>
+                          <span>Anggota PPGTM</span>
                       </a>
                   </li>
                   {{-- <li>
