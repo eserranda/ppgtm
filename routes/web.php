@@ -7,6 +7,7 @@ use App\Http\Controllers\KlasisController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProgramKerjaController;
 use App\Http\Controllers\WilayahPelayananController;
+use App\Http\Controllers\ProgramKerjaJemaatController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +46,14 @@ Route::prefix('/dashboard')->controller(DashboardController::class)->group(funct
     Route::get('/', 'index')->name('dashboards.index');
 })->middleware('auth');
 
+
+Route::prefix('program-kerja-jemaat')->controller(ProgramKerjaJemaatController::class)->group(function () {
+    Route::get('/', 'index')->name('program-kerja-jemaat.index');
+    Route::post('/store', 'store');
+    Route::get('/findById/{id}', 'findById');
+    Route::post('/update', 'update');
+    Route::delete('/destroy/{id}', 'destroy');
+})->middleware('auth');
 
 Route::prefix('program-kerja')->controller(ProgramKerjaController::class)->group(function () {
     Route::get('/', 'index')->name('program-kerja.index');

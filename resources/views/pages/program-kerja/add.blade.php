@@ -28,8 +28,7 @@
                                 </option>
                             </select>
 
-                            <div class="invalid-feedback">
-                            </div>
+                            <div class="invalid-feedback"> </div>
                         </div>
                     </div>
                     <div class="row">
