@@ -76,28 +76,54 @@ class ProgramKerjaJemaatController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(ProgramKerjaJemaat $programKerjaJemaat)
+    public function findById($id)
     {
-        //
+        $data = ProgramKerjaJemaat::find($id);
+        return response()->json($data);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(ProgramKerjaJemaat $programKerjaJemaat)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, ProgramKerjaJemaat $programKerjaJemaat)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'edit_id_jemaat' => 'required',
+            'edit_bidang' => 'required|string|in:Kerohanian,Komunikasi dan Organisasi,Dana,Kaderisasi,Minat Dan Bakat,Kesekretariatan',
+            'edit_ketua_bidang' => 'required|string|max:255',
+            'edit_anggota' => 'required|string',
+            'edit_program' => 'required|string',
+            'edit_tujuan' => 'required|string',
+            'edit_sasaran' => 'required|string',
+            'edit_bentuk_kegiatan' => 'required|string',
+            'edit_waktu' => 'required|string',
+            'edit_pelaksana' => 'required|string',
+            'edit_sumber_dana' => 'required|string',
+        ], [
+            'required' => ':attribute harus diisi',
+        ]);
+
+        $update = $programKerjaJemaat::where('id', $request->id)->update([
+            'id_jemaat' => $request->edit_id_jemaat,
+            'bidang' => $request->edit_bidang,
+            'ketua_bidang' => $request->edit_ketua_bidang,
+            'anggota' => $request->edit_anggota,
+            'program' => $request->edit_program,
+            'tujuan' => $request->edit_tujuan,
+            'sasaran' => $request->edit_sasaran,
+            'bentuk_kegiatan' => $request->edit_bentuk_kegiatan,
+            'waktu' => $request->edit_waktu,
+            'pelaksana' => $request->edit_pelaksana,
+            'sumber_dana' => $request->edit_sumber_dana,
+            'implementasi' => $request->edit_implementasi,
+        ]);
+
+        if ($update) {
+            return response()->json([
+                'success' => true
+            ], 200);
+        } else {
+            return response()->json([
+                'success' => false
+            ], 500);
+        }
     }
 
     /**

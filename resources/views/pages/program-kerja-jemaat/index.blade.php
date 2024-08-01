@@ -93,18 +93,27 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
     <script>
         function edit(id) {
-            fetch('/jemaat/findById/' + id)
+            fetch('/program-kerja-jemaat/findById/' + id)
                 .then(response => response.json())
                 .then(data => {
+                    // Asumsi bahwa objek 'data' sudah tersedia dan memiliki struktur yang sesuai
                     document.getElementById('edit_id').value = data.id;
-                    document.getElementById('edit_id_klasis').value = data.id_klasis;
-                    document.getElementById('edit_nama_jemaat').value = data.nama_jemaat;
-                    document.getElementById('edit_pelayan').value = data.pelayan;
-                    document.getElementById('edit_alamat').value = data.alamat;
+                    document.getElementById('edit_id_jemaat').value = data.id_jemaat;
+                    document.getElementById('edit_bidang').value = data.bidang;
+                    document.getElementById('edit_ketua_bidang').value = data.ketua_bidang;
+                    document.getElementById('edit_anggota').value = data.anggota;
+                    document.getElementById('edit_program').value = data.program;
+                    document.getElementById('edit_tujuan').value = data.tujuan;
+                    document.getElementById('edit_sasaran').value = data.sasaran;
+                    document.getElementById('edit_bentuk_kegiatan').value = data.bentuk_kegiatan;
+                    document.getElementById('edit_waktu').value = data.waktu;
+                    document.getElementById('edit_pelaksana').value = data.pelaksana;
+                    document.getElementById('edit_sumber_dana').value = data.sumber_dana;
+                    document.getElementById('edit_implementasi').value = data.implementasi;
 
-                    var editIdKlasisSelect = document.getElementById('edit_id_klasis');
+                    var editIdJemaatSelect = document.getElementById('edit_id_jemaat');
 
-                    fetch('/klasis/findOne/' + data.id_klasis, {
+                    fetch('/jemaat/findOne/' + data.id_jemaat, {
                             method: 'GET',
                             headers: {
                                 'Content-Type': 'application/json'
@@ -117,7 +126,7 @@
                             return response.json();
                         })
                         .then(data => {
-                            updateOptionsAndSelect2Klasis(editIdKlasisSelect, data.id, data.nama_klasis);
+                            updateOptionsAndSelect2Jemaat(editIdJemaatSelect, data.id, data.nama_jemaat);
                         })
                         .catch(error => console.error('Error fetching data:', error));
                 })
@@ -126,7 +135,7 @@
             $('#editModal').modal('show');
         }
 
-        function updateOptionsAndSelect2Klasis(selectElement, id, name) {
+        function updateOptionsAndSelect2Jemaat(selectElement, id, name) {
             // Hapus semua opsi yang ada di elemen <select>
             $(selectElement).empty();
 
