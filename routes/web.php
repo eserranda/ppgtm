@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnggotaPemudaJemaatController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\JemaatController;
@@ -46,6 +47,14 @@ Route::prefix('/dashboard')->controller(DashboardController::class)->group(funct
     Route::get('/', 'index')->name('dashboards.index');
 })->middleware('auth');
 
+
+Route::prefix('anggota-pemuda-jemaat')->controller(AnggotaPemudaJemaatController::class)->group(function () {
+    Route::get('/', 'index')->name('anggota-pemuda-jemaat.index');
+    Route::post('/store', 'store');
+    Route::get('/findById/{id}', 'findById');
+    Route::post('/update', 'update');
+    Route::delete('/destroy/{id}', 'destroy');
+})->middleware('auth');
 
 Route::prefix('program-kerja-jemaat')->controller(ProgramKerjaJemaatController::class)->group(function () {
     Route::get('/', 'index')->name('program-kerja-jemaat.index');

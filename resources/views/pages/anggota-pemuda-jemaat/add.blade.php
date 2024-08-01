@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">Tambah Data Program Kerja</h5>
+                <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">Tambah Data Anggota PPGTM</h5>
                 <button type="button" class="close" onclick="closeModalAdd()">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -11,107 +11,65 @@
             <div class="modal-body">
                 <form id="addForm">
                     <div class="form-row">
-                        <div class="form-group col-md-6 mb-2">
+                        <div class="form-group col-md-6 mb-3">
                             <label class="form-label" for="id_jemaat">Jemaat</label>
                             <select class="form-select" id="id_jemaat" name="id_jemaat">
 
                             </select>
+                            <div class="invalid-feedback"> </div>
+                        </div>
+
+                        <div class="form-group col-md-6 mb-3">
+                            <label class="form-label" for="dapel">Dapel</label>
+                            <input type="text" class="form-control" id="dapel" name="dapel"
+                                placeholder="Dapel">
+                            <div class="invalid-feedback"> </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6 mb-3">
+                            <label class="form-label" for="nama_anggota">Nama Anggota</label>
+                            <input type="text" class="form-control" id="nama_anggota" name="nama_anggota"
+                                placeholder="Nama Anggota">
+                            <div class="invalid-feedback"> </div>
+                        </div>
+
+                        <div class="form-group col-md-6 mb-3">
+                            <label class="form-label" for="tgl_lahir">Tanggal Lahir</label>
+                            <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir">
+                            <div class="invalid-feedback"> </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6 mb-3">
+                            <label class="form-label" for="alamat">Alamat</label>
+                            <input type="text" class="form-control" id="alamat" name="alamat"
+                                placeholder="Alamat">
+                            <div class="invalid-feedback"> </div>
+                        </div>
+
+                        <div class="form-group col-md-6 mb-3">
+                            <label class="form-label" for="no_telp">No. Telepon</label>
+                            <input type="number" class="form-control" id="no_telp" name="no_telp"
+                                placeholder="No. Telepon" ">
                             <div class="invalid-feedback"></div>
                         </div>
+                    </div>
 
-                        <div class="form-group col-md-6 mb-2">
-                            <label class="form-label" for="bidang">Bidang</label>
-                            <select class="form-control custom-select" id="bidang" name="bidang">
-                                <option value="" selected disabled>Pilih bidang</option>
-                                <option value="Kerohanian">Kerohanian</option>
-                                <option value="Komunikasi dan Informasi">Komunikasi dan Informasi</option>
-                                <option value="Dana">Dana</option>
-                                <option value="Kaderisasi">Kaderisasi</option>
-                                <option value="Minat Dan Bakat">Minat Dan Bakat</option>
-                                <option value="Kesekretariatan">Kesekretariatan</option>
-                            </select>
+                    <div class="form-row">
+                        <div class="form-group col-md-6 mb-3">
+                            <label class="form-label" for="keterangan">Keterangan</label>
+                            <input type="text" class="form-control" id="keterangan" name="keterangan"
+                                placeholder="Keterangan">
+                            <div class="invalid-feedback"> </div>
+                        </div>
+
+                        <div class="form-group col-md-6 mb-3">
+                            <label class="form-label" for="data_time">Data Time</label>
+                            <input type="text" class="form-control" id="data_time" name="data_time" value="November 2022">
                             <div class="invalid-feedback"></div>
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group col-md-6 mb-2">
-                            <label class="form-label" for="ketua_bidang">Ketua Bidang</label>
-                            <input type="text" class="form-control" id="ketua_bidang" name="ketua_bidang"
-                                placeholder="Ketua Bidang">
-                            <div class="invalid-feedback"> </div>
-                        </div>
-
-                        <div class="form-group col-md-6 mb-2">
-                            <label class="form-label" for="anggota">Anggota</label>
-                            <textarea class="form-control" name="anggota" id="anggota" rows="3" placeholder="Anggota"></textarea>
-                            <div class="invalid-feedback"> </div>
-                        </div>
-
-
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group col-md-6 mb-2">
-                            <label class="col-form-label" for="program">Program</label>
-                            <textarea class="form-control" name="program" id="program" rows="3" placeholder="Program"></textarea>
-                            <div class="invalid-feedback"> </div>
-                        </div>
-
-                        <div class="form-group col-md-6 mb-2">
-                            <label class="col-form-label" for="tujuan">Tujuan</label>
-                            <textarea class="form-control" name="tujuan" id="tujuan" rows="3" placeholder="Tujuan"></textarea>
-                            <div class="invalid-feedback"> </div>
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group col-md-6 mb-2">
-                            <label class="col-form-label" for="sasaran">Sasaran</label>
-                            <textarea class="form-control" name="sasaran" id="sasaran" rows="3" placeholder="Sasaran"></textarea>
-                            <div class="invalid-feedback"> </div>
-                        </div>
-
-                        <div class="form-group col-md-6 mb-2">
-                            <label class="col-form-label" for="bentuk_kegiatan">Bentuk Kegiatan</label>
-                            <textarea class="form-control" name="bentuk_kegiatan" id="bentuk_kegiatan" rows="3" placeholder="Bentuk Kegiatan"></textarea>
-                            <div class="invalid-feedback"> </div>
-                        </div>
-
-
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group col-md-6 mb-2">
-                            <label class="col-form-label" for="waktu">Waktu</label>
-                            <input type="text" class="form-control" name="waktu" id="waktu"
-                                placeholder="Waktu">
-                            <div class="invalid-feedback"> </div>
-                        </div>
-
-                        <div class="form-group col-md-6 mb-2">
-                            <label class="col-form-label" for="pelaksana">Pelaksana</label>
-                            <input type="text" class="form-control" id="pelaksana" name="pelaksana"
-                                placeholder="Pelaksana">
-                            <div class="invalid-feedback"></div>
-                        </div>
-
-
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group col-md-6 mb-2">
-                            <label class="col-form-label" for="sumber_dana">Sumber Dana</label>
-                            <input type="text" class="form-control" id="sumber_dana" name="sumber_dana"
-                                placeholder="Sumber Dana">
-                            <div class="invalid-feedback"> </div>
-                        </div>
-
-                        <div class="form-group col-md-6 mb-2">
-                            <label class="col-form-label" for="implementasi">Implementasi</label>
-                            <input type="text" class="form-control" id="implementasi" name="implementasi"
-                                placeholder="Implementasi">
-                            <div class="invalid-feedback"> </div>
                         </div>
                     </div>
 
@@ -171,7 +129,7 @@
             const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
 
             try {
-                const response = await fetch('/program-kerja-jemaat/store', {
+                const response = await fetch('/anggota-pemuda-jemaat/store', {
                     method: 'POST',
                     headers: {
                         'Accept': 'application/json',

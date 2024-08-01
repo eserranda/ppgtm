@@ -50,8 +50,14 @@
                   <li class="menu-title">Jemaat</li>
                   <li>
                       <a href="program-kerja-jemaat" class=" waves-effect">
-                          <i class="mdi mdi-format-float-left"></i>
+                          <i class="mdi mdi-clipboard-text-play-outline"></i>
                           <span>Program Kerja Jemaat</span>
+                      </a>
+                  </li>
+                  <li>
+                      <a href="anggota-pemuda-jemaat" class=" waves-effect">
+                          <i class="mdi mdi-account-supervisor"></i>
+                          <span>Anngota PPGTM Jemaat</span>
                       </a>
                   </li>
                   {{-- <li>

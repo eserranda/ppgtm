@@ -1,27 +1,29 @@
-<div id="addModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel"
+<div id="editModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">Tambah Data Program Kerja</h5>
-                <button type="button" class="close" onclick="closeModalAdd()">
+                <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">Edit Data Program Kerja</h5>
+
+                <button type="button" class="close" onclick="closeModalEdit()">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form id="addForm">
+                <form id="editForm">
                     <div class="form-row">
                         <div class="form-group col-md-6 mb-2">
-                            <label class="form-label" for="id_jemaat">Jemaat</label>
-                            <select class="form-select" id="id_jemaat" name="id_jemaat">
-
+                            <label class="form-label" for="edit_id_jemaat">Jemaat</label>
+                            <input type="hidden" class="form-control" id="edit_id" name="id">
+                            <select class="form-select" id="edit_id_jemaat" name="edit_id_jemaat">
+                                <!-- Options will be dynamically populated -->
                             </select>
                             <div class="invalid-feedback"></div>
                         </div>
 
                         <div class="form-group col-md-6 mb-2">
-                            <label class="form-label" for="bidang">Bidang</label>
-                            <select class="form-control custom-select" id="bidang" name="bidang">
+                            <label class="form-label" for="edit_bidang">Bidang</label>
+                            <select class="form-control custom-select" id="edit_bidang" name="edit_bidang">
                                 <option value="" selected disabled>Pilih bidang</option>
                                 <option value="Kerohanian">Kerohanian</option>
                                 <option value="Komunikasi dan Informasi">Komunikasi dan Informasi</option>
@@ -36,91 +38,87 @@
 
                     <div class="form-row">
                         <div class="form-group col-md-6 mb-2">
-                            <label class="form-label" for="ketua_bidang">Ketua Bidang</label>
-                            <input type="text" class="form-control" id="ketua_bidang" name="ketua_bidang"
+                            <label class="form-label" for="edit_ketua_bidang">Ketua Bidang</label>
+                            <input type="text" class="form-control" id="edit_ketua_bidang" name="edit_ketua_bidang"
                                 placeholder="Ketua Bidang">
-                            <div class="invalid-feedback"> </div>
-                        </div>
-
-                        <div class="form-group col-md-6 mb-2">
-                            <label class="form-label" for="anggota">Anggota</label>
-                            <textarea class="form-control" name="anggota" id="anggota" rows="3" placeholder="Anggota"></textarea>
-                            <div class="invalid-feedback"> </div>
-                        </div>
-
-
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group col-md-6 mb-2">
-                            <label class="col-form-label" for="program">Program</label>
-                            <textarea class="form-control" name="program" id="program" rows="3" placeholder="Program"></textarea>
-                            <div class="invalid-feedback"> </div>
-                        </div>
-
-                        <div class="form-group col-md-6 mb-2">
-                            <label class="col-form-label" for="tujuan">Tujuan</label>
-                            <textarea class="form-control" name="tujuan" id="tujuan" rows="3" placeholder="Tujuan"></textarea>
-                            <div class="invalid-feedback"> </div>
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group col-md-6 mb-2">
-                            <label class="col-form-label" for="sasaran">Sasaran</label>
-                            <textarea class="form-control" name="sasaran" id="sasaran" rows="3" placeholder="Sasaran"></textarea>
-                            <div class="invalid-feedback"> </div>
-                        </div>
-
-                        <div class="form-group col-md-6 mb-2">
-                            <label class="col-form-label" for="bentuk_kegiatan">Bentuk Kegiatan</label>
-                            <textarea class="form-control" name="bentuk_kegiatan" id="bentuk_kegiatan" rows="3" placeholder="Bentuk Kegiatan"></textarea>
-                            <div class="invalid-feedback"> </div>
-                        </div>
-
-
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group col-md-6 mb-2">
-                            <label class="col-form-label" for="waktu">Waktu</label>
-                            <input type="text" class="form-control" name="waktu" id="waktu"
-                                placeholder="Waktu">
-                            <div class="invalid-feedback"> </div>
-                        </div>
-
-                        <div class="form-group col-md-6 mb-2">
-                            <label class="col-form-label" for="pelaksana">Pelaksana</label>
-                            <input type="text" class="form-control" id="pelaksana" name="pelaksana"
-                                placeholder="Pelaksana">
                             <div class="invalid-feedback"></div>
                         </div>
 
-
+                        <div class="form-group col-md-6 mb-2">
+                            <label class="form-label" for="edit_anggota">Anggota</label>
+                            <textarea class="form-control" name="edit_anggota" id="edit_anggota" rows="3" placeholder="Anggota"></textarea>
+                            <div class="invalid-feedback"></div>
+                        </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group col-md-6 mb-2">
-                            <label class="col-form-label" for="sumber_dana">Sumber Dana</label>
-                            <input type="text" class="form-control" id="sumber_dana" name="sumber_dana"
-                                placeholder="Sumber Dana">
-                            <div class="invalid-feedback"> </div>
+                            <label class="col-form-label" for="edit_program">Program</label>
+                            <textarea class="form-control" name="edit_program" id="edit_program" rows="3" placeholder="Program"></textarea>
+                            <div class="invalid-feedback"></div>
                         </div>
 
                         <div class="form-group col-md-6 mb-2">
-                            <label class="col-form-label" for="implementasi">Implementasi</label>
-                            <input type="text" class="form-control" id="implementasi" name="implementasi"
-                                placeholder="Implementasi">
-                            <div class="invalid-feedback"> </div>
+                            <label class="col-form-label" for="edit_tujuan">Tujuan</label>
+                            <textarea class="form-control" name="edit_tujuan" id="edit_tujuan" rows="3" placeholder="Tujuan"></textarea>
+                            <div class="invalid-feedback"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6 mb-2">
+                            <label class="col-form-label" for="edit_sasaran">Sasaran</label>
+                            <textarea class="form-control" name="edit_sasaran" id="edit_sasaran" rows="3" placeholder="Sasaran"></textarea>
+                            <div class="invalid-feedback"></div>
+                        </div>
+
+                        <div class="form-group col-md-6 mb-2">
+                            <label class="col-form-label" for="edit_bentuk_kegiatan">Bentuk Kegiatan</label>
+                            <textarea class="form-control" name="edit_bentuk_kegiatan" id="edit_bentuk_kegiatan" rows="3"
+                                placeholder="Bentuk Kegiatan"></textarea>
+                            <div class="invalid-feedback"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6 mb-2">
+                            <label class="col-form-label" for="edit_waktu">Waktu</label>
+                            <input type="text" class="form-control" name="edit_waktu" id="edit_waktu"
+                                placeholder="Waktu">
+                            <div class="invalid-feedback"></div>
+                        </div>
+
+                        <div class="form-group col-md-6 mb-2">
+                            <label class="col-form-label" for="edit_pelaksana">Pelaksana</label>
+                            <input type="text" class="form-control" id="edit_pelaksana" name="edit_pelaksana"
+                                placeholder="Pelaksana">
+                            <div class="invalid-feedback"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6 mb-2">
+                            <label class="col-form-label" for="edit_sumber_dana">Sumber Dana</label>
+                            <input type="text" class="form-control" id="edit_sumber_dana" name="edit_sumber_dana"
+                                placeholder="Sumber Dana">
+                            <div class="invalid-feedback"></div>
+                        </div>
+
+                        <div class="form-group col-md-6 mb-2">
+                            <label class="col-form-label" for="edit_implementasi">Implementasi</label>
+                            <input type="text" class="form-control" id="edit_implementasi"
+                                name="edit_implementasi" placeholder="Implementasi">
+                            <div class="invalid-feedback"></div>
                         </div>
                     </div>
 
                     <div class="float-end">
                         <button type="button" class="btn btn-light waves-effect mr-2"
                             onclick="closeModalAdd()">Batal</button>
-                        <button type="submit" class="btn btn-primary">Simpan</button>
+                        <button type="submit" class="btn btn-primary">Update</button>
                     </div>
                 </form>
+
             </div>
         </div>
     </div>
@@ -129,10 +127,10 @@
 @push('scripts')
     <script>
         $(document).ready(function() {
-            $('#id_jemaat').select2({
+            $('#edit_id_jemaat').select2({
                 theme: "bootstrap-5",
                 placeholder: "Pilih Jemaat",
-                // minimumInputLength: 1,
+                dropdownParent: $('#editModal'),
                 ajax: {
                     url: '/jemaat/getAllJemaat',
                     dataType: 'json',
@@ -147,7 +145,7 @@
             });
         });
 
-        function closeModalAdd() {
+        function closeModalEdit() {
             const invalidInputs = document.querySelectorAll('.is-invalid');
             invalidInputs.forEach(invalidInput => {
                 invalidInput.value = '';
@@ -159,19 +157,20 @@
                 }
             });
 
-            const form = document.getElementById('addForm');
+            const form = document.getElementById('editForm');
             form.reset();
-            $('#addModal').modal('hide');
+            $('#editModal').modal('hide');
         }
 
-        document.getElementById('addForm').addEventListener('submit', async (event) => {
+        document.getElementById('editForm').addEventListener('submit', async (event) => {
             event.preventDefault();
+
             const form = event.target;
             const formData = new FormData(form);
             const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
 
             try {
-                const response = await fetch('/program-kerja-jemaat/store', {
+                const response = await fetch('/program-kerja-jemaat/update', {
                     method: 'POST',
                     headers: {
                         'Accept': 'application/json',
@@ -222,11 +221,11 @@
                         }
                     });
 
-                    const form = document.getElementById('addForm');
+                    const form = document.getElementById('editForm');
                     form.reset();
 
                     $('#datatable').DataTable().ajax.reload();
-                    $('#addModal').modal('hide');
+                    $('#editModal').modal('hide');
                 }
 
 
