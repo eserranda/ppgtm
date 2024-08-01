@@ -35,9 +35,7 @@
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="program_kerja">Program Kerja</label>
-                            <input type="text" class="form-control" id="program_kerja" name="program_kerja"
-                                placeholder="Program Kerja">
-                            {{-- <textarea class="form-control" id="program_kerja" name="program_kerja" rows="3"></textarea> --}}
+                            <textarea class="form-control" id="program_kerja" name="program_kerja" rows="3" placeholder="Program Kerja"></textarea>
                             <div class="invalid-feedback">
                             </div>
                         </div>
