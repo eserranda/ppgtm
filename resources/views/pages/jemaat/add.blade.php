@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">Tambah Data Klasis</h5>
+                <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">Tambah Data Jemaat</h5>
                 <button type="button" class="close" onclick="closeModalAdd()">
                     <span aria-hidden="true">&times;</span>
                 </button>

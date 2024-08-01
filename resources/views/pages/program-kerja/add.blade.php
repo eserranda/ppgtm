@@ -17,7 +17,7 @@
                             <select class="form-control costom-select" id="bidang" name="bidang">
                                 <option value="" selected disabled>Pilih bidang</option>
                                 <option value="Pembinaan, Kerohanian, Minat dan Bakat">Pembinaan, Kerohanian, Minat dan
-                                    Bakat</option>Z
+                                    Bakat</option>
                                 <option value="Kederisasi dan Pengembangan Organisasi">Kederisasi dan Pengembangan
                                     Organisasi
                                 </option>

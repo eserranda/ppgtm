@@ -28,7 +28,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center mb-3">
-                        <h5 class="header-title"><b>Data Klasis</b></h5>
+                        <h5 class="header-title"><b>Data Jemaat</b></h5>
                         <div>
                             <button type="button" class="btn btn-info waves-effect" id="btnPrint">Print</button>
                             <button type="button" class="btn btn-success waves-effect" id ="btnExcel">Excel</button>
@@ -37,7 +37,7 @@
                                 data-target="#addModal">Tambah Data</button>
                         </div>
                     </div>
-                    <table id="datatable" class="table table-bordered dt-responsive nowrap"
+                    <table id="datatable" class="table table-bordered dt-responsive"
                         style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                         <thead>
                             <tr>

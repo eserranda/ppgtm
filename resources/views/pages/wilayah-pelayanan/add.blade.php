@@ -19,9 +19,23 @@
                         </div>
 
                         <div class="col-md-6 mb-3">
-                            <label for="wilayah">Wilayah</label>
-                            <input type="text" class="form-control" id="wilayah" name="wilayah"
-                                placeholder="Wilayah">
+                            <label class="form-label" for="wilayah">Wilayah</label>
+                            <select class="form-control costom-select" id="wilayah" name="wilayah">
+                                <option value="" selected disabled>Pilih Wilayah</option>
+                                <option value="Wilayah I">Wilayah I</option>
+                                <option value="Wilayah II">Wilayah II</option>
+                                <option value="Wilayah III">Wilayah III</option>
+                                <option value="Wilayah IV">Wilayah IV</option>
+                                <option value="Wilayah V">Wilayah V</option>
+                                <option value="Wilayah VI">Wilayah VI</option>
+                                <option value="Wilayah VII">Wilayah VII</option>
+                                <option value="Wilayah VIII">Wilayah VIII</option>
+                                <option value="Wilayah IX">Wilayah IX</option>
+                                <option value="Wilayah X">Wilayah X</option>
+                                <option value="Wilayah XI">Wilayah XI</option>
+                                <option value="Wilayah XII">Wilayah XII</option>
+                            </select>
+
                             <div class="invalid-feedback">
                             </div>
                         </div>
