@@ -1,34 +1,53 @@
-<div id="addModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel"
+<div id="editModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel"
     aria-hidden="true">
-    <div class="modal-dialog ">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">Tambah Data Klasis</h5>
+                <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">Edit Data Klasis</h5>
 
-                <button type="button" class="close" onclick="closeModalAdd()">
+                <button type="button" class="close" onclick="closeModalEdit()">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form id="addForm">
-                    <div class="form-group">
-                        <label>Nama Klasis</label>
-                        <div>
-                            <input type="text" class="form-control" placeholder="Nama Klasis" id="nama_klasis"
-                                name="nama_klasis" />
+                <form id="editForm">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label class="col-form-label">Pilih Klasis</label>
+                            <select name="edit_id_klasis" id="edit_id_klasis">
+                                <option value="" selected disabled>Pilih klasis</option>
+                                <div class="invalid-feedback">
+                                </div>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="col-form-label">Nama Jemaat
+                                <span class="text-danger">*</span>
+                            </label>
+                            <input type="hidden" class="form-control" id="edit_id" name="id">
+                            <input type="text" class="form-control" id="edit_nama_jemaat" name="edit_nama_jemaat"
+                                placeholder="Nama Jemaat">
+                            <div class="invalid-feedback"></div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label class="col-form-label">Nama Pelayan
+                                <span class="text-danger">*</span>
+                            </label>
+                            <input type="text" class="form-control" id="edit_pelayan" name="edit_pelayan"
+                                placeholder="Nama Pelayan">
                             <div class="invalid-feedback">
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Wilayah</label>
-                        <div>
-                            <textarea class="form-control" rows="3" id="wilayah" name="wilayah" placeholder="Wilayah"></textarea>
-                            <div class="invalid-feedback">
-                            </div>
+
+                        <div class="form-group col-md-6">
+                            <label class="col-form-label">Alamat</label>
+                            <textarea class="form-control" name="edit_alamat" id="edit_alamat" rows="3" placeholder="Alamat"></textarea>
+                            <div class="invalid-feedback"></div>
                         </div>
                     </div>
-                    <button class="btn btn-primary" type="submit">Tambah</button>
+                    <button class="btn btn-primary" type="submit">Update</button>
                 </form>
             </div>
         </div>
@@ -37,7 +56,26 @@
 
 @push('scripts')
     <script>
-        function closeModalAdd() {
+        $(document).ready(function() {
+            $('#edit_id_klasis').select2({
+                theme: "bootstrap-5",
+                placeholder: "Pilih Klasis",
+                dropdownParent: $('#editModal'),
+                ajax: {
+                    url: '/klasis/getAllKlasis',
+                    dataType: 'json',
+                    delay: 250,
+                    processResults: function(data) {
+                        return {
+                            results: data
+                        };
+                    },
+                    cache: true
+                }
+            });
+        });
+
+        function closeModalEdit() {
             const invalidInputs = document.querySelectorAll('.is-invalid');
             invalidInputs.forEach(invalidInput => {
                 invalidInput.value = '';
@@ -49,12 +87,12 @@
                 }
             });
 
-            const form = document.getElementById('addForm');
+            const form = document.getElementById('editForm');
             form.reset();
-            $('#addModal').modal('hide');
+            $('#editModal').modal('hide');
         }
 
-        document.getElementById('addForm').addEventListener('submit', async (event) => {
+        document.getElementById('editForm').addEventListener('submit', async (event) => {
             event.preventDefault();
 
             const form = event.target;
@@ -62,7 +100,7 @@
             const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
 
             try {
-                const response = await fetch('/klasis/store', {
+                const response = await fetch('/jemaat/update', {
                     method: 'POST',
                     headers: {
                         'Accept': 'application/json',
@@ -109,11 +147,11 @@
                         }
                     });
 
-                    const form = document.getElementById('addForm');
+                    const form = document.getElementById('editForm');
                     form.reset();
 
                     $('#datatable').DataTable().ajax.reload();
-                    $('#addModal').modal('hide');
+                    $('#editModal').modal('hide');
                 }
 
 

@@ -21,9 +21,9 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>Alamat</label>
+                        <label>Wilayah</label>
                         <div>
-                            <textarea class="form-control" rows="3" id="edit_alamat" name="edit_alamat"></textarea>
+                            <textarea class="form-control" rows="3" id="edit_wilayah" name="edit_wilayah"></textarea>
                             <div class="invalid-feedback">
                             </div>
                         </div>

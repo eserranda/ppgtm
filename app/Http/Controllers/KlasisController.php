@@ -13,24 +13,34 @@ class KlasisController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = Klasis::latest('created_at')->get();
+            $dataFilter = $request->input('filter');
+
+            $query = Klasis::query();
+            if ($dataFilter) {
+                $query->where('wilayah', $dataFilter);
+            }
+
+            $data = $query->latest('created_at')->get();
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    $btn = '<a class="btn btn-outline-secondary btn-sm" title="Edit" onclick="edit(' . $row->id . ')"> <i class="fas fa-pencil-alt"></i> </a>';
-                    $btn .= '<a class="btn btn-outline-secondary btn-sm  text-danger mx-2" title="Hapus" onclick="hapus(' . $row->id . ')"> <i class="fas fa-trash-alt"></i> </a>';
+                    $btn = '<div class="d-flex justify-content-start align-items-center">';
+                    $btn .= '<a class="btn btn-outline-secondary btn-sm mx-1" title="Edit" onclick="edit(' . $row->id . ')"> <i class="fas fa-pencil-alt"></i> </a>';
+                    $btn .= '<a class="btn btn-outline-secondary btn-sm text-danger" title="Hapus" onclick="hapus(' . $row->id . ')"> <i class="fas fa-trash-alt"></i> </a>';
+                    $btn .= '</div>';
                     return $btn;
                 })
                 ->rawColumns(['action'])
                 ->make(true);
         }
+
         return view('pages.klasis.index');
     }
 
-    public function findById($id)
+    public function findOne($id)
     {
-        $klasis = Klasis::find($id);
-        return response()->json($klasis);
+        $data = Klasis::find($id);
+        return response()->json($data);
     }
 
     public function getAllKlasis(Request $request)
@@ -45,11 +55,23 @@ class KlasisController extends Controller
         return response()->json($klasis);
     }
 
+    public function findById($id)
+    {
+        $data = Klasis::find($id);
+        return response()->json($data);
+    }
+
+    public function getIdAndNameAllKlasis()
+    {
+        $klases = Klasis::orderBy('nama_klasis', 'asc')->get(['id', 'nama_klasis']);
+        return response()->json($klases);
+    }
+
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
+            'wilayah' => 'required',
             'nama_klasis' => 'required',
-            'alamat' => 'required',
         ], [
             'required' => ':attribute harus diisi',
         ]);
@@ -61,21 +83,22 @@ class KlasisController extends Controller
             ], 422);
         }
 
-        $save = Klasis::create([
+
+        $klasis = Klasis::create([
+            'wilayah' => $request->wilayah,
             'nama_klasis' => $request->nama_klasis,
-            'alamat' => $request->alamat,
         ]);
 
-        if ($save) {
+        if ($klasis) {
             return response()->json([
                 'success' => true,
-                'messages' => 'Data Klasis Berhasil'
-            ]);
+                'messages' => 'Data klasis berhasil ditambahkan',
+            ], 201);
         } else {
             return response()->json([
                 'success' => false,
-                'messages' => 'Data Klasis Gagal Disimpan'
-            ]);
+                'messages' => 'Data klasis gagal ditambahkan',
+            ], 500);
         }
     }
 
@@ -83,8 +106,8 @@ class KlasisController extends Controller
     public function update(Request $request, Klasis $klasis)
     {
         $validator = Validator::make($request->all(), [
+            'edit_wilayah' => 'required',
             'edit_nama_klasis' => 'required',
-            'edit_alamat' => 'required',
         ], [
             'required' => ':attribute harus diisi',
         ]);
@@ -96,20 +119,18 @@ class KlasisController extends Controller
             ], 422);
         }
 
-        $update = $klasis::findOrFail($request->id)->update([
-            'nama_klasis' => $request->edit_nama_klasis,
-            'alamat' => $request->edit_alamat,
+        $update = $klasis::where('id', $request->input('id'))->update([
+            'wilayah' => $request->input('edit_wilayah'),
+            'nama_klasis' => $request->input('edit_nama_klasis'),
         ]);
 
         if ($update) {
             return response()->json([
-                'success' => true,
-                'messages' => 'Data Klasis Berhasil'
+                'success' => true
             ]);
         } else {
             return response()->json([
-                'success' => false,
-                'messages' => 'Data Klasis Gagal Disimpan'
+                'success' => false
             ]);
         }
     }

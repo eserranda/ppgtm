@@ -1,34 +1,56 @@
 <div id="addModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel"
     aria-hidden="true">
-    <div class="modal-dialog ">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">Tambah Data Klasis</h5>
-
                 <button type="button" class="close" onclick="closeModalAdd()">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <form id="addForm">
-                    <div class="form-group">
-                        <label>Nama Klasis</label>
-                        <div>
-                            <input type="text" class="form-control" placeholder="Nama Klasis" id="nama_klasis"
-                                name="nama_klasis" />
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label class="col-form-label">Pilih Klasis</label>
+                            <select name="id_klasis" id="id_klasis">
+                                <option value="" selected disabled>Pilih klasis</option>
+                                <div class="invalid-feedback">
+                                </div>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="col-form-label">Nama Jemaat
+                                <span class="text-danger">*</span>
+                            </label>
+                            <input type="text" class="form-control" id="nama_jemaat" name="nama_jemaat"
+                                placeholder="Nama Jemaat">
+                            <div class="invalid-feedback"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label class="col-form-label">Nama Pelayan
+                                <span class="text-danger">*</span>
+                            </label>
+                            <input type="text" class="form-control" id="pelayan" name="pelayan"
+                                placeholder="Nama Pelayan">
                             <div class="invalid-feedback">
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Wilayah</label>
-                        <div>
-                            <textarea class="form-control" rows="3" id="wilayah" name="wilayah" placeholder="Wilayah"></textarea>
-                            <div class="invalid-feedback">
-                            </div>
+
+                        <div class="form-group col-md-6">
+                            <label class="col-form-label">Alamat</label>
+                            <textarea class="form-control" name="alamat" id="alamat" rows="3" placeholder="Alamat"></textarea>
+                            <div class="invalid-feedback"></div>
                         </div>
                     </div>
-                    <button class="btn btn-primary" type="submit">Tambah</button>
+                    <div class="float-end">
+                        <button type="button" class="btn btn-light waves-effect mr-2"
+                            onclick="closeModalAdd()">Batal</button>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -37,6 +59,25 @@
 
 @push('scripts')
     <script>
+        $(document).ready(function() {
+            $('#id_klasis').select2({
+                theme: "bootstrap-5",
+                placeholder: "Pilih Klasis",
+                // minimumInputLength: 1,
+                ajax: {
+                    url: '/klasis/getAllKlasis',
+                    dataType: 'json',
+                    delay: 250,
+                    processResults: function(data) {
+                        return {
+                            results: data
+                        };
+                    },
+                    cache: true
+                }
+            });
+        });
+
         function closeModalAdd() {
             const invalidInputs = document.querySelectorAll('.is-invalid');
             invalidInputs.forEach(invalidInput => {
@@ -56,13 +97,12 @@
 
         document.getElementById('addForm').addEventListener('submit', async (event) => {
             event.preventDefault();
-
             const form = event.target;
             const formData = new FormData(form);
             const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
 
             try {
-                const response = await fetch('/klasis/store', {
+                const response = await fetch('/jemaat/store', {
                     method: 'POST',
                     headers: {
                         'Accept': 'application/json',
@@ -76,7 +116,9 @@
                 if (!data.success) {
                     Object.keys(data.messages).forEach(fieldName => {
                         const inputField = document.getElementById(fieldName);
-                        if (inputField) {
+                        if (inputField && fieldName == 'id_klasis') {
+                            inputField.classList.add('is-invalid');
+                        } else {
                             inputField.classList.add('is-invalid');
                             if (inputField.nextElementSibling) {
                                 inputField.nextElementSibling.textContent = data.messages[
@@ -90,8 +132,10 @@
                     validFields.forEach(validField => {
                         const fieldName = validField.id;
                         if (!data.messages[fieldName]) {
-                            validField.classList.remove('is-invalid');
-                            if (validField.nextElementSibling) {
+                            if (fieldName === 'id_klasis') {
+                                validField.classList.remove('is-invalid');
+                            } else {
+                                validField.classList.remove('is-invalid');
                                 validField.nextElementSibling.textContent = '';
                             }
                         }

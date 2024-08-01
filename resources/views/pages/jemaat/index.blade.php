@@ -10,9 +10,16 @@
     <!-- Responsive datatable examples -->
     <link href="{{ asset('assets') }}/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet"
         type="text/css" />
+
+    <!-- Sweet Alert -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.rtl.min.css" />
 @endpush
 @section('page_title')
-    Program Kerja
+    Data Jemaat
 @endsection
 
 @section('content')
@@ -21,27 +28,25 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center mb-3">
-                        <h5 class="header-title"><b>Data Program Kerja</b></h5>
+                        <h5 class="header-title"><b>Data Klasis</b></h5>
                         <div>
-                            <button type="button" class="btn btn-info waves-effect" id="btnPrint">
-                                <i class="mdi mdi-printer-check"></i>
-                            </button>
+                            <button type="button" class="btn btn-info waves-effect" id="btnPrint">Print</button>
                             <button type="button" class="btn btn-success waves-effect" id ="btnExcel">Excel</button>
 
                             <button type="button" class="btn btn-primary   waves-effect waves-light" data-toggle="modal"
                                 data-target="#addModal">Tambah Data</button>
                         </div>
                     </div>
-                    <table id="datatable" class="table table-bordered dt-responsive"
+                    <table id="datatable" class="table table-bordered dt-responsive nowrap"
                         style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                         <thead>
                             <tr>
-                                <th>#</th>
-                                <th>Program Kerja</th>
-                                <th>Sasaran</th>
-                                <th>Tujuan</th>
-                                <th>Waktu dan tempat</th>
-                                <th>Opsi</th>
+                                <th>No</th>
+                                <th>Klasis</th>
+                                <th>Nama Jemaat</th>
+                                <th>Pelayan</th>
+                                <th>Alamat</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -53,8 +58,8 @@
         </div>
     </div>
 
-    @include('pages.program-kerja.add')
-    @include('pages.program-kerja.edit')
+    @include('pages.jemaat.add')
+    @include('pages.jemaat.edit')
 @endsection
 
 @push('scripts')
@@ -77,20 +82,55 @@
     <!-- Sweet Alerts js -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    <!-- Select2 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
     <script>
         function edit(id) {
-            fetch('/program-kerja/findById/' + id)
+            fetch('/jemaat/findById/' + id)
                 .then(response => response.json())
                 .then(data => {
                     document.getElementById('edit_id').value = data.id;
-                    document.getElementById('edit_program_kerja').value = data.program_kerja;
-                    document.getElementById('edit_sasaran').value = data.sasaran;
-                    document.getElementById('edit_tujuan').value = data.tujuan;
-                    document.getElementById('edit_waktu_dan_tempat').value = data.waktu_dan_tempat;
+                    document.getElementById('edit_id_klasis').value = data.id_klasis;
+                    document.getElementById('edit_nama_jemaat').value = data.nama_jemaat;
+                    document.getElementById('edit_pelayan').value = data.pelayan;
+                    document.getElementById('edit_alamat').value = data.alamat;
+
+                    var editIdKlasisSelect = document.getElementById('edit_id_klasis');
+
+                    fetch('/klasis/findOne/' + data.id_klasis, {
+                            method: 'GET',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        })
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Gagal mengambil data');
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            updateOptionsAndSelect2Klasis(editIdKlasisSelect, data.id, data.nama_klasis);
+                        })
+                        .catch(error => console.error('Error fetching data:', error));
                 })
                 .catch(error => console.error(error));
+            // show modal edit
             $('#editModal').modal('show');
         }
+
+        function updateOptionsAndSelect2Klasis(selectElement, id, name) {
+            // Hapus semua opsi yang ada di elemen <select>
+            $(selectElement).empty();
+
+            // Tambahkan opsi baru ke elemen <select>
+            var option = new Option(name, id, true, true);
+            $(selectElement).append(option);
+
+            // Perbarui tampilan Select2
+            $(selectElement).trigger('change');
+        }
+
 
         var datatable;
         $(document).ready(function() {
@@ -106,7 +146,7 @@
                 buttons: [{
                         extend: 'excel',
                         exportOptions: {
-                            columns: [0, 1, 2, 4]
+                            columns: [0, 1, 2, 3]
                         },
                         init: function(api, node, config) {
                             $(node).hide();
@@ -115,14 +155,14 @@
                     {
                         extend: 'print',
                         exportOptions: {
-                            columns: [0, 1, 2, 4]
+                            columns: [0, 1, 2, 3]
                         },
                         init: function(api, node, config) {
                             $(node).hide();
                         }
                     },
                 ],
-                ajax: "{{ route('program-kerja.index') }}",
+                ajax: "{{ route('jemaat.index') }}",
                 columns: [{
                         data: 'DT_RowIndex',
                         name: '#',
@@ -130,23 +170,23 @@
 
                     },
                     {
-                        data: 'program_kerja',
-                        name: 'program_kerja',
+                        data: 'id_klasis',
+                        name: 'id_klasis',
                         orderable: false,
                     },
                     {
-                        data: 'sasaran',
-                        name: 'sasaran',
+                        data: 'nama_jemaat',
+                        name: 'nama_jemaat',
                         orderable: false,
                     },
                     {
-                        data: 'tujuan',
-                        name: 'tujuan',
+                        data: 'pelayan',
+                        name: 'pelayan',
                         orderable: false,
                     },
                     {
-                        data: 'waktu_dan_tempat',
-                        name: 'waktu_dan_tempat',
+                        data: 'alamat',
+                        name: 'alamat',
                         orderable: false,
                     },
                     {
@@ -157,6 +197,33 @@
                     },
                 ],
             });
+
+            // fetch data klasis yang ada pada tabel jemaat 
+            fetch('/jemaat/getIdAndNameAllKlasis')
+                .then(response => response.json())
+                .then(data => {
+                    const filterData = document.getElementById('filterData');
+                    data.forEach(klasis => {
+                        const option = document.createElement('option');
+                        option.value = klasis.id_klasis;
+                        option.textContent = klasis.nama_klasis;
+                        filterData.appendChild(option);
+                    });
+                })
+                .catch(error => console.error('Error fetching data:', error));
+
+
+            $('#filterData').on('change', function() {
+                const selectedFilter = $(this).val();
+                datatable.ajax.url('{{ route('jemaat.index') }}?filter=' + selectedFilter)
+                    .load();
+            });
+
+            $('#reload').on('click', function() {
+                $('#filterData').val('');
+                datatable.ajax.url('{{ route('jemaat.index') }}').load();
+            });
+
         });
 
         $('#btnExcel').on('click', function() {
@@ -181,7 +248,7 @@
                 if (result.isConfirmed) {
                     var csrfToken = $('meta[name="csrf-token"]').attr('content');
                     $.ajax({
-                        url: '/program-kerja/destroy/' + id,
+                        url: '/jemaat/destroy/' + id,
                         type: 'DELETE',
                         data: {
                             _token: csrfToken

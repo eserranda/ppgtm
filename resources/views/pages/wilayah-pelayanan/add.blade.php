@@ -12,8 +12,10 @@
                 <form id ="addForm">
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                            <label for="id_klasis">Pilih Klasi</label>
-                            <select class="form-select" id="id_klasis" name="id_klasis"></select>
+                            <label for="id_klasis">Pilih Klasis</label>
+                            <select class="form-select" id="id_klasis" name="id_klasis">
+
+                            </select>
                         </div>
 
                         <div class="col-md-6 mb-3">

@@ -10,17 +10,17 @@
                   <li class="menu-title">Menu</li>
 
                   <li>
-                      <a href="index.html" class="waves-effect">
+                      <a href="/dashboard" class="waves-effect">
                           <i class="mdi mdi-view-dashboard"></i>
                           <span>Dashboard</span>
                       </a>
                   </li>
-                  <li>
+                  {{-- <li>
                       <a href="klasis" class="waves-effect">
                           <i class="mdi mdi-home-flood"></i>
                           <span>Klasis</span>
                       </a>
-                  </li>
+                  </li> --}}
 
                   <li>
                       <a href="wilayah-pelayanan" class=" waves-effect">
@@ -36,17 +36,16 @@
                       </a>
                   </li>
 
-                  {{-- <li>
+                  <li>
                       <a href="javascript: void(0);" class="has-arrow waves-effect">
                           <i class="mdi mdi-email-multiple-outline"></i>
-                          <span>Email</span>
+                          <span>Administrasi</span>
                       </a>
                       <ul class="sub-menu" aria-expanded="false">
-                          <li><a href="email-inbox.html">Inbox</a></li>
-                          <li><a href="email-read.html">Email Read</a></li>
-                          <li><a href="email-compose.html">Email Compose</a></li>
+                          <li><a href="/klasis">Klasis</a></li>
+                          <li><a href="/jemaat">Jemaat</a></li>
                       </ul>
-                  </li> --}}
+                  </li>
 
                   {{-- <li>
                       <a href="javascript: void(0);" class="has-arrow waves-effect">

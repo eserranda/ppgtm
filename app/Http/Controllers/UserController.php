@@ -82,7 +82,7 @@ class UserController extends Controller
         $loginType = filter_var($request->login, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
         $credentials = [$loginType => $request->login, 'password' => $request->password];
         if (Auth::attempt($credentials)) {
-            return redirect()->intended('/program-kerja');
+            return redirect()->intended('/dashboard');
         }
 
         return redirect()->back()->withErrors(['login' => 'Username atau Password salah'])->withInput();

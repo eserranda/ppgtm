@@ -36,7 +36,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>Nama Klasis</th>
-                                <th>Alamat</th>
+                                <th>Wilayah</th>
                                 <th>Opsi</th>
                             </tr>
                         </thead>
@@ -79,7 +79,7 @@
                 .then(data => {
                     document.getElementById('edit_id').value = data.id;
                     document.getElementById('edit_nama_klasis').value = data.nama_klasis;
-                    document.getElementById('edit_alamat').value = data.alamat;
+                    document.getElementById('edit_wilayah').value = data.wilayah;
                 })
                 .catch(error => console.error(error));
             $('#editModal').modal('show');
@@ -128,8 +128,8 @@
                         orderable: false,
                     },
                     {
-                        data: 'alamat',
-                        name: 'alamat',
+                        data: 'wilayah',
+                        name: 'wilayah',
                         orderable: false,
                     },
                     {
