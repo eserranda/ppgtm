@@ -42,13 +42,12 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Dapel</th>
+                                <th>Daerah Pelayanan</th>
                                 <th>Nama</th>
                                 <th>Tanggal Lahir</th>
                                 <th>No telepon</th>
                                 <th>Alamat</th>
                                 <th>Keterangan</th>
-
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -89,23 +88,19 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
     <script>
         function edit(id) {
-            fetch('/program-kerja-jemaat/findById/' + id)
+            fetch('/anggota-pemuda-jemaat/findById/' + id)
                 .then(response => response.json())
                 .then(data => {
                     // Asumsi bahwa objek 'data' sudah tersedia dan memiliki struktur yang sesuai
                     document.getElementById('edit_id').value = data.id;
                     document.getElementById('edit_id_jemaat').value = data.id_jemaat;
-                    document.getElementById('edit_bidang').value = data.bidang;
-                    document.getElementById('edit_ketua_bidang').value = data.ketua_bidang;
-                    document.getElementById('edit_anggota').value = data.anggota;
-                    document.getElementById('edit_program').value = data.program;
-                    document.getElementById('edit_tujuan').value = data.tujuan;
-                    document.getElementById('edit_sasaran').value = data.sasaran;
-                    document.getElementById('edit_bentuk_kegiatan').value = data.bentuk_kegiatan;
-                    document.getElementById('edit_waktu').value = data.waktu;
-                    document.getElementById('edit_pelaksana').value = data.pelaksana;
-                    document.getElementById('edit_sumber_dana').value = data.sumber_dana;
-                    document.getElementById('edit_implementasi').value = data.implementasi;
+                    document.getElementById('edit_dapel').value = data.dapel;
+                    document.getElementById('edit_nama_anggota').value = data.nama_anggota;
+                    document.getElementById('edit_tgl_lahir').value = data.tgl_lahir;
+                    document.getElementById('edit_alamat').value = data.alamat;
+                    document.getElementById('edit_no_telp').value = data.no_telp;
+                    document.getElementById('edit_keterangan').value = data.keterangan;
+                    document.getElementById('edit_data_time').value = data.data_time;
 
                     var editIdJemaatSelect = document.getElementById('edit_id_jemaat');
 
@@ -255,7 +250,7 @@
                 if (result.isConfirmed) {
                     var csrfToken = $('meta[name="csrf-token"]').attr('content');
                     $.ajax({
-                        url: '/program-kerja-jemaat/destroy/' + id,
+                        url: '/anggota-pemuda-jemaat/destroy/' + id,
                         type: 'DELETE',
                         data: {
                             _token: csrfToken

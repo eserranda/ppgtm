@@ -13,108 +13,76 @@
                 <form id="editForm">
                     <div class="form-row">
                         <div class="form-group col-md-6 mb-2">
-                            <label class="form-label" for="edit_id_jemaat">Jemaat</label>
+                            <label class="form-label" for="edit_id_jemaat">ID Jemaat</label>
                             <input type="hidden" class="form-control" id="edit_id" name="id">
                             <select class="form-select" id="edit_id_jemaat" name="edit_id_jemaat">
-                                <!-- Options will be dynamically populated -->
                             </select>
                             <div class="invalid-feedback"></div>
                         </div>
 
                         <div class="form-group col-md-6 mb-2">
-                            <label class="form-label" for="edit_bidang">Bidang</label>
-                            <select class="form-control custom-select" id="edit_bidang" name="edit_bidang">
-                                <option value="" selected disabled>Pilih bidang</option>
-                                <option value="Kerohanian">Kerohanian</option>
-                                <option value="Komunikasi dan Informasi">Komunikasi dan Informasi</option>
-                                <option value="Dana">Dana</option>
-                                <option value="Kaderisasi">Kaderisasi</option>
-                                <option value="Minat Dan Bakat">Minat Dan Bakat</option>
-                                <option value="Kesekretariatan">Kesekretariatan</option>
+                            <label class="form-label" for="dapel">Daerah Pelayanan</label>
+                            <select class="form-control costom-select" id="edit_dapel" name="edit_dapel">
+                                <option value="" selected disabled>Pilih Dapel</option>
+                                <option value="Dapel 1">Dapel 1</option>
+                                <option value="Dapel 2">Dapel 2</option>
+                                <option value="Dapel 3">Dapel 3</option>
+                                <option value="Dapel 4">Dapel 4</option>
                             </select>
+
+                            <div class="invalid-feedback"> </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6 mb-2">
+                            <label class="form-label" for="edit_nama_anggota">Nama Anggota</label>
+                            <input type="text" class="form-control" id="edit_nama_anggota" name="edit_nama_anggota"
+                                placeholder="Nama Anggota">
+                            <div class="invalid-feedback"></div>
+                        </div>
+
+                        <div class="form-group col-md-6 mb-2">
+                            <label class="form-label" for="edit_tgl_lahir">Tanggal Lahir</label>
+                            <input type="date" class="form-control" id="edit_tgl_lahir" name="edit_tgl_lahir">
                             <div class="invalid-feedback"></div>
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group col-md-6 mb-2">
-                            <label class="form-label" for="edit_ketua_bidang">Ketua Bidang</label>
-                            <input type="text" class="form-control" id="edit_ketua_bidang" name="edit_ketua_bidang"
-                                placeholder="Ketua Bidang">
+                            <label class="form-label" for="edit_alamat">Alamat</label>
+                            <input type="text" class="form-control" id="edit_alamat" name="edit_alamat"
+                                placeholder="Alamat">
                             <div class="invalid-feedback"></div>
                         </div>
 
                         <div class="form-group col-md-6 mb-2">
-                            <label class="form-label" for="edit_anggota">Anggota</label>
-                            <textarea class="form-control" name="edit_anggota" id="edit_anggota" rows="3" placeholder="Anggota"></textarea>
-                            <div class="invalid-feedback"></div>
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group col-md-6 mb-2">
-                            <label class="col-form-label" for="edit_program">Program</label>
-                            <textarea class="form-control" name="edit_program" id="edit_program" rows="3" placeholder="Program"></textarea>
-                            <div class="invalid-feedback"></div>
-                        </div>
-
-                        <div class="form-group col-md-6 mb-2">
-                            <label class="col-form-label" for="edit_tujuan">Tujuan</label>
-                            <textarea class="form-control" name="edit_tujuan" id="edit_tujuan" rows="3" placeholder="Tujuan"></textarea>
+                            <label class="form-label" for="edit_no_telp">No. Telepon</label>
+                            <input type="number" class="form-control" id="edit_no_telp" name="edit_no_telp"
+                                placeholder="No. Telepon">
                             <div class="invalid-feedback"></div>
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group col-md-6 mb-2">
-                            <label class="col-form-label" for="edit_sasaran">Sasaran</label>
-                            <textarea class="form-control" name="edit_sasaran" id="edit_sasaran" rows="3" placeholder="Sasaran"></textarea>
+                            <label class="form-label" for="edit_keterangan">Keterangan</label>
+                            <input type="text" class="form-control" id="edit_keterangan" name="edit_keterangan"
+                                placeholder="Keterangan">
                             <div class="invalid-feedback"></div>
                         </div>
 
                         <div class="form-group col-md-6 mb-2">
-                            <label class="col-form-label" for="edit_bentuk_kegiatan">Bentuk Kegiatan</label>
-                            <textarea class="form-control" name="edit_bentuk_kegiatan" id="edit_bentuk_kegiatan" rows="3"
-                                placeholder="Bentuk Kegiatan"></textarea>
-                            <div class="invalid-feedback"></div>
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group col-md-6 mb-2">
-                            <label class="col-form-label" for="edit_waktu">Waktu</label>
-                            <input type="text" class="form-control" name="edit_waktu" id="edit_waktu"
-                                placeholder="Waktu">
-                            <div class="invalid-feedback"></div>
-                        </div>
-
-                        <div class="form-group col-md-6 mb-2">
-                            <label class="col-form-label" for="edit_pelaksana">Pelaksana</label>
-                            <input type="text" class="form-control" id="edit_pelaksana" name="edit_pelaksana"
-                                placeholder="Pelaksana">
-                            <div class="invalid-feedback"></div>
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group col-md-6 mb-2">
-                            <label class="col-form-label" for="edit_sumber_dana">Sumber Dana</label>
-                            <input type="text" class="form-control" id="edit_sumber_dana" name="edit_sumber_dana"
-                                placeholder="Sumber Dana">
-                            <div class="invalid-feedback"></div>
-                        </div>
-
-                        <div class="form-group col-md-6 mb-2">
-                            <label class="col-form-label" for="edit_implementasi">Implementasi</label>
-                            <input type="text" class="form-control" id="edit_implementasi"
-                                name="edit_implementasi" placeholder="Implementasi">
+                            <label class="form-label" for="edit_data_time">Data Time</label>
+                            <input type="text" class="form-control" id="edit_data_time" name="edit_data_time">
                             <div class="invalid-feedback"></div>
                         </div>
                     </div>
 
                     <div class="float-end">
                         <button type="button" class="btn btn-light waves-effect mr-2"
-                            onclick="closeModalAdd()">Batal</button>
+                            onclick="closeModalEdit()">Batal</button>
                         <button type="submit" class="btn btn-primary">Update</button>
                     </div>
                 </form>
@@ -170,7 +138,7 @@
             const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
 
             try {
-                const response = await fetch('/program-kerja-jemaat/update', {
+                const response = await fetch('/anggota-pemuda-jemaat/update', {
                     method: 'POST',
                     headers: {
                         'Accept': 'application/json',
@@ -227,8 +195,6 @@
                     $('#datatable').DataTable().ajax.reload();
                     $('#editModal').modal('hide');
                 }
-
-
             } catch (error) {
                 console.error(error);
             }

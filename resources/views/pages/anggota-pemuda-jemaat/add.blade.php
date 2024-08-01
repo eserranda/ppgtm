@@ -20,9 +20,15 @@
                         </div>
 
                         <div class="form-group col-md-6 mb-3">
-                            <label class="form-label" for="dapel">Dapel</label>
-                            <input type="text" class="form-control" id="dapel" name="dapel"
-                                placeholder="Dapel">
+                            <label class="form-label" for="dapel">Daerah Pelayanan</label>
+                            <select class="form-control costom-select" id="dapel" name="dapel">
+                                <option value="" selected disabled>Pilih Dapel</option>
+                                <option value="Dapel 1">Dapel 1</option>
+                                <option value="Dapel 2">Dapel 2</option>
+                                <option value="Dapel 3">Dapel 3</option>
+                                <option value="Dapel 4">Dapel 4</option>
+                            </select>
+
                             <div class="invalid-feedback"> </div>
                         </div>
                     </div>

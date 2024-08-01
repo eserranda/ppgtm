@@ -75,35 +75,69 @@ class AnggotaPemudaJemaatController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(AnggotaPemudaJemaat $anggotaPemudaJemaat)
+    public function findById($id)
     {
-        //
+        $data = AnggotaPemudaJemaat::find($id);
+        return response()->json($data);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(AnggotaPemudaJemaat $anggotaPemudaJemaat)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, AnggotaPemudaJemaat $anggotaPemudaJemaat)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'edit_id_jemaat' => 'required|integer',
+            'edit_dapel' => 'required|string|max:255',
+            'edit_nama_anggota' => 'required|string|max:255',
+            'edit_tgl_lahir' => 'required|date',
+            'edit_alamat' => 'required|string|max:255',
+            'edit_no_telp' => 'required|numeric',
+            'edit_data_time' => 'required ',
+        ], [
+            'required' => ':attribute harus diisi',
+            'string' => ':attribute harus berupa string',
+            'numeric' => ':attribute harus berupa angka',
+            'date' => ':attribute harus berupa tanggal',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'messages' => $validator->errors(),
+            ], 422);
+        }
+
+        $updated = $anggotaPemudaJemaat::where('id', $request->id)->update([
+            'id_jemaat' => $request->edit_id_jemaat,
+            'dapel' => $request->edit_dapel,
+            'nama_anggota' => $request->edit_nama_anggota,
+            'tgl_lahir' => $request->edit_tgl_lahir,
+            'alamat' => $request->edit_alamat,
+            'no_telp' => $request->edit_no_telp,
+            'data_time' => $request->edit_data_time,
+        ]);
+
+        if ($updated) {
+            return response()->json([
+                'success' => true
+            ], 200);
+        } else {
+            return response()->json([
+                'success' => false
+            ], 500);
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(AnggotaPemudaJemaat $anggotaPemudaJemaat)
+    public function destroy(AnggotaPemudaJemaat $anggotaPemudaJemaat, $id)
     {
-        //
+        try {
+            $deleted = $anggotaPemudaJemaat::findOrFail($id);
+            $deleted->delete();
+
+            return response()->json(['status' => true, 'message' => 'Data berhasil dihapus'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['status' => false, 'message' => 'Gagal menghapus data'], 500);
+        }
     }
 }
