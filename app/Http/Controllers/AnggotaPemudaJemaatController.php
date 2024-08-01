@@ -16,7 +16,7 @@ class AnggotaPemudaJemaatController extends Controller
 
             $query = AnggotaPemudaJemaat::query();
             if ($dataFilter) {
-                $query->where('id_jemaat', $dataFilter);
+                $query->where('dapel', $dataFilter);
             }
 
             $data = $query->latest('created_at')->get();
