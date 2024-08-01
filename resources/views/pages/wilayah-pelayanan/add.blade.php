@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">Extra large modal</h5>
+                <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">Wilayah Pelayanan</h5>
                 <button type="button" class="close" onclick="closeModalAdd()">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -142,10 +142,9 @@
             $('#id_klasis').select2({
                 theme: "bootstrap-5",
                 placeholder: "Pilih Klasis",
-                minimumInputLength: 1,
-                // dropdownParent: $("#addModal"),
+                // minimumInputLength: 1,
                 ajax: {
-                    url: '/klasis/get-all-klasis',
+                    url: '/klasis/getAllKlasis',
                     dataType: 'json',
                     delay: 250,
                     processResults: function(data) {
