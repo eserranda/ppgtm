@@ -11,7 +11,90 @@
                 <div class="card-body">
                     <div class="media">
                         <div class="media-body">
-                            <h5 class="font-size-14">Number of Sales</h5>
+                            <h5 class="font-size-14">Program Kerja</h5>
+                        </div>
+                        <div class="avatar-xs">
+                            <span class="avatar-title rounded-circle bg-primary">
+                                <i class="dripicons-suitcase"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <h4 class="m-0 align-self-center">{{ $proker_sinode }}</h4>
+                    <p class="mb-0 mt-3 text-muted">
+                        Data program kerja sinode
+                        {{-- <span class="text-success">1.23 % <i class="mdi mdi-trending-up mr-1"></i></span> From previous
+                        period --}}
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-xl-3">
+            <div class="card">
+                <div class="card-body">
+                    <div class="media">
+                        <div class="media-body">
+                            <h5 class="font-size-14">Klasis</h5>
+                        </div>
+                        <div class="avatar-xs">
+                            <span class="avatar-title rounded-circle bg-primary">
+                                <i class="dripicons-link"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <h4 class="m-0 align-self-center">{{ $klasis }}</h4>
+                    <p class="mb-0 mt-3 text-muted">Total klasis</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-xl-3">
+            <div class="card">
+                <div class="card-body">
+                    <div class="media">
+                        <div class="media-body">
+                            <h5 class="font-size-14">Jemaat</h5>
+                        </div>
+                        <div class="avatar-xs">
+                            <span class="avatar-title rounded-circle bg-primary">
+                                <i class="dripicons-list"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <h4 class="m-0 align-self-center">{{ $jemaat }}</h4>
+                    <p class="mb-0 mt-3 text-muted">Jemaat terdaftar</p>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-xl-3">
+            <div class="card">
+                <div class="card-body">
+                    <div class="media">
+                        <div class="media-body">
+                            <h5 class="font-size-14">Program Kerja</h5>
+                        </div>
+                        <div class="avatar-xs">
+                            <span class="avatar-title rounded-circle bg-primary">
+                                <i class="dripicons-suitcase"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <h4 class="m-0 align-self-center">{{ $proker_jemaat }}</h4>
+                    <p class="mb-0 mt-3 text-muted">Data program kerja jemaat</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 col-xl-3">
+            <div class="card">
+                <div class="card-body">
+                    <div class="media">
+                        <div class="media-body">
+                            <h5 class="font-size-14">Anggota PPGTM</h5>
                         </div>
                         <div class="avatar-xs">
                             <span class="avatar-title rounded-circle bg-primary">
@@ -19,72 +102,12 @@
                             </span>
                         </div>
                     </div>
-                    <h4 class="m-0 align-self-center">1,753</h4>
-                    <p class="mb-0 mt-3 text-muted"><span class="text-success">1.23 % <i
-                                class="mdi mdi-trending-up mr-1"></i></span> From previous period</p>
+                    <h4 class="m-0 align-self-center">{{ $anggota_ppgtm }}</h4>
+                    <p class="mb-0 mt-3 text-muted">
+                        Jumlah anggota
+                    </p>
                 </div>
             </div>
         </div>
-
-        <div class="col-sm-6 col-xl-3">
-            <div class="card">
-                <div class="card-body">
-                    <div class="media">
-                        <div class="media-body">
-                            <h5 class="font-size-14">Sales Revenue</h5>
-                        </div>
-                        <div class="avatar-xs">
-                            <span class="avatar-title rounded-circle bg-primary">
-                                <i class="dripicons-briefcase"></i>
-                            </span>
-                        </div>
-                    </div>
-                    <h4 class="m-0 align-self-center">$45,253</h4>
-                    <p class="mb-0 mt-3 text-muted"><span class="text-success">2.73 % <i
-                                class="mdi mdi-trending-up mr-1"></i></span> From previous period</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-sm-6 col-xl-3">
-            <div class="card">
-                <div class="card-body">
-                    <div class="media">
-                        <div class="media-body">
-                            <h5 class="font-size-14">Average Price</h5>
-                        </div>
-                        <div class="avatar-xs">
-                            <span class="avatar-title rounded-circle bg-primary">
-                                <i class="dripicons-tags"></i>
-                            </span>
-                        </div>
-                    </div>
-                    <h4 class="m-0 align-self-center">$12.74</h4>
-                    <p class="mb-0 mt-3 text-muted"><span class="text-danger">4.35 % <i
-                                class="mdi mdi-trending-down mr-1"></i></span> From previous period</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-sm-6 col-xl-3">
-            <div class="card">
-                <div class="card-body">
-                    <div class="media">
-                        <div class="media-body">
-                            <h5 class="font-size-14">Product Sold</h5>
-                        </div>
-                        <div class="avatar-xs">
-                            <span class="avatar-title rounded-circle bg-primary">
-                                <i class="dripicons-cart"></i>
-                            </span>
-                        </div>
-                    </div>
-                    <h4 class="m-0 align-self-center">20,781</h4>
-                    <p class="mb-0 mt-3 text-muted"><span class="text-success">7.21 % <i
-                                class="mdi mdi-trending-up mr-1"></i></span> From previous period</p>
-                </div>
-            </div>
-        </div>
-
     </div>
 @endsection
