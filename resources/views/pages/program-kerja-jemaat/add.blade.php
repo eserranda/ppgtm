@@ -24,7 +24,7 @@
                             <select class="form-control custom-select" id="bidang" name="bidang">
                                 <option value="" selected disabled>Pilih bidang</option>
                                 <option value="Kerohanian">Kerohanian</option>
-                                <option value="Komunikasi dan Organisasi">Komunikasi dan Organisasi</option>
+                                <option value="Komunikasi dan Informasi">Komunikasi dan Informasi</option>
                                 <option value="Dana">Dana</option>
                                 <option value="Kaderisasi">Kaderisasi</option>
                                 <option value="Minat Dan Bakat">Minat Dan Bakat</option>

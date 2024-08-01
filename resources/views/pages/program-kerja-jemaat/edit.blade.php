@@ -26,7 +26,7 @@
                             <select class="form-control custom-select" id="edit_bidang" name="edit_bidang">
                                 <option value="" selected disabled>Pilih bidang</option>
                                 <option value="Kerohanian">Kerohanian</option>
-                                <option value="Komunikasi dan Organisasi">Komunikasi dan Organisasi</option>
+                                <option value="Komunikasi dan Informasi">Komunikasi dan Informasi</option>
                                 <option value="Dana">Dana</option>
                                 <option value="Kaderisasi">Kaderisasi</option>
                                 <option value="Minat Dan Bakat">Minat Dan Bakat</option>
@@ -115,7 +115,7 @@
                     <div class="float-end">
                         <button type="button" class="btn btn-light waves-effect mr-2"
                             onclick="closeModalAdd()">Batal</button>
-                        <button type="submit" class="btn btn-primary">Simpan</button>
+                        <button type="submit" class="btn btn-primary">Update</button>
                     </div>
                 </form>
 
