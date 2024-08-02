@@ -74,7 +74,7 @@ class KlasisController extends Controller
             'nama_klasis' => 'required',
         ], [
             'required' => ':attribute harus diisi',
-        ], 422);
+        ]);
 
         if ($validator->fails()) {
             return response()->json([
