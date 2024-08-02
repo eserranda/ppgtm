@@ -1,19 +1,20 @@
-<div id="addModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel"
+<div id="editModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">Tambah Data Pengurus klasis</h5>
-                <button type="button" class="close" onclick="closeModalAdd()">
+                <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">Edit Data Pengurus Sinode</h5>
+                <button type="button" class="close" onclick="closeModalEdit()">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form id="addForm">
+                <form id="editForm">
                     <div class="form-row">
                         <div class="form-group col-md-6 mb-3">
-                            <label class="form-label" for="id_klasis">Jemaat</label>
-                            <select class="form-select" id="id_klasis" name="id_klasis">
+                            <label class="form-label" for="edit_id_klasis">Klasis</label>
+                            <input type="hidden" class="form-control" id="edit_id" name="id">
+                            <select class="form-select" id="edit_id_klasis" name="edit_id_klasis">
 
                             </select>
                             <div class="invalid-feedback"></div>
@@ -21,17 +22,17 @@
 
                         <div class="form-group col-md-6 mb-2">
                             <label class="form-label" for="bidang">Bidang</label>
-                            <select class="form-control custom-select" id="bidang" name="bidang">
+                            <select class="form-control custom-select" id="edit_bidang" name="edit_bidang">
                                 <option value="" selected disabled>Pilih bidang</option>
                                 <option value="Penasehat">Penasehat</option>
                                 <option value="KSB">KSB</option>
                                 <hr>
                                 <option value="Kerohanian">Kerohanian</option>
-                                <option value="Pelayanan">Pelayanan</option>
                                 <option value="Kaderisasi">Kaderisasi</option>
-                                <option value="Penelitian dan Pengembangan">Penelitian dan Pengembangan</option>
+                                <option value="KOMUNIKASI Dan Informasi">INFORMASI Dan Informasi</option>
+                                <option value="Dana">Dana</option>
                                 <option value="Minat dan Bakat">Minat dan Bakat</option>
-                                <option value="Informasi dan Komunikasi">Informasi dan Komunikasi</option>
+                                <option value="Kesekretariatan">Kesekretariatan</option>
                             </select>
                             <div class="invalid-feedback"></div>
                         </div>
@@ -41,13 +42,14 @@
                     <div class="form-row">
                         <div class="form-group col-md-6 mb-3">
                             <label class="form-label" for="nama">Nama</label>
-                            <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama">
+                            <input type="text" class="form-control" id="edit_nama" name="edit_nama"
+                                placeholder="Nama">
                             <div class="invalid-feedback"> </div>
                         </div>
 
                         <div class="form-group col-md-6 mb-3">
                             <label class="form-label" for="anggota">Jabatan</label>
-                            <select class="form-control custom-select" id="jabatan" name="jabatan">
+                            <select class="form-control custom-select" id="edit_jabatan" name="edit_jabatan">
                                 <option value="" selected disabled>Pilih Jabatan</option>
                                 <option value="Ketua Umum">Ketua Umum</option>
                                 <option value="Ketua 1">Ketua 1</option>
@@ -56,18 +58,35 @@
                                 <option value="Sekretaris">Sekretaris</option>
                                 <option value="Wakil Sekretaris">Wakil Sekretaris</option>
                                 <option value="Bendahara">Bendahara</option>
-                                <hr class="my-2">
-                                <option value="Koordinator">Koordinator</option>
-                                <option value="Anggota">Anggota</option>
                             </select>
                             <div class="invalid-feedback"> </div>
                         </div>
                     </div>
 
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="form-label" for="jabatan">Periode</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 mb-3">
+                            <input type="number" class="form-control" id="edit_tahun_mulai" name="edit_tahun_mulai"
+                                placeholder="Tahun mulai">
+                            <div class="invalid-feedback"></div>
+                        </div>
+
+
+                        <div class="col-md-3 mb-3">
+                            <input type="number" class="form-control" id="edit_tahun_selesai" name="edit_tahun_selesai"
+                                placeholder="Tahun selesai">
+                            <div class="invalid-feedback"></div>
+                        </div>
+                    </div>
+
                     <div class="float-end">
                         <button type="button" class="btn btn-light waves-effect mr-2"
-                            onclick="closeModalAdd()">Batal</button>
-                        <button type="submit" class="btn btn-primary">Simpan</button>
+                            onclick="closeModalEdit()">Batal</button>
+                        <button type="submit" class="btn btn-primary">Update</button>
                     </div>
                 </form>
             </div>
@@ -78,7 +97,7 @@
 @push('scripts')
     <script>
         $(document).ready(function() {
-            $('#id_klasis').select2({
+            $('#edit_id_klasis').select2({
                 theme: "bootstrap-5",
                 placeholder: "Pilih Klasis",
                 ajax: {
@@ -95,7 +114,7 @@
             });
         });
 
-        function closeModalAdd() {
+        function closeModalEdit() {
             const invalidInputs = document.querySelectorAll('.is-invalid');
             invalidInputs.forEach(invalidInput => {
                 invalidInput.value = '';
@@ -107,19 +126,19 @@
                 }
             });
 
-            const form = document.getElementById('addForm');
+            const form = document.getElementById('editForm');
             form.reset();
-            $('#addModal').modal('hide');
+            $('#editModal').modal('hide');
         }
 
-        document.getElementById('addForm').addEventListener('submit', async (event) => {
+        document.getElementById('editForm').addEventListener('submit', async (event) => {
             event.preventDefault();
             const form = event.target;
             const formData = new FormData(form);
             const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
 
             try {
-                const response = await fetch('/pengurus-klasis/store', {
+                const response = await fetch('/pengurus-klasis/update', {
                     method: 'POST',
                     headers: {
                         'Accept': 'application/json',
@@ -170,11 +189,11 @@
                         }
                     });
 
-                    const form = document.getElementById('addForm');
+                    const form = document.getElementById('editForm');
                     form.reset();
 
                     $('#datatable').DataTable().ajax.reload();
-                    $('#addModal').modal('hide');
+                    $('#editModal').modal('hide');
                 }
 
 

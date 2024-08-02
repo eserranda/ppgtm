@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">Tambah Data Pengurus klasis</h5>
+                <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">Tambah Data Pengurus Jemaat</h5>
                 <button type="button" class="close" onclick="closeModalAdd()">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -12,8 +12,8 @@
                 <form id="addForm">
                     <div class="form-row">
                         <div class="form-group col-md-6 mb-3">
-                            <label class="form-label" for="id_klasis">Jemaat</label>
-                            <select class="form-select" id="id_klasis" name="id_klasis">
+                            <label class="form-label" for="id_jemaat">Jemaat</label>
+                            <select class="form-select" id="id_jemaat" name="id_jemaat">
 
                             </select>
                             <div class="invalid-feedback"></div>
@@ -27,11 +27,11 @@
                                 <option value="KSB">KSB</option>
                                 <hr>
                                 <option value="Kerohanian">Kerohanian</option>
-                                <option value="Pelayanan">Pelayanan</option>
                                 <option value="Kaderisasi">Kaderisasi</option>
-                                <option value="Penelitian dan Pengembangan">Penelitian dan Pengembangan</option>
+                                <option value="KOMUNIKASI Dan Informasi">INFORMASI Dan Informasi</option>
+                                <option value="Dana">Dana</option>
                                 <option value="Minat dan Bakat">Minat dan Bakat</option>
-                                <option value="Informasi dan Komunikasi">Informasi dan Komunikasi</option>
+                                <option value="Kesekretariatan">Kesekretariatan</option>
                             </select>
                             <div class="invalid-feedback"></div>
                         </div>
@@ -57,10 +57,29 @@
                                 <option value="Wakil Sekretaris">Wakil Sekretaris</option>
                                 <option value="Bendahara">Bendahara</option>
                                 <hr class="my-2">
-                                <option value="Koordinator">Koordinator</option>
+                                {{-- <option value="Koordinator">Koordinator</option> --}}
                                 <option value="Anggota">Anggota</option>
                             </select>
                             <div class="invalid-feedback"> </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="form-label" for="jabatan">Periode</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 mb-3">
+                            <input type="number" class="form-control" id="tahun_mulai" name="tahun_mulai"
+                                placeholder="Tahun mulai">
+                            <div class="invalid-feedback"></div>
+                        </div>
+
+
+                        <div class="col-md-3 mb-3">
+                            <input type="number" class="form-control" id="tahun_selesai" name="tahun_selesai"
+                                placeholder="Tahun selesai">
+                            <div class="invalid-feedback"></div>
                         </div>
                     </div>
 
@@ -78,11 +97,11 @@
 @push('scripts')
     <script>
         $(document).ready(function() {
-            $('#id_klasis').select2({
+            $('#id_jemaat').select2({
                 theme: "bootstrap-5",
-                placeholder: "Pilih Klasis",
+                placeholder: "Pilih Jemaat",
                 ajax: {
-                    url: '/klasis/getAllKlasis',
+                    url: '/jemaat/getAllJemaat',
                     dataType: 'json',
                     delay: 250,
                     processResults: function(data) {
@@ -119,7 +138,7 @@
             const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
 
             try {
-                const response = await fetch('/pengurus-klasis/store', {
+                const response = await fetch('/pengurus-jemaat/store', {
                     method: 'POST',
                     headers: {
                         'Accept': 'application/json',
@@ -133,7 +152,7 @@
                 if (!data.success) {
                     Object.keys(data.messages).forEach(fieldName => {
                         const inputField = document.getElementById(fieldName);
-                        if (inputField && fieldName == 'id_klasis') {
+                        if (inputField && fieldName == 'id_jemaat') {
                             inputField.classList.add('is-invalid');
                         } else {
                             inputField.classList.add('is-invalid');
@@ -149,7 +168,7 @@
                     validFields.forEach(validField => {
                         const fieldName = validField.id;
                         if (!data.messages[fieldName]) {
-                            if (fieldName === 'id_klasis') {
+                            if (fieldName === 'id_jemaat') {
                                 validField.classList.remove('is-invalid');
                             } else {
                                 validField.classList.remove('is-invalid');

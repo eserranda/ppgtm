@@ -58,6 +58,13 @@
 
                   <li class="menu-title">Jemaat</li>
                   <li>
+                      <a href="/pengurus-jemaat" class="waves-effect">
+                          <i class="mdi mdi-home-flood"></i>
+                          <span>Pengurus Jemaat</span>
+                      </a>
+                  </li>
+
+                  <li>
                       <a href="program-kerja-jemaat" class=" waves-effect">
                           <i class="mdi mdi-clipboard-text-play-outline"></i>
                           <span>Program Kerja Jemaat</span>

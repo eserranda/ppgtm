@@ -57,8 +57,8 @@
                                 <option value="Ketua 3">Ketua 3</option>
                                 <option value="Sekretaris">Sekretaris</option>
                                 <option value="Wakil Sekretaris">Wakil Sekretaris</option>
-                                <option value="Wakil Bendahara">Wakil Bendahara</option>
-                                <hr class="my-2">
+                                <option value="Bendahara">Bendahara</option>
+                                <hr>
                                 <option value="Koordinator">Koordinator</option>
                                 <option value="Anggota">Anggota</option>
                             </select>

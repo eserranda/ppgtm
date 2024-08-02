@@ -7,5 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class PengurusJemaat extends Model
 {
+    protected $fillable = [
+        'id_jemaat',
+        'nama',
+        'bidang',
+        'jabatan',
+        'tahun_mulai',
+        'tahun_selesai',
+    ];
     use HasFactory;
 }

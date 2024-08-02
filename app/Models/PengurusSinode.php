@@ -9,7 +9,6 @@ class PengurusSinode extends Model
 {
 
     protected $fillable = [
-        'id_jemaat',
         'nama',
         'bidang',
         'jabatan',
