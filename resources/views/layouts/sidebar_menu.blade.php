@@ -39,6 +39,12 @@
 
                   <li class="menu-title">klasis</li>
                   <li>
+                      <a href="program-kerja-klasis" class=" waves-effect">
+                          <i class="mdi mdi-format-float-left"></i>
+                          <span>Program Kerja Klasis</span>
+                      </a>
+                  </li>
+                  <li>
                       <a href="/pengurus-klasis" class="waves-effect">
                           <i class="mdi mdi-home-flood"></i>
                           <span>Pengurus Klasis</span>
@@ -60,7 +66,7 @@
                   <li>
                       <a href="/pengurus-jemaat" class="waves-effect">
                           <i class="mdi mdi-home-flood"></i>
-                          <span>Pengurus Jemaat</span>
+                          <span>Pengurus PPGTM</span>
                       </a>
                   </li>
 

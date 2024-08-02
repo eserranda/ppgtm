@@ -1,9 +1,9 @@
 <div id="editModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel"
     aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">Edit Data Pengurus PPGTM</h5>
+                <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">Tambah Data Program Kerja Klasis</h5>
                 <button type="button" class="close" onclick="closeModalEdit()">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -11,75 +11,115 @@
             <div class="modal-body">
                 <form id="editForm">
                     <div class="form-row">
-                        <div class="form-group col-md-6 mb-3">
-                            <label class="form-label" for="edit_id_klasis">Klasis</label>
+                        <div class="form-group col-md-4 mb-2">
+                            <label class="form-label" for="id_klasis">Klasis</label>
                             <input type="hidden" class="form-control" id="edit_id" name="id">
                             <select class="form-select" id="edit_id_klasis" name="edit_id_klasis">
-
                             </select>
+
                             <div class="invalid-feedback"></div>
                         </div>
 
-                        <div class="form-group col-md-6 mb-2">
+                        <div class="form-group col-md-4 mb-2">
                             <label class="form-label" for="bidang">Bidang</label>
                             <select class="form-control custom-select" id="edit_bidang" name="edit_bidang">
                                 <option value="" selected disabled>Pilih bidang</option>
-                                <option value="Penasehat">Penasehat</option>
-                                <option value="KSB">KSB</option>
-                                <hr>
+                                <option value="Umun">Umun</option>
                                 <option value="Kerohanian">Kerohanian</option>
+                                <option value="Pelayanan">Pelayanan</option>
                                 <option value="Kaderisasi">Kaderisasi</option>
-                                <option value="KOMUNIKASI Dan Informasi">INFORMASI Dan Informasi</option>
-                                <option value="Dana">Dana</option>
-                                <option value="Minat dan Bakat">Minat dan Bakat</option>
-                                <option value="Kesekretariatan">Kesekretariatan</option>
+                                <option value="Penelitian dan Pengembangan">Penelitian dan Pengembangan</option>
+                                <option value="Minat Dan Bakat">Minat Dan Bakat</option>
+                                <option value="Komunikasi dan Informasi">Komunikasi dan Informasi</option>
                             </select>
                             <div class="invalid-feedback"></div>
                         </div>
-                    </div>
 
+                        <div class="form-group col-md-4 mb-2">
+                            <label class="form-label" for="ketua_bidang">Ketua Bidang</label>
+                            <input type="text" class="form-control" id="edit_ketua_bidang" name="edit_ketua_bidang"
+                                placeholder="Ketua Bidang">
+                            <div class="invalid-feedback"> </div>
+                        </div>
+                    </div>
 
                     <div class="form-row">
-                        <div class="form-group col-md-6 mb-3">
-                            <label class="form-label" for="nama">Nama</label>
-                            <input type="text" class="form-control" id="edit_nama" name="edit_nama"
-                                placeholder="Nama">
+                        <div class="form-group col-md-4 mb-2 ">
+                            <label class="form-label mt-2" for="edit_anggota">Anggota</label>
+                            <textarea class="form-control" name="edit_anggota" id="edit_anggota" rows="3" placeholder="Anggota"></textarea>
                             <div class="invalid-feedback"> </div>
                         </div>
 
-                        <div class="form-group col-md-6 mb-3">
-                            <label class="form-label" for="anggota">Jabatan</label>
-                            <select class="form-control custom-select" id="edit_jabatan" name="edit_jabatan">
-                                <option value="" selected disabled>Pilih Jabatan</option>
-                                <option value="Ketua Umum">Ketua Umum</option>
-                                <option value="Ketua 1">Ketua 1</option>
-                                <option value="Ketua 2">Ketua 2</option>
-                                <option value="Ketua 3">Ketua 3</option>
-                                <option value="Sekretaris">Sekretaris</option>
-                                <option value="Wakil Sekretaris">Wakil Sekretaris</option>
-                                <option value="Bendahara">Bendahara</option>
-                            </select>
+                        <div class="form-group col-md-4 mb-2">
+                            <label class="col-form-label" for="edit_program">Program</label>
+                            <textarea class="form-control" name="edit_program" id="edit_program" rows="3" placeholder="Program"></textarea>
+                            <div class="invalid-feedback"> </div>
+                        </div>
+
+                        <div class="form-group col-md-4 mb-2">
+                            <label class="col-form-label" for="edit_dasar_pemikiran">Dasar Pemikiran</label>
+                            <textarea class="form-control" name="edit_dasar_pemikiran" id="edit_dasar_pemikiran" rows="3"
+                                placeholder="Dasar Pemikiran"></textarea>
                             <div class="invalid-feedback"> </div>
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label class="form-label" for="jabatan">Periode</label>
+                    <div class="form-row">
+                        <div class="form-group col-md-4 mb-2">
+                            <label class="col-form-label" for="kegiatan">Kegiatan</label>
+                            <textarea class="form-control" name="edit_kegiatan" id="edit_kegiatan" rows="3" placeholder="Kegiatan"></textarea>
+                            <div class="invalid-feedback"> </div>
+                        </div>
+
+                        <div class="form-group col-md-4 mb-2">
+                            <label class="col-form-label" for="tujuan">Tujuan</label>
+                            <textarea class="form-control" name="edit_tujuan" id="edit_tujuan" rows="3" placeholder="Tujuan"></textarea>
+                            <div class="invalid-feedback"> </div>
+                        </div>
+
+                        <div class="form-group col-md-4 mb-2">
+                            <label class="col-form-label" for="sasaran">Sasaran</label>
+                            <textarea class="form-control" name="edit_sasaran" id="edit_sasaran" rows="3" placeholder="Sasaran"></textarea>
+                            <div class="invalid-feedback"> </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-3 mb-3">
-                            <input type="number" class="form-control" id="edit_tahun_mulai" name="edit_tahun_mulai"
-                                placeholder="Tahun mulai">
+
+                    <div class="form-row">
+                        <div class="form-group col-md-4 mb-2">
+                            <label class="col-form-label" for="edit_penanggung_jawab">Penanggung Jawab</label>
+                            <input type="text" class="form-control" id="edit_penanggung_jawab"
+                                name="edit_penanggung_jawab" placeholder="Penanggung Jawab">
                             <div class="invalid-feedback"></div>
                         </div>
 
+                        <div class="form-group col-md-4 mb-2">
+                            <label class="col-form-label" for="edit_waktu_pelaksana">Waktu Pelaksana</label>
+                            <input type="text" class="form-control" id="edit_waktu_pelaksana"
+                                name="edit_waktu_pelaksana" placeholder="Waktu Pelaksana">
+                            <div class="invalid-feedback"> </div>
+                        </div>
 
-                        <div class="col-md-3 mb-3">
-                            <input type="number" class="form-control" id="edit_tahun_selesai" name="edit_tahun_selesai"
-                                placeholder="Tahun selesai">
-                            <div class="invalid-feedback"></div>
+                        <div class="form-group col-md-4 mb-2">
+                            <label class="col-form-label" for="edit_pelaksana">Pelaksana</label>
+                            <input type="text" class="form-control" id="edit_pelaksana" name="edit_pelaksana"
+                                placeholder="Pelaksana">
+                            <div class="invalid-feedback"> </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-4 mb-3">
+                            <label class="col-form-label" for="biaya">Biaya</label>
+                            <input type="text" class="form-control" id="edit_biaya" name="edit_biaya"
+                                placeholder="Biaya">
+                            <div class="invalid-feedback"> </div>
+                        </div>
+
+                        <div class="form-group col-md-4 mb-3">
+                            <label class="col-form-label" for="data_time">Tahun</label>
+                            <input type="text" class="form-control" id="edit_data_time" name="edit_data_time"
+                                placeholder="ex. 2022-2024">
+                            <div class="invalid-feedback"> </div>
                         </div>
                     </div>
 
@@ -100,6 +140,7 @@
             $('#edit_id_klasis').select2({
                 theme: "bootstrap-5",
                 placeholder: "Pilih Klasis",
+                // minimumInputLength: 1,
                 ajax: {
                     url: '/klasis/getAllKlasis',
                     dataType: 'json',
@@ -138,7 +179,7 @@
             const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
 
             try {
-                const response = await fetch('/pengurus-klasis/update', {
+                const response = await fetch('/program-kerja-klasis/update', {
                     method: 'POST',
                     headers: {
                         'Accept': 'application/json',

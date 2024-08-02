@@ -19,7 +19,7 @@
         href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.rtl.min.css" />
 @endpush
 @section('page_title')
-    Data Pengurus PPGTM
+    Program Kerja klasis
 @endsection
 
 @section('content')
@@ -29,18 +29,14 @@
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <div class="d-flex align-items-center ">
-                            <select class="form-control custom-select" id="filterdata" name="filterData">
+                            <select class="form-control custom-select" id="filterData" name="filterData">
                                 <option value="" selected disabled>Pilih bidang</option>
-                                <option value="Pembinaan dan Kerohanian">Pembinaan dan Kerohanian</option>
-                                <option value="Minat dan Bakat">Minat dan Bakat</option>
+                                <option value="Kerohanian">Kerohanian</option>
+                                <option value="Komunikasi dan Informasi">Komunikasi dan Informasi</option>
+                                <option value="Dana">Dana</option>
                                 <option value="Kaderisasi">Kaderisasi</option>
-                                <option value="Pengembangan Organisasi">Pengembangan Organisasi</option>
-                                <option value="Komunikasi">Komunikasi</option>
-                                <option value="Hubungan Antar Lembaga">Hubungan Antar Lembaga</option>
-                                <option value="Kemandirian Dana">Kemandirian Dana</option>
-                                <option value="Diakonia">Diakonia</option>
-                                <option value="Kajian Strategis">Kajian Strategis</option>
-                                <option value="Lingkungan Hidup">Lingkungan Hidup</option>
+                                <option value="Minat Dan Bakat">Minat Dan Bakat</option>
+                                <option value="Kesekretariatan">Kesekretariatan</option>
                             </select>
                             <button type="button" class="btn btn-light waves-effect mx-2 col-2" id="reload">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="20" height="20"
@@ -61,15 +57,23 @@
                                 data-target="#addModal">Tambah Data</button>
                         </div>
                     </div>
-                    <table id="datatable" class="table table-bordered dt-responsive"
+                    <table id="datatable" class="table table-striped dt-responsive"
                         style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Nama</th>
                                 <th>Bidang</th>
-                                <th>Jabatan</th>
-                                <th>Periode</th>
+                                <th>Ketua Bidang</th>
+                                <th>Anggota</th>
+                                <th>Program</th>
+                                <th>Dasar Pemikiran</th>
+                                <th>Kegiatan</th>
+                                <th>Bentuk Kegiatan</th>
+                                <th>Sasaran</th>
+                                <th>Penanggung Jawab</th>
+                                <th>Waktu Pelaksana</th>
+                                <th>Pelaksana</th>
+                                <th>Biaya</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -82,8 +86,8 @@
         </div>
     </div>
 
-    @include('pages.pengurus-jemaat.add')
-    @include('pages.pengurus-jemaat.edit')
+    @include('pages.program-kerja-klasis.add')
+    @include('pages.program-kerja-klasis.edit')
 @endsection
 
 @push('scripts')
@@ -110,21 +114,29 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
     <script>
         function edit(id) {
-            fetch('/pengurus-jemaat/findById/' + id)
+            fetch('/program-kerja-klasis/findById/' + id)
                 .then(response => response.json())
                 .then(data => {
                     // Asumsi bahwa objek 'data' sudah tersedia dan memiliki struktur yang sesuai
                     document.getElementById('edit_id').value = data.id;
-                    document.getElementById('edit_id_jemaat').value = data.id_jemaat;
-                    document.getElementById('edit_nama').value = data.nama;
+                    document.getElementById('edit_id_klasis').value = data.id_klasis;
                     document.getElementById('edit_bidang').value = data.bidang;
-                    document.getElementById('edit_jabatan').value = data.jabatan;
-                    document.getElementById('edit_tahun_mulai').value = data.tahun_mulai;
-                    document.getElementById('edit_tahun_selesai').value = data.tahun_selesai;
+                    document.getElementById('edit_ketua_bidang').value = data.ketua_bidang;
+                    document.getElementById('edit_anggota').value = data.anggota;
+                    document.getElementById('edit_program').value = data.program;
+                    document.getElementById('edit_dasar_pemikiran').value = data.dasar_pemikiran;
+                    document.getElementById('edit_kegiatan').value = data.kegiatan;
+                    document.getElementById('edit_tujuan').value = data.tujuan;
+                    document.getElementById('edit_sasaran').value = data.sasaran;
+                    document.getElementById('edit_penanggung_jawab').value = data.penanggung_jawab;
+                    document.getElementById('edit_waktu_pelaksana').value = data.waktu_pelaksana;
+                    document.getElementById('edit_pelaksana').value = data.pelaksana;
+                    document.getElementById('edit_biaya').value = data.biaya;
+                    document.getElementById('edit_data_time').value = data.data_time;
 
-                    var editIdKlasisSelect = document.getElementById('edit_id_jemaat');
+                    var editIdklasisSelect = document.getElementById('edit_id_klasis');
 
-                    fetch('/jemaat/findOne/' + data.id_klasis, {
+                    fetch('/klasis/findOne/' + data.id_klasis, {
                             method: 'GET',
                             headers: {
                                 'Content-Type': 'application/json'
@@ -137,7 +149,7 @@
                             return response.json();
                         })
                         .then(data => {
-                            updateOptionsAndSelect2(editIdKlasisSelect, data.id, data.nama_jemaat);
+                            updateOptionsAndSelect2klasis(editIdklasisSelect, data.id, data.nama_klasis);
                         })
                         .catch(error => console.error('Error fetching data:', error));
                 })
@@ -146,7 +158,7 @@
             $('#editModal').modal('show');
         }
 
-        function updateOptionsAndSelect2(selectElement, id, name) {
+        function updateOptionsAndSelect2klasis(selectElement, id, name) {
             // Hapus semua opsi yang ada di elemen <select>
             $(selectElement).empty();
 
@@ -173,7 +185,7 @@
                 buttons: [{
                         extend: 'excel',
                         exportOptions: {
-                            columns: [0, 1, 2, 3, 4]
+                            columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
                         },
                         init: function(api, node, config) {
                             $(node).hide();
@@ -182,14 +194,14 @@
                     {
                         extend: 'print',
                         exportOptions: {
-                            columns: [0, 1, 2, 3, 4]
+                            columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
                         },
                         init: function(api, node, config) {
                             $(node).hide();
                         }
                     },
                 ],
-                ajax: "{{ route('pengurus-jemaat.index') }}",
+                ajax: "{{ route('program-kerja-klasis.index') }}",
                 columns: [{
                         data: 'DT_RowIndex',
                         name: '#',
@@ -197,20 +209,64 @@
 
                     },
                     {
-                        data: 'nama',
-                        name: 'nama',
-                    },
-                    {
                         data: 'bidang',
                         name: 'bidang',
+                        orderable: false,
                     },
                     {
-                        data: 'jabatan',
-                        name: 'jabatan',
+                        data: 'ketua_bidang',
+                        name: 'ketua_bidang',
+                        orderable: false,
                     },
                     {
-                        data: 'periode',
-                        name: 'periode',
+                        data: 'anggota',
+                        name: 'anggota',
+                        orderable: false,
+                    },
+                    {
+                        data: 'program',
+                        name: 'program',
+                        orderable: false,
+                    },
+                    {
+                        data: 'dasar_pemikiran',
+                        name: 'dasar_pemikiran',
+                        orderable: false,
+                    },
+                    {
+                        data: 'kegiatan',
+                        name: 'kegiatan',
+                        orderable: false,
+                    },
+                    {
+                        data: 'tujuan',
+                        name: 'tujuan',
+                        orderable: false,
+                    },
+                    {
+                        data: 'sasaran',
+                        name: 'sasaran',
+                        orderable: false,
+                    },
+                    {
+                        data: 'penanggung_jawab',
+                        name: 'penanggung_jawab',
+                        orderable: false,
+                    },
+                    {
+                        data: 'waktu_pelaksana',
+                        name: 'waktu_pelaksana',
+                        orderable: false,
+                    },
+                    {
+                        data: 'pelaksana',
+                        name: 'pelaksana',
+                        orderable: false,
+                    },
+                    {
+                        data: 'biaya',
+                        name: 'biaya',
+                        orderable: false,
                     },
                     {
                         data: 'action',
@@ -221,8 +277,8 @@
                 ],
             });
 
-            // // fetch data klasis yang ada pada tabel jemaat 
-            // fetch('/jemaat/getIdAndNameAllKlasis')
+            // // fetch data klasis yang ada pada tabel klasis 
+            // fetch('/klasis/getIdAndNameAllKlasis')
             //     .then(response => response.json())
             //     .then(data => {
             //         const filterData = document.getElementById('filterData');
@@ -238,13 +294,13 @@
 
             $('#filterData').on('change', function() {
                 const selectedFilter = $(this).val();
-                datatable.ajax.url('{{ route('pengurus-klasis.index') }}?filter=' + selectedFilter)
+                datatable.ajax.url('{{ route('program-kerja-klasis.index') }}?filter=' + selectedFilter)
                     .load();
             });
 
             $('#reload').on('click', function() {
                 $('#filterData').val('');
-                datatable.ajax.url('{{ route('pengurus-klasis.index') }}').load();
+                datatable.ajax.url('{{ route('program-kerja-klasis.index') }}').load();
             });
 
         });
@@ -271,7 +327,7 @@
                 if (result.isConfirmed) {
                     var csrfToken = $('meta[name="csrf-token"]').attr('content');
                     $.ajax({
-                        url: '/pengurus-klasis/destroy/' + id,
+                        url: '/program-kerja-klasis/destroy/' + id,
                         type: 'DELETE',
                         data: {
                             _token: csrfToken

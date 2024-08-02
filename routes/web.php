@@ -1,18 +1,19 @@
 <?php
 
-use App\Http\Controllers\AnggotaPemudaJemaatController;
+use App\Models\PengurusJemaat;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\JemaatController;
 use App\Http\Controllers\KlasisController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProgramKerjaController;
 use App\Http\Controllers\PengurusJemaatController;
 use App\Http\Controllers\PengurusKlasisController;
 use App\Http\Controllers\PengurusSinodeController;
-use App\Http\Controllers\ProgramKerjaController;
 use App\Http\Controllers\WilayahPelayananController;
 use App\Http\Controllers\ProgramKerjaJemaatController;
-use App\Models\PengurusJemaat;
+use App\Http\Controllers\ProgramKerjaKlasisController;
+use App\Http\Controllers\AnggotaPemudaJemaatController;
 
 /*
 |--------------------------------------------------------------------------
@@ -78,6 +79,14 @@ Route::prefix('pengurus-sinode')->controller(PengurusSinodeController::class)->g
 
 Route::prefix('anggota-pemuda-jemaat')->controller(AnggotaPemudaJemaatController::class)->group(function () {
     Route::get('/', 'index')->name('anggota-pemuda-jemaat.index');
+    Route::post('/store', 'store');
+    Route::get('/findById/{id}', 'findById');
+    Route::post('/update', 'update');
+    Route::delete('/destroy/{id}', 'destroy');
+})->middleware('auth');
+
+Route::prefix('program-kerja-klasis')->controller(ProgramKerjaKlasisController::class)->group(function () {
+    Route::get('/', 'index')->name('program-kerja-klasis.index');
     Route::post('/store', 'store');
     Route::get('/findById/{id}', 'findById');
     Route::post('/update', 'update');
