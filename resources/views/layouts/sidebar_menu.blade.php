@@ -37,6 +37,17 @@
                       </a>
                   </li>
 
+                  <li>
+                      <a href="javascript: void(0);" class="has-arrow waves-effect">
+                          <i class="mdi mdi-email-multiple-outline"></i>
+                          <span>Administrasi</span>
+                      </a>
+                      <ul class="sub-menu" aria-expanded="false">
+                          <li><a href="/klasis">Klasis</a></li>
+                          <li><a href="/jemaat">Jemaat</a></li>
+                      </ul>
+                  </li>
+
                   <li class="menu-title">klasis</li>
                   <li>
                       <a href="program-kerja-klasis" class=" waves-effect">
@@ -49,17 +60,6 @@
                           <i class="mdi mdi-home-flood"></i>
                           <span>Pengurus Klasis</span>
                       </a>
-                  </li>
-
-                  <li>
-                      <a href="javascript: void(0);" class="has-arrow waves-effect">
-                          <i class="mdi mdi-email-multiple-outline"></i>
-                          <span>Administrasi</span>
-                      </a>
-                      <ul class="sub-menu" aria-expanded="false">
-                          <li><a href="/klasis">Klasis</a></li>
-                          <li><a href="/jemaat">Jemaat</a></li>
-                      </ul>
                   </li>
 
                   <li class="menu-title">Jemaat</li>

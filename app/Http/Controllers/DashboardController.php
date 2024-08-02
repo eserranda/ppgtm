@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AnggotaPemudaJemaat;
 use App\Models\Jemaat;
 use App\Models\Klasis;
 use App\Models\Dashboard;
 use App\Models\ProgramKerja;
 use Illuminate\Http\Request;
+use App\Models\WilayahPelayanan;
 use App\Models\ProgramKerjaJemaat;
+use App\Models\ProgramKerjaKlasis;
+use App\Models\AnggotaPemudaJemaat;
 
 class DashboardController extends Controller
 {
@@ -18,9 +20,11 @@ class DashboardController extends Controller
         $proker_sinode = ProgramKerja::count();
         $klasis = Klasis::count();
         $jemaat = Jemaat::count();
+        $proker_klasis = ProgramKerjaKlasis::count();
         $proker_jemaat = ProgramKerjaJemaat::count();
         $anggota_ppgtm = AnggotaPemudaJemaat::count();
-        return view('pages.dashboard.index', compact('proker_sinode', 'klasis', 'jemaat', 'proker_jemaat', 'anggota_ppgtm'));
+        $wilayah_pelayanan = WilayahPelayanan::count();
+        return view('pages.dashboard.index', compact('proker_sinode', 'klasis', 'jemaat', 'proker_jemaat', 'proker_klasis',  'wilayah_pelayanan', 'anggota_ppgtm'));
     }
 
     /**
