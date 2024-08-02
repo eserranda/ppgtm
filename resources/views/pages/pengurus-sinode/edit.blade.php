@@ -24,6 +24,9 @@
                             <label class="form-label" for="bidang">Bidang</label>
                             <select class="form-control custom-select" id="edit_bidang" name="edit_bidang">
                                 <option value="" selected disabled>Pilih bidang</option>
+                                <option value="" selected disabled>Pilih bidang</option>
+                                <option value="KSB">KSB</option>
+                                <hr>
                                 <option value="Pembinaan dan Kerohanian">Pembinaan dan Kerohanian</option>
                                 <option value="Minat dan Bakat">Minat dan Bakat</option>
                                 <option value="Kaderisasi">Kaderisasi</option>
@@ -52,6 +55,18 @@
                             <label class="form-label" for="anggota">Jabatan</label>
                             <select class="form-control custom-select" id="edit_jabatan" name="edit_jabatan">
                                 <option value="" selected disabled>Pilih Jabatan</option>
+                                <option value="" selected disabled>Pilih Jabatan</option>
+                                <option value="Ketua Umum">Ketua Umum</option>
+                                <option value="Ketua I">Ketua I</option>
+                                <option value="Ketua II">Ketua II</option>
+                                <option value="Ketua III">Ketua III</option>
+                                <option value="Ketua IV">Ketua IV</option>
+                                <option value="Ketua V">Ketua V</option>
+                                <option value="Sekretaris Umum">Sekretaris Umum</option>
+                                <option value="Wakil Sekretaris">Wakil Sekretaris</option>
+                                <option value="Bendahara Umum">Bendahara Umum</option>
+                                <option value="Wakil Bendahara">Wakil Bendahara</option>
+                                <hr>
                                 <option value="Koordinator">Koordinator</option>
                                 <option value="Anggota">Anggota</option>
                             </select>
