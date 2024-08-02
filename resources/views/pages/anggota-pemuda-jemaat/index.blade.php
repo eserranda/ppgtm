@@ -36,7 +36,7 @@
                                 <option value="Dapel 3">Dapel 3</option>
                                 <option value="Dapel 4">Dapel 4</option>
                             </select>
-                            <button type="button" class="btn btn-light waves-effect mx-2 col-4" id="reload">
+                            <button type="button" class="btn btn-light waves-effect mx-2 col-3" id="reload">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="20" height="20"
                                     viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none"
                                     stroke-linecap="round" stroke-linejoin="round">`
@@ -47,10 +47,11 @@
                             </button>
                         </div>
                         <div>
-                            <button type="button" class="btn btn-info waves-effect" id="btnPrint">Print</button>
-                            <button type="button" class="btn btn-success waves-effect" id ="btnExcel">Excel</button>
+                            <button type="button" class="btn btn-outline-info" id="btnPrint"><i
+                                    class="mdi mdi-printer"></i></button>
+                            <button type="button" class="btn btn-outline-success" id ="btnExcel">Excel</button>
 
-                            <button type="button" class="btn btn-primary   waves-effect waves-light" data-toggle="modal"
+                            <button type="button" class="btn btn-primary " data-toggle="modal"
                                 data-target="#addModal">Tambah Data</button>
                         </div>
                     </div>

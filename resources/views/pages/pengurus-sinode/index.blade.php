@@ -19,7 +19,7 @@
         href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.rtl.min.css" />
 @endpush
 @section('page_title')
-    Program Kerja Jemaat
+    Data Pengurus Sinode
 @endsection
 
 @section('content')
@@ -31,12 +31,16 @@
                         <div class="d-flex align-items-center ">
                             <select class="form-control costom-select" id="filterData" name="filterData">
                                 <option value="" selected disabled>Pilih bidang</option>
-                                <option value="Kerohanian">Kerohanian</option>
-                                <option value="Komunikasi dan Informasi">Komunikasi dan Informasi</option>
-                                <option value="Dana">Dana</option>
+                                <option value="Pembinaan dan Kerohanian">Pembinaan dan Kerohanian</option>
+                                <option value="Minat dan Bakat">Minat dan Bakat</option>
                                 <option value="Kaderisasi">Kaderisasi</option>
-                                <option value="Minat Dan Bakat">Minat Dan Bakat</option>
-                                <option value="Kesekretariatan">Kesekretariatan</option>
+                                <option value="Pengembangan Organisasi">Pengembangan Organisasi</option>
+                                <option value="Komunikasi">Komunikasi</option>
+                                <option value="Hubungan Antar Lembaga">Hubungan Antar Lembaga</option>
+                                <option value="Kemandirian Dana">Kemandirian Dana</option>
+                                <option value="Diakonia">Diakonia</option>
+                                <option value="Kajian Strategis">Kajian Strategis</option>
+                                <option value="Lingkungan Hidup">Lingkungan Hidup</option>
                             </select>
                             <button type="button" class="btn btn-light waves-effect mx-2 col-2" id="reload">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="20" height="20"
@@ -62,17 +66,10 @@
                         <thead>
                             <tr>
                                 <th>No</th>
+                                <th>Nama</th>
                                 <th>Bidang</th>
-                                <th>Ketua Bidang</th>
-                                <th>Anggota</th>
-                                <th>Program</th>
-                                <th>Tujuan</th>
-                                <th>Sasaran</th>
-                                <th>Bentuk Kegiatan</th>
-                                <th>Waktu</th>
-                                <th>Pelaksana</th>
-                                <th>Sumber Dana</th>
-                                {{-- <th>Implementasi</th> --}}
+                                <th>Jabatan</th>
+                                <th>Periode</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -85,8 +82,8 @@
         </div>
     </div>
 
-    @include('pages.program-kerja-jemaat.add')
-    @include('pages.program-kerja-jemaat.edit')
+    @include('pages.pengurus-sinode.add')
+    @include('pages.pengurus-sinode.edit')
 @endsection
 
 @push('scripts')
@@ -113,23 +110,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
     <script>
         function edit(id) {
-            fetch('/program-kerja-jemaat/findById/' + id)
+            fetch('/pengurus-sinode/findById/' + id)
                 .then(response => response.json())
                 .then(data => {
                     // Asumsi bahwa objek 'data' sudah tersedia dan memiliki struktur yang sesuai
                     document.getElementById('edit_id').value = data.id;
                     document.getElementById('edit_id_jemaat').value = data.id_jemaat;
+                    document.getElementById('edit_nama').value = data.nama;
                     document.getElementById('edit_bidang').value = data.bidang;
-                    document.getElementById('edit_ketua_bidang').value = data.ketua_bidang;
-                    document.getElementById('edit_anggota').value = data.anggota;
-                    document.getElementById('edit_program').value = data.program;
-                    document.getElementById('edit_tujuan').value = data.tujuan;
-                    document.getElementById('edit_sasaran').value = data.sasaran;
-                    document.getElementById('edit_bentuk_kegiatan').value = data.bentuk_kegiatan;
-                    document.getElementById('edit_waktu').value = data.waktu;
-                    document.getElementById('edit_pelaksana').value = data.pelaksana;
-                    document.getElementById('edit_sumber_dana').value = data.sumber_dana;
-                    document.getElementById('edit_implementasi').value = data.implementasi;
+                    document.getElementById('edit_jabatan').value = data.jabatan;
+                    document.getElementById('edit_tahun_mulai').value = data.tahun_mulai;
+                    document.getElementById('edit_tahun_selesai').value = data.tahun_selesai;
 
                     var editIdJemaatSelect = document.getElementById('edit_id_jemaat');
 
@@ -182,7 +173,7 @@
                 buttons: [{
                         extend: 'excel',
                         exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+                            columns: [0, 1, 2, 3, 4]
                         },
                         init: function(api, node, config) {
                             $(node).hide();
@@ -191,14 +182,14 @@
                     {
                         extend: 'print',
                         exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+                            columns: [0, 1, 2, 3, 4]
                         },
                         init: function(api, node, config) {
                             $(node).hide();
                         }
                     },
                 ],
-                ajax: "{{ route('program-kerja-jemaat.index') }}",
+                ajax: "{{ route('pengurus-sinode.index') }}",
                 columns: [{
                         data: 'DT_RowIndex',
                         name: '#',
@@ -206,60 +197,22 @@
 
                     },
                     {
+                        data: 'nama',
+                        name: 'nama',
+                    },
+                    {
                         data: 'bidang',
                         name: 'bidang',
-                        orderable: false,
                     },
                     {
-                        data: 'ketua_bidang',
-                        name: 'ketua_bidang',
-                        orderable: false,
+                        data: 'jabatan',
+                        name: 'jabatan',
                     },
                     {
-                        data: 'anggota',
-                        name: 'anggota',
+                        data: 'periode',
+                        name: 'periode',
                         orderable: false,
                     },
-                    {
-                        data: 'program',
-                        name: 'program',
-                        orderable: false,
-                    },
-                    {
-                        data: 'tujuan',
-                        name: 'tujuan',
-                        orderable: false,
-                    },
-                    {
-                        data: 'sasaran',
-                        name: 'sasaran',
-                        orderable: false,
-                    },
-                    {
-                        data: 'bentuk_kegiatan',
-                        name: 'bentuk_kegiatan',
-                        orderable: false,
-                    },
-                    {
-                        data: 'waktu',
-                        name: 'waktu',
-                        orderable: false,
-                    },
-                    {
-                        data: 'pelaksana',
-                        name: 'pelaksana',
-                        orderable: false,
-                    },
-                    {
-                        data: 'sumber_dana',
-                        name: 'sumber_dana',
-                        orderable: false,
-                    },
-                    // {
-                    //     data: 'implementasi',
-                    //     name: 'implementasi',
-                    //     orderable: false,
-                    // },
                     {
                         data: 'action',
                         name: 'action',
@@ -286,13 +239,13 @@
 
             $('#filterData').on('change', function() {
                 const selectedFilter = $(this).val();
-                datatable.ajax.url('{{ route('program-kerja-jemaat.index') }}?filter=' + selectedFilter)
+                datatable.ajax.url('{{ route('pengurus-sinode.index') }}?filter=' + selectedFilter)
                     .load();
             });
 
             $('#reload').on('click', function() {
                 $('#filterData').val('');
-                datatable.ajax.url('{{ route('program-kerja-jemaat.index') }}').load();
+                datatable.ajax.url('{{ route('pengurus-sinode.index') }}').load();
             });
 
         });
@@ -319,7 +272,7 @@
                 if (result.isConfirmed) {
                     var csrfToken = $('meta[name="csrf-token"]').attr('content');
                     $.ajax({
-                        url: '/program-kerja-jemaat/destroy/' + id,
+                        url: '/pengurus-sinode/destroy/' + id,
                         type: 'DELETE',
                         data: {
                             _token: csrfToken

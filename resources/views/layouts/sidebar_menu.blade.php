@@ -15,12 +15,12 @@
                           <span>Dashboard</span>
                       </a>
                   </li>
-                  {{-- <li>
-                      <a href="klasis" class="waves-effect">
+                  <li>
+                      <a href="/pengurus-sinode" class="waves-effect">
                           <i class="mdi mdi-home-flood"></i>
-                          <span>Klasis</span>
+                          <span>Pengurus Sinode</span>
                       </a>
-                  </li> --}}
+                  </li>
 
                   <li>
                       <a href="wilayah-pelayanan" class=" waves-effect">

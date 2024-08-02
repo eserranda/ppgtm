@@ -20,9 +20,9 @@
 </head>
 
 <body class="bg-primary bg-pattern">
-    <div class="home-btn d-none d-sm-block">
+    {{-- <div class="home-btn d-none d-sm-block">
         <a href="index.html"><i class="mdi mdi-home-variant h2 text-white"></i></a>
-    </div>
+    </div> --}}
 
     <div class="account-pages my-5 pt-5">
         <div class="container">
@@ -31,7 +31,7 @@
                     <div class="text-center mb-5">
                         {{-- <a href="index.html" class="logo"><img src="{{ asset('assets') }}/images/logo-light.png"
                                 height="24" alt="logo"></a> --}}
-                        <h5 class="font-size-16 text-white-50 mb-4">Sistem Informasi PPGTM</h5>
+                        <h5 class="font-size-20 text-white mb-4">Persekutuan Pemuda Gereja Toraja Mamasa</h5>
                     </div>
                 </div>
             </div>

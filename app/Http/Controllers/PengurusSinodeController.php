@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Klasis;
 use Illuminate\Http\Request;
+use App\Models\PengurusSinode;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Validator;
 
-class KlasisController extends Controller
+class PengurusSinodeController extends Controller
 {
 
     public function index(Request $request)
@@ -15,14 +15,17 @@ class KlasisController extends Controller
         if ($request->ajax()) {
             $dataFilter = $request->input('filter');
 
-            $query = Klasis::query();
+            $query = PengurusSinode::query();
             if ($dataFilter) {
-                $query->where('wilayah', $dataFilter);
+                $query->where('bidang', $dataFilter);
             }
 
             $data = $query->latest('created_at')->get();
             return DataTables::of($data)
                 ->addIndexColumn()
+                ->addColumn('periode', function ($row) {
+                    return $row->tahun_mulai . ' - ' . $row->tahun_selesai;
+                })
                 ->addColumn('action', function ($row) {
                     $btn = '<div class="d-flex justify-content-start align-items-center">';
                     $btn .= '<a class="btn btn-outline-secondary btn-sm mx-1" title="Edit" onclick="edit(' . $row->id . ')"> <i class="fas fa-pencil-alt"></i> </a>';
@@ -33,115 +36,97 @@ class KlasisController extends Controller
                 ->rawColumns(['action'])
                 ->make(true);
         }
-
-        return view('pages.klasis.index');
+        return view('pages.pengurus-sinode.index');
     }
 
-    public function findOne($id)
-    {
-        $data = Klasis::find($id);
-        return response()->json($data);
-    }
-
-    public function getAllKlasis(Request $request)
-    {
-        $search = $request->input('term'); // Dapatkan parameter pencarian dari Select2
-
-        // Ambil data dari database berdasarkan parameter pencarian
-        $klasis = Klasis::where('nama_klasis', 'LIKE', '%' . $search . '%')
-            ->select('id', 'nama_klasis as text')
-            ->get();
-
-        return response()->json($klasis);
-    }
-
-    public function findById($id)
-    {
-        $data = Klasis::find($id);
-        return response()->json($data);
-    }
-
-    public function getIdAndNameAllKlasis()
-    {
-        $klases = Klasis::orderBy('nama_klasis', 'asc')->get(['id', 'nama_klasis']);
-        return response()->json($klases);
-    }
 
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'wilayah' => 'required',
-            'nama_klasis' => 'required',
+            'id_jemaat' => 'required',
+            'nama' => 'required',
+            'bidang' => 'required',
+            'jabatan' => 'required',
+            'tahun_mulai' => 'required',
+            'tahun_selesai' => 'required',
         ], [
             'required' => ':attribute harus diisi',
-        ], 422);
+        ]);
 
         if ($validator->fails()) {
             return response()->json([
                 'success' => false,
-                'messages' => $validator->errors()
+                'messages' => $validator->errors(),
             ], 422);
         }
-
-
-        $klasis = Klasis::create([
-            'wilayah' => $request->wilayah,
-            'nama_klasis' => $request->nama_klasis,
-        ]);
-
-        if ($klasis) {
+        $save = PengurusSinode::create($request->all());
+        if ($save) {
             return response()->json([
                 'success' => true,
-                'messages' => 'Data klasis berhasil ditambahkan',
-            ], 201);
+                'messages' => 'Data berhasil disimpan'
+            ], 200);
         } else {
             return response()->json([
                 'success' => false,
-                'messages' => 'Data klasis gagal ditambahkan',
+                'messages' => 'Data gagal disimpan'
             ], 500);
         }
     }
 
+    public function findById($id)
+    {
+        $data = PengurusSinode::find($id);
+        return response()->json($data);
+    }
 
-    public function update(Request $request, Klasis $klasis)
+    public function update(Request $request, PengurusSinode $pengurusSinode)
     {
         $validator = Validator::make($request->all(), [
-            'edit_wilayah' => 'required',
-            'edit_nama_klasis' => 'required',
+            'edit_id_jemaat' => 'required',
+            'edit_nama' => 'required',
+            'edit_bidang' => 'required',
+            'edit_jabatan' => 'required',
+            'edit_tahun_mulai' => 'required',
+            'edit_tahun_selesai' => 'required',
         ], [
             'required' => ':attribute harus diisi',
-        ]);
+        ],);
+
 
         if ($validator->fails()) {
             return response()->json([
                 'success' => false,
-                'messages' => $validator->errors()
+                'messages' => $validator->errors(),
             ], 422);
         }
 
-        $update = $klasis::where('id', $request->input('id'))->update([
-            'wilayah' => $request->input('edit_wilayah'),
-            'nama_klasis' => $request->input('edit_nama_klasis'),
+        $update = $pengurusSinode->where('id', $request->input('id'))->update([
+            'id_jemaat' => $request->input('edit_id_jemaat'),
+            'nama' => $request->input('edit_nama'),
+            'bidang' => $request->input('edit_bidang'),
+            'jabatan' => $request->input('edit_jabatan'),
+            'tahun_mulai' => $request->input('edit_tahun_mulai'),
+            'tahun_selesai' => $request->input('edit_tahun_selesai'),
         ]);
 
         if ($update) {
             return response()->json([
                 'success' => true
-            ]);
+            ], 200);
         } else {
             return response()->json([
                 'success' => false
-            ]);
+            ], 500);
         }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Klasis $klasis, $id)
+    public function destroy(PengurusSinode $pengurusSinode, $id)
     {
         try {
-            $deleted = $klasis::findOrFail($id);
+            $deleted = $pengurusSinode::findOrFail($id);
             $deleted->delete();
 
             return response()->json(['status' => true, 'message' => 'Data berhasil dihapus'], 200);
