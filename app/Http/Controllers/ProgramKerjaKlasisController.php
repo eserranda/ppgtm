@@ -147,8 +147,15 @@ class ProgramKerjaKlasisController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(ProgramKerjaKlasis $programKerjaKlasis)
+    public function destroy(ProgramKerjaKlasis $programKerjaKlasis, $id)
     {
-        //
+        try {
+            $deleted = $programKerjaKlasis::findOrFail($id);
+            $deleted->delete();
+
+            return response()->json(['status' => true, 'message' => 'Data berhasil dihapus'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['status' => false, 'message' => 'Gagal menghapus data'], 500);
+        }
     }
 }
