@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\JemaatController;
 use App\Http\Controllers\KlasisController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PengurusKlasisController;
 use App\Http\Controllers\PengurusSinodeController;
 use App\Http\Controllers\ProgramKerjaController;
 use App\Http\Controllers\WilayahPelayananController;
@@ -48,6 +49,14 @@ Route::prefix('/dashboard')->controller(DashboardController::class)->group(funct
     Route::get('/', 'index')->name('dashboards.index');
 })->middleware('auth');
 
+
+Route::prefix('pengurus-klasis')->controller(PengurusKlasisController::class)->group(function () {
+    Route::get('/', 'index')->name('pengurus-klasis.index');
+    Route::post('/store', 'store');
+    Route::get('/findById/{id}', 'findById');
+    Route::post('/update', 'update');
+    Route::delete('/destroy/{id}', 'destroy');
+})->middleware('auth');
 
 Route::prefix('pengurus-sinode')->controller(PengurusSinodeController::class)->group(function () {
     Route::get('/', 'index')->name('pengurus-sinode.index');
@@ -102,8 +111,8 @@ Route::prefix('klasis')->controller(KlasisController::class)->group(function () 
     Route::post('/update', 'update');
     Route::delete('/destroy/{id}', 'destroy');
     Route::get('/getAllKlasis', 'getAllKlasis');
-    // Route::get('/getIdAndNameAllKlasis', 'getIdAndNameAllKlasis');
     Route::get('/findOne/{id}', 'findOne');
+    // Route::get('/getIdAndNameAllKlasis', 'getIdAndNameAllKlasis');
 });
 
 Route::prefix('wilayah-pelayanan')->controller(WilayahPelayananController::class)->group(function () {

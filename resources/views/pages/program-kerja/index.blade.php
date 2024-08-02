@@ -23,7 +23,7 @@
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <div class="d-flex align-items-center ">
                             {{-- <label class="col-form-label col-md-3">Filter :</label> --}}
-                            <select class="form-control costom-select" id="filterData" name="filterData">
+                            <select class="form-control custom-select" id="filterData" name="filterData">
                                 <option value="" selected disabled>Pilih bidang</option>
                                 <option value="Pembinaan, Kerohanian, Minat dan Bakat">Pembinaan, Kerohanian, Minat dan
                                     Bakat</option>Z

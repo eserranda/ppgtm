@@ -22,7 +22,7 @@
 
                         <div class="form-group col-md-6 mb-2">
                             <label class="form-label" for="dapel">Daerah Pelayanan</label>
-                            <select class="form-control costom-select" id="edit_dapel" name="edit_dapel">
+                            <select class="form-control custom-select" id="edit_dapel" name="edit_dapel">
                                 <option value="" selected disabled>Pilih Dapel</option>
                                 <option value="Dapel 1">Dapel 1</option>
                                 <option value="Dapel 2">Dapel 2</option>

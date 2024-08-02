@@ -19,7 +19,7 @@
         href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.rtl.min.css" />
 @endpush
 @section('page_title')
-    Anggota Pemuda Jemaat
+    Data Pengurus klasis
 @endsection
 
 @section('content')
@@ -29,14 +29,20 @@
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <div class="d-flex align-items-center ">
-                            <select class="form-control custom-select col-12" id="filterData" name="filterData">
-                                <option value="" selected disabled>Pilih Dapel</option>
-                                <option value="Dapel 1">Dapel 1</option>
-                                <option value="Dapel 2">Dapel 2</option>
-                                <option value="Dapel 3">Dapel 3</option>
-                                <option value="Dapel 4">Dapel 4</option>
+                            <select class="form-control custom-select" id="filterdata" name="filterData">
+                                <option value="" selected disabled>Pilih bidang</option>
+                                <option value="Pembinaan dan Kerohanian">Pembinaan dan Kerohanian</option>
+                                <option value="Minat dan Bakat">Minat dan Bakat</option>
+                                <option value="Kaderisasi">Kaderisasi</option>
+                                <option value="Pengembangan Organisasi">Pengembangan Organisasi</option>
+                                <option value="Komunikasi">Komunikasi</option>
+                                <option value="Hubungan Antar Lembaga">Hubungan Antar Lembaga</option>
+                                <option value="Kemandirian Dana">Kemandirian Dana</option>
+                                <option value="Diakonia">Diakonia</option>
+                                <option value="Kajian Strategis">Kajian Strategis</option>
+                                <option value="Lingkungan Hidup">Lingkungan Hidup</option>
                             </select>
-                            <button type="button" class="btn btn-light waves-effect mx-2 col-3" id="reload">
+                            <button type="button" class="btn btn-light waves-effect mx-2 col-2" id="reload">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="20" height="20"
                                     viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none"
                                     stroke-linecap="round" stroke-linejoin="round">`
@@ -47,11 +53,11 @@
                             </button>
                         </div>
                         <div>
-                            <button type="button" class="btn btn-outline-info" id="btnPrint"><i
+                            <button type="button" class="btn btn-outline-info " id="btnPrint"><i
                                     class="mdi mdi-printer"></i></button>
-                            <button type="button" class="btn btn-outline-success" id ="btnExcel">Excel</button>
+                            <button type="button" class="btn btn-outline-success " id ="btnExcel">Excel</button>
 
-                            <button type="button" class="btn btn-primary " data-toggle="modal"
+                            <button type="button" class="btn btn-primary    waves-light" data-toggle="modal"
                                 data-target="#addModal">Tambah Data</button>
                         </div>
                     </div>
@@ -60,12 +66,9 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Daerah Pelayanan</th>
                                 <th>Nama</th>
-                                <th>Tanggal Lahir</th>
-                                <th>No telepon</th>
-                                <th>Alamat</th>
-                                <th>Keterangan</th>
+                                <th>Bidang</th>
+                                <th>Jabatan</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -78,8 +81,8 @@
         </div>
     </div>
 
-    @include('pages.anggota-pemuda-jemaat.add')
-    @include('pages.anggota-pemuda-jemaat.edit')
+    @include('pages.pengurus-klasis.add')
+    @include('pages.pengurus-klasis.edit')
 @endsection
 
 @push('scripts')
@@ -106,23 +109,19 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
     <script>
         function edit(id) {
-            fetch('/anggota-pemuda-jemaat/findById/' + id)
+            fetch('/pengurus-klasis/findById/' + id)
                 .then(response => response.json())
                 .then(data => {
                     // Asumsi bahwa objek 'data' sudah tersedia dan memiliki struktur yang sesuai
                     document.getElementById('edit_id').value = data.id;
-                    document.getElementById('edit_id_jemaat').value = data.id_jemaat;
-                    document.getElementById('edit_dapel').value = data.dapel;
-                    document.getElementById('edit_nama_anggota').value = data.nama_anggota;
-                    document.getElementById('edit_tgl_lahir').value = data.tgl_lahir;
-                    document.getElementById('edit_alamat').value = data.alamat;
-                    document.getElementById('edit_no_telp').value = data.no_telp;
-                    document.getElementById('edit_keterangan').value = data.keterangan;
-                    document.getElementById('edit_data_time').value = data.data_time;
+                    document.getElementById('edit_id_klasis').value = data.id_klasis;
+                    document.getElementById('edit_nama').value = data.nama;
+                    document.getElementById('edit_bidang').value = data.bidang;
+                    document.getElementById('edit_jabatan').value = data.jabatan;
 
-                    var editIdJemaatSelect = document.getElementById('edit_id_jemaat');
+                    var editIdKlasisSelect = document.getElementById('edit_id_klasis');
 
-                    fetch('/jemaat/findOne/' + data.id_jemaat, {
+                    fetch('/klasis/findOne/' + data.id_klasis, {
                             method: 'GET',
                             headers: {
                                 'Content-Type': 'application/json'
@@ -135,7 +134,7 @@
                             return response.json();
                         })
                         .then(data => {
-                            updateOptionsAndSelect2Jemaat(editIdJemaatSelect, data.id, data.nama_jemaat);
+                            updateOptionsAndSelect2Klasis(editIdKlasisSelect, data.id, data.nama_klasis);
                         })
                         .catch(error => console.error('Error fetching data:', error));
                 })
@@ -144,7 +143,7 @@
             $('#editModal').modal('show');
         }
 
-        function updateOptionsAndSelect2Jemaat(selectElement, id, name) {
+        function updateOptionsAndSelect2Klasis(selectElement, id, name) {
             // Hapus semua opsi yang ada di elemen <select>
             $(selectElement).empty();
 
@@ -171,7 +170,7 @@
                 buttons: [{
                         extend: 'excel',
                         exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5, 6]
+                            columns: [0, 1, 2, 3]
                         },
                         init: function(api, node, config) {
                             $(node).hide();
@@ -180,14 +179,14 @@
                     {
                         extend: 'print',
                         exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5, 6]
+                            columns: [0, 1, 2, 3]
                         },
                         init: function(api, node, config) {
                             $(node).hide();
                         }
                     },
                 ],
-                ajax: "{{ route('anggota-pemuda-jemaat.index') }}",
+                ajax: "{{ route('pengurus-klasis.index') }}",
                 columns: [{
                         data: 'DT_RowIndex',
                         name: '#',
@@ -195,34 +194,16 @@
 
                     },
                     {
-                        data: 'dapel',
-                        name: 'dapel',
-                        orderable: false,
+                        data: 'nama',
+                        name: 'nama',
                     },
                     {
-                        data: 'nama_anggota',
-                        name: 'nama_anggota',
-                        orderable: false,
+                        data: 'bidang',
+                        name: 'bidang',
                     },
                     {
-                        data: 'tgl_lahir',
-                        name: 'tgl_lahir',
-                        orderable: false,
-                    },
-                    {
-                        data: 'no_telp',
-                        name: 'no_telp',
-                        orderable: false,
-                    },
-                    {
-                        data: 'alamat',
-                        name: 'alamat',
-                        orderable: false,
-                    },
-                    {
-                        data: 'keterangan',
-                        name: 'keterangan',
-                        orderable: false,
+                        data: 'jabatan',
+                        name: 'jabatan',
                     },
                     {
                         data: 'action',
@@ -233,15 +214,30 @@
                 ],
             });
 
+            // // fetch data klasis yang ada pada tabel jemaat 
+            // fetch('/jemaat/getIdAndNameAllKlasis')
+            //     .then(response => response.json())
+            //     .then(data => {
+            //         const filterData = document.getElementById('filterData');
+            //         data.forEach(klasis => {
+            //             const option = document.createElement('option');
+            //             option.value = klasis.id_klasis;
+            //             option.textContent = klasis.nama_klasis;
+            //             filterData.appendChild(option);
+            //         });
+            //     })
+            //     .catch(error => console.error('Error fetching data:', error));
+
+
             $('#filterData').on('change', function() {
                 const selectedFilter = $(this).val();
-                datatable.ajax.url('{{ route('anggota-pemuda-jemaat.index') }}?filter=' + selectedFilter)
+                datatable.ajax.url('{{ route('pengurus-klasis.index') }}?filter=' + selectedFilter)
                     .load();
             });
 
             $('#reload').on('click', function() {
                 $('#filterData').val('');
-                datatable.ajax.url('{{ route('anggota-pemuda-jemaat.index') }}').load();
+                datatable.ajax.url('{{ route('pengurus-klasis.index') }}').load();
             });
 
         });
@@ -268,7 +264,7 @@
                 if (result.isConfirmed) {
                     var csrfToken = $('meta[name="csrf-token"]').attr('content');
                     $.ajax({
-                        url: '/anggota-pemuda-jemaat/destroy/' + id,
+                        url: '/pengurus-klasis/destroy/' + id,
                         type: 'DELETE',
                         data: {
                             _token: csrfToken

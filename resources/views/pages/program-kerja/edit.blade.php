@@ -14,7 +14,7 @@
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label class="form-label" for="bidang">Bidang</label>
-                            <select class="form-control costom-select" id="edit_bidang" name="edit_bidang">
+                            <select class="form-control custom-select" id="edit_bidang" name="edit_bidang">
                                 <option value="" selected disabled>Pilih bidang</option>
                                 <option value="Pembinaan, Kerohanian, Minat dan Bakat">Pembinaan, Kerohanian, Minat dan
                                     Bakat</option>Z

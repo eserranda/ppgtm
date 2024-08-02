@@ -29,7 +29,7 @@
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <div class="d-flex align-items-center ">
-                            <select class="form-control costom-select" id="filterData" name="filterData">
+                            <select class="form-control custom-select" id="filterdata" name="filterData">
                                 <option value="" selected disabled>Pilih bidang</option>
                                 <option value="Pembinaan dan Kerohanian">Pembinaan dan Kerohanian</option>
                                 <option value="Minat dan Bakat">Minat dan Bakat</option>

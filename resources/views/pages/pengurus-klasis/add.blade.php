@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">Tambah Data Anggota PPGTM</h5>
+                <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">Tambah Data Pengurus klasis</h5>
                 <button type="button" class="close" onclick="closeModalAdd()">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -12,70 +12,59 @@
                 <form id="addForm">
                     <div class="form-row">
                         <div class="form-group col-md-6 mb-3">
-                            <label class="form-label" for="id_jemaat">Jemaat</label>
-                            <select class="form-select" id="id_jemaat" name="id_jemaat">
+                            <label class="form-label" for="id_klasis">Jemaat</label>
+                            <select class="form-select" id="id_klasis" name="id_klasis">
 
                             </select>
-                            <div class="invalid-feedback"> </div>
+                            <div class="invalid-feedback"></div>
                         </div>
 
-                        <div class="form-group col-md-6 mb-3">
-                            <label class="form-label" for="dapel">Daerah Pelayanan</label>
-                            <select class="form-control custom-select" id="dapel" name="dapel">
-                                <option value="" selected disabled>Pilih Dapel</option>
-                                <option value="Dapel 1">Dapel 1</option>
-                                <option value="Dapel 2">Dapel 2</option>
-                                <option value="Dapel 3">Dapel 3</option>
-                                <option value="Dapel 4">Dapel 4</option>
+                        <div class="form-group col-md-6 mb-2">
+                            <label class="form-label" for="bidang">Bidang</label>
+                            <select class="form-control custom-select" id="bidang" name="bidang">
+                                <option value="" selected disabled>Pilih bidang</option>
+                                <option value="Penasehat">Penasehat</option>
+                                <option value="Pengurus Inti">Pengurus Inti</option>
+                                <hr>
+                                <option value="Pembinaan dan Kerohanian">Pembinaan dan Kerohanian</option>
+                                <option value="Minat dan Bakat">Minat dan Bakat</option>
+                                <option value="Kaderisasi">Kaderisasi</option>
+                                <option value="Pengembangan Organisasi">Pengembangan Organisasi</option>
+                                <option value="Komunikasi">Komunikasi</option>
+                                <option value="Hubungan Antar Lembaga">Hubungan Antar Lembaga</option>
+                                <option value="Kemandirian Dana">Kemandirian Dana</option>
+                                <option value="Diakonia">Diakonia</option>
+                                <option value="Kajian Strategis">Kajian Strategis</option>
+                                <option value="Lingkungan Hidup">Lingkungan Hidup</option>
                             </select>
-
-                            <div class="invalid-feedback"> </div>
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group col-md-6 mb-3">
-                            <label class="form-label" for="nama_anggota">Nama Anggota</label>
-                            <input type="text" class="form-control" id="nama_anggota" name="nama_anggota"
-                                placeholder="Nama Anggota">
-                            <div class="invalid-feedback"> </div>
-                        </div>
-
-                        <div class="form-group col-md-6 mb-3">
-                            <label class="form-label" for="tgl_lahir">Tanggal Lahir</label>
-                            <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir">
-                            <div class="invalid-feedback"> </div>
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group col-md-6 mb-3">
-                            <label class="form-label" for="alamat">Alamat</label>
-                            <input type="text" class="form-control" id="alamat" name="alamat"
-                                placeholder="Alamat">
-                            <div class="invalid-feedback"> </div>
-                        </div>
-
-                        <div class="form-group col-md-6 mb-3">
-                            <label class="form-label" for="no_telp">No. Telepon</label>
-                            <input type="number" class="form-control" id="no_telp" name="no_telp"
-                                placeholder="No. Telepon" ">
                             <div class="invalid-feedback"></div>
                         </div>
                     </div>
 
+
                     <div class="form-row">
                         <div class="form-group col-md-6 mb-3">
-                            <label class="form-label" for="keterangan">Keterangan</label>
-                            <input type="text" class="form-control" id="keterangan" name="keterangan"
-                                placeholder="Keterangan">
+                            <label class="form-label" for="nama">Nama</label>
+                            <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama">
                             <div class="invalid-feedback"> </div>
                         </div>
 
                         <div class="form-group col-md-6 mb-3">
-                            <label class="form-label" for="data_time">Data Time</label>
-                            <input type="text" class="form-control" id="data_time" name="data_time" value="November 2022">
-                            <div class="invalid-feedback"></div>
+                            <label class="form-label" for="anggota">Jabatan</label>
+                            <select class="form-control custom-select" id="jabatan" name="jabatan">
+                                <option value="" selected disabled>Pilih Jabatan</option>
+                                <option value="Ketua Umum">Ketua Umum</option>
+                                <option value="Ketua 1">Ketua 1</option>
+                                <option value="Ketua 2">Ketua 2</option>
+                                <option value="Ketua 3">Ketua 3</option>
+                                <option value="Sekretaris">Sekretaris</option>
+                                <option value="Wakil Sekretaris">Wakil Sekretaris</option>
+                                <option value="Wakil Bendahara">Wakil Bendahara</option>
+                                <hr class="my-2">
+                                <option value="Koordinator">Koordinator</option>
+                                <option value="Anggota">Anggota</option>
+                            </select>
+                            <div class="invalid-feedback"> </div>
                         </div>
                     </div>
 
@@ -93,12 +82,11 @@
 @push('scripts')
     <script>
         $(document).ready(function() {
-            $('#id_jemaat').select2({
+            $('#id_klasis').select2({
                 theme: "bootstrap-5",
-                placeholder: "Pilih Jemaat",
-                // minimumInputLength: 1,
+                placeholder: "Pilih Klasis",
                 ajax: {
-                    url: '/jemaat/getAllJemaat',
+                    url: '/klasis/getAllKlasis',
                     dataType: 'json',
                     delay: 250,
                     processResults: function(data) {
@@ -135,7 +123,7 @@
             const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
 
             try {
-                const response = await fetch('/anggota-pemuda-jemaat/store', {
+                const response = await fetch('/pengurus-klasis/store', {
                     method: 'POST',
                     headers: {
                         'Accept': 'application/json',
@@ -149,7 +137,7 @@
                 if (!data.success) {
                     Object.keys(data.messages).forEach(fieldName => {
                         const inputField = document.getElementById(fieldName);
-                        if (inputField && fieldName == 'id_jemaat') {
+                        if (inputField && fieldName == 'id_klasis') {
                             inputField.classList.add('is-invalid');
                         } else {
                             inputField.classList.add('is-invalid');
@@ -165,7 +153,7 @@
                     validFields.forEach(validField => {
                         const fieldName = validField.id;
                         if (!data.messages[fieldName]) {
-                            if (fieldName === 'id_jemaat') {
+                            if (fieldName === 'id_klasis') {
                                 validField.classList.remove('is-invalid');
                             } else {
                                 validField.classList.remove('is-invalid');

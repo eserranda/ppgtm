@@ -22,6 +22,7 @@
                       </a>
                   </li>
 
+
                   <li>
                       <a href="wilayah-pelayanan" class=" waves-effect">
                           <i class="mdi mdi-shield-cross-outline"></i>
@@ -33,6 +34,14 @@
                       <a href="program-kerja" class=" waves-effect">
                           <i class="mdi mdi-format-float-left"></i>
                           <span>Program Kerja Sinode</span>
+                      </a>
+                  </li>
+
+                  <li class="menu-title">klasis</li>
+                  <li>
+                      <a href="/pengurus-klasis" class="waves-effect">
+                          <i class="mdi mdi-home-flood"></i>
+                          <span>Pengurus Klasis</span>
                       </a>
                   </li>
 

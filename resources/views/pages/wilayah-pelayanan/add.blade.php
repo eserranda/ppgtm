@@ -20,7 +20,7 @@
 
                         <div class="col-md-6 mb-3">
                             <label class="form-label" for="wilayah">Wilayah</label>
-                            <select class="form-control costom-select" id="wilayah" name="wilayah">
+                            <select class="form-control custom-select" id="wilayah" name="wilayah">
                                 <option value="" selected disabled>Pilih Wilayah</option>
                                 <option value="Wilayah I">Wilayah I</option>
                                 <option value="Wilayah II">Wilayah II</option>
