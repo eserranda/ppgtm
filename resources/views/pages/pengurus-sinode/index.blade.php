@@ -115,48 +115,47 @@
                 .then(data => {
                     // Asumsi bahwa objek 'data' sudah tersedia dan memiliki struktur yang sesuai
                     document.getElementById('edit_id').value = data.id;
-                    document.getElementById('edit_id_jemaat').value = data.id_jemaat;
                     document.getElementById('edit_nama').value = data.nama;
                     document.getElementById('edit_bidang').value = data.bidang;
                     document.getElementById('edit_jabatan').value = data.jabatan;
                     document.getElementById('edit_tahun_mulai').value = data.tahun_mulai;
                     document.getElementById('edit_tahun_selesai').value = data.tahun_selesai;
 
-                    var editIdJemaatSelect = document.getElementById('edit_id_jemaat');
+                    // var editIdJemaatSelect = document.getElementById('edit_id_jemaat');
 
-                    fetch('/jemaat/findOne/' + data.id_jemaat, {
-                            method: 'GET',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            }
-                        })
-                        .then(response => {
-                            if (!response.ok) {
-                                throw new Error('Gagal mengambil data');
-                            }
-                            return response.json();
-                        })
-                        .then(data => {
-                            updateOptionsAndSelect2Jemaat(editIdJemaatSelect, data.id, data.nama_jemaat);
-                        })
-                        .catch(error => console.error('Error fetching data:', error));
+                    // fetch('/jemaat/findOne/' + data.id_jemaat, {
+                    //         method: 'GET',
+                    //         headers: {
+                    //             'Content-Type': 'application/json'
+                    //         }
+                    //     })
+                    //     .then(response => {
+                    //         if (!response.ok) {
+                    //             throw new Error('Gagal mengambil data');
+                    //         }
+                    //         return response.json();
+                    //     })
+                    //     .then(data => {
+                    //         updateOptionsAndSelect2Jemaat(editIdJemaatSelect, data.id, data.nama_jemaat);
+                    //     })
+                    //     .catch(error => console.error('Error fetching data:', error));
                 })
                 .catch(error => console.error(error));
             // show modal edit
             $('#editModal').modal('show');
         }
 
-        function updateOptionsAndSelect2Jemaat(selectElement, id, name) {
-            // Hapus semua opsi yang ada di elemen <select>
-            $(selectElement).empty();
+        // function updateOptionsAndSelect2Jemaat(selectElement, id, name) {
+        //     // Hapus semua opsi yang ada di elemen <select>
+        //     $(selectElement).empty();
 
-            // Tambahkan opsi baru ke elemen <select>
-            var option = new Option(name, id, true, true);
-            $(selectElement).append(option);
+        //     // Tambahkan opsi baru ke elemen <select>
+        //     var option = new Option(name, id, true, true);
+        //     $(selectElement).append(option);
 
-            // Perbarui tampilan Select2
-            $(selectElement).trigger('change');
-        }
+        //     // Perbarui tampilan Select2
+        //     $(selectElement).trigger('change');
+        // }
 
 
         var datatable;

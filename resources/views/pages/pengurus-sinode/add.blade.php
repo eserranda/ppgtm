@@ -11,13 +11,13 @@
             <div class="modal-body">
                 <form id="addForm">
                     <div class="form-row">
-                        <div class="form-group col-md-6 mb-3">
+                        {{-- <div class="form-group col-md-6 mb-3">
                             <label class="form-label" for="id_jemaat">Jemaat</label>
                             <select class="form-select" id="id_jemaat" name="id_jemaat">
 
                             </select>
                             <div class="invalid-feedback"></div>
-                        </div>
+                        </div> --}}
 
                         <div class="form-group col-md-6 mb-2">
                             <label class="form-label" for="bidang">Bidang</label>
@@ -103,23 +103,23 @@
 
 @push('scripts')
     <script>
-        $(document).ready(function() {
-            $('#id_jemaat').select2({
-                theme: "bootstrap-5",
-                placeholder: "Pilih Jemaat",
-                ajax: {
-                    url: '/jemaat/getAllJemaat',
-                    dataType: 'json',
-                    delay: 250,
-                    processResults: function(data) {
-                        return {
-                            results: data
-                        };
-                    },
-                    cache: true
-                }
-            });
-        });
+        // $(document).ready(function() {
+        //     $('#id_jemaat').select2({
+        //         theme: "bootstrap-5",
+        //         placeholder: "Pilih Jemaat",
+        //         ajax: {
+        //             url: '/jemaat/getAllJemaat',
+        //             dataType: 'json',
+        //             delay: 250,
+        //             processResults: function(data) {
+        //                 return {
+        //                     results: data
+        //                 };
+        //             },
+        //             cache: true
+        //         }
+        //     });
+        // });
 
         function closeModalAdd() {
             const invalidInputs = document.querySelectorAll('.is-invalid');

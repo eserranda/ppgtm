@@ -11,19 +11,18 @@
             <div class="modal-body">
                 <form id="editForm">
                     <div class="form-row">
-                        <div class="form-group col-md-6 mb-3">
+                        {{-- <div class="form-group col-md-6 mb-3">
                             <label class="form-label" for="edit_id_jemaat">Jemaat</label>
                             <input type="hidden" class="form-control" id="edit_id" name="id">
                             <select class="form-select" id="edit_id_jemaat" name="edit_id_jemaat">
 
                             </select>
                             <div class="invalid-feedback"></div>
-                        </div>
+                        </div> --}}
 
                         <div class="form-group col-md-6 mb-2">
                             <label class="form-label" for="bidang">Bidang</label>
                             <select class="form-control custom-select" id="edit_bidang" name="edit_bidang">
-                                <option value="" selected disabled>Pilih bidang</option>
                                 <option value="" selected disabled>Pilih bidang</option>
                                 <option value="KSB">KSB</option>
                                 <hr>
@@ -53,8 +52,8 @@
 
                         <div class="form-group col-md-6 mb-3">
                             <label class="form-label" for="anggota">Jabatan</label>
+                            <input type="hidden" class="form-control" id="edit_id" name="id">
                             <select class="form-control custom-select" id="edit_jabatan" name="edit_jabatan">
-                                <option value="" selected disabled>Pilih Jabatan</option>
                                 <option value="" selected disabled>Pilih Jabatan</option>
                                 <option value="Ketua Umum">Ketua Umum</option>
                                 <option value="Ketua I">Ketua I</option>
@@ -107,23 +106,23 @@
 
 @push('scripts')
     <script>
-        $(document).ready(function() {
-            $('#edit_id_jemaat').select2({
-                theme: "bootstrap-5",
-                placeholder: "Pilih Jemaat",
-                ajax: {
-                    url: '/jemaat/getAllJemaat',
-                    dataType: 'json',
-                    delay: 250,
-                    processResults: function(data) {
-                        return {
-                            results: data
-                        };
-                    },
-                    cache: true
-                }
-            });
-        });
+        // $(document).ready(function() {
+        //     $('#edit_id_jemaat').select2({
+        //         theme: "bootstrap-5",
+        //         placeholder: "Pilih Jemaat",
+        //         ajax: {
+        //             url: '/jemaat/getAllJemaat',
+        //             dataType: 'json',
+        //             delay: 250,
+        //             processResults: function(data) {
+        //                 return {
+        //                     results: data
+        //                 };
+        //             },
+        //             cache: true
+        //         }
+        //     });
+        // });
 
         function closeModalEdit() {
             const invalidInputs = document.querySelectorAll('.is-invalid');

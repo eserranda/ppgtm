@@ -43,10 +43,9 @@ class PengurusSinodeController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'id_jemaat' => 'required',
             'nama' => 'required',
             'bidang' => 'required',
-            'jabatan' => 'required',
+            // 'jabatan' => 'required',
             'tahun_mulai' => 'required',
             'tahun_selesai' => 'required',
         ], [
@@ -82,10 +81,9 @@ class PengurusSinodeController extends Controller
     public function update(Request $request, PengurusSinode $pengurusSinode)
     {
         $validator = Validator::make($request->all(), [
-            'edit_id_jemaat' => 'required',
             'edit_nama' => 'required',
             'edit_bidang' => 'required',
-            'edit_jabatan' => 'required',
+            // 'edit_jabatan' => 'required',
             'edit_tahun_mulai' => 'required',
             'edit_tahun_selesai' => 'required',
         ], [
@@ -101,7 +99,6 @@ class PengurusSinodeController extends Controller
         }
 
         $update = $pengurusSinode->where('id', $request->input('id'))->update([
-            'id_jemaat' => $request->input('edit_id_jemaat'),
             'nama' => $request->input('edit_nama'),
             'bidang' => $request->input('edit_bidang'),
             'jabatan' => $request->input('edit_jabatan'),
