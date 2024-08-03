@@ -15,6 +15,18 @@
                           <span>Dashboard</span>
                       </a>
                   </li>
+
+                  <li>
+                      <a href="javascript: void(0);" class="has-arrow waves-effect">
+                          <i class="mdi mdi-email-multiple-outline"></i>
+                          <span>Administrasi</span>
+                      </a>
+                      <ul class="sub-menu" aria-expanded="false">
+                          <li><a href="/klasis">Klasis</a></li>
+                          <li><a href="/jemaat">Jemaat</a></li>
+                      </ul>
+                  </li>
+
                   <li class="menu-title">sinode</li>
 
                   <li>
@@ -23,7 +35,6 @@
                           <span>Pengurus Sinode</span>
                       </a>
                   </li>
-
 
                   <li>
                       <a href="wilayah-pelayanan" class=" waves-effect">
@@ -37,17 +48,6 @@
                           <i class="mdi mdi-format-float-left"></i>
                           <span>Program Kerja Sinode</span>
                       </a>
-                  </li>
-
-                  <li>
-                      <a href="javascript: void(0);" class="has-arrow waves-effect">
-                          <i class="mdi mdi-email-multiple-outline"></i>
-                          <span>Administrasi</span>
-                      </a>
-                      <ul class="sub-menu" aria-expanded="false">
-                          <li><a href="/klasis">Klasis</a></li>
-                          <li><a href="/jemaat">Jemaat</a></li>
-                      </ul>
                   </li>
 
                   <li class="menu-title">klasis</li>
