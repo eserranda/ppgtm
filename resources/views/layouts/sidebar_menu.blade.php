@@ -87,7 +87,7 @@
 
                   <li>
                       <a href="jadwal-ibadah" class=" waves-effect">
-                          <i class="mdi mdi-account-supervisor"></i>
+                          <i class="mdi mdi-clipboard-list-outline"></i>
                           <span>Jadwal Ibadah</span>
                       </a>
                   </li>
