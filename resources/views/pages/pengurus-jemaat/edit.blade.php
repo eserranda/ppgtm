@@ -12,9 +12,9 @@
                 <form id="editForm">
                     <div class="form-row">
                         <div class="form-group col-md-6 mb-3">
-                            <label class="form-label" for="edit_id_klasis">Klasis</label>
+                            <label class="form-label" for="edit_id_jemaat">Jemaat</label>
                             <input type="hidden" class="form-control" id="edit_id" name="id">
-                            <select class="form-select" id="edit_id_klasis" name="edit_id_klasis">
+                            <select class="form-select" id="edit_id_jemaat" name="edit_id_jemaat">
 
                             </select>
                             <div class="invalid-feedback"></div>
@@ -97,11 +97,11 @@
 @push('scripts')
     <script>
         $(document).ready(function() {
-            $('#edit_id_klasis').select2({
+            $('#edit_id_jemaat').select2({
                 theme: "bootstrap-5",
-                placeholder: "Pilih Klasis",
+                placeholder: "Pilih Jemaat",
                 ajax: {
-                    url: '/klasis/getAllKlasis',
+                    url: '/jemaat/getAllJemaat',
                     dataType: 'json',
                     delay: 250,
                     processResults: function(data) {
@@ -138,7 +138,7 @@
             const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
 
             try {
-                const response = await fetch('/pengurus-klasis/update', {
+                const response = await fetch('/pengurus-jemaat/update', {
                     method: 'POST',
                     headers: {
                         'Accept': 'application/json',
@@ -152,7 +152,7 @@
                 if (!data.success) {
                     Object.keys(data.messages).forEach(fieldName => {
                         const inputField = document.getElementById(fieldName);
-                        if (inputField && fieldName == 'id_klasis') {
+                        if (inputField && fieldName == 'id_jemaat') {
                             inputField.classList.add('is-invalid');
                         } else {
                             inputField.classList.add('is-invalid');
@@ -168,7 +168,7 @@
                     validFields.forEach(validField => {
                         const fieldName = validField.id;
                         if (!data.messages[fieldName]) {
-                            if (fieldName === 'id_klasis') {
+                            if (fieldName === 'id_jemaat') {
                                 validField.classList.remove('is-invalid');
                             } else {
                                 validField.classList.remove('is-invalid');

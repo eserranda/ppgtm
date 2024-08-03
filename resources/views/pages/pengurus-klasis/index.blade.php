@@ -29,7 +29,7 @@
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <div class="d-flex align-items-center ">
-                            <select class="form-control custom-select" id="filterdata" name="filterData">
+                            <select class="form-control custom-select" id="filterData" name="filterData">
                                 <option value="" selected disabled>Pilih bidang</option>
                                 <option value="Pembinaan dan Kerohanian">Pembinaan dan Kerohanian</option>
                                 <option value="Minat dan Bakat">Minat dan Bakat</option>
@@ -213,21 +213,6 @@
                     },
                 ],
             });
-
-            // // fetch data klasis yang ada pada tabel jemaat 
-            // fetch('/jemaat/getIdAndNameAllKlasis')
-            //     .then(response => response.json())
-            //     .then(data => {
-            //         const filterData = document.getElementById('filterData');
-            //         data.forEach(klasis => {
-            //             const option = document.createElement('option');
-            //             option.value = klasis.id_klasis;
-            //             option.textContent = klasis.nama_klasis;
-            //             filterData.appendChild(option);
-            //         });
-            //     })
-            //     .catch(error => console.error('Error fetching data:', error));
-
 
             $('#filterData').on('change', function() {
                 const selectedFilter = $(this).val();

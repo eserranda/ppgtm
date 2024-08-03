@@ -29,7 +29,7 @@
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <div class="d-flex align-items-center ">
-                            <select class="form-control custom-select" id="filterdata" name="filterData">
+                            <select class="form-control custom-select" id="filterData" name="filterData">
                                 <option value="" selected disabled>Pilih bidang</option>
                                 <option value="Pembinaan dan Kerohanian">Pembinaan dan Kerohanian</option>
                                 <option value="Minat dan Bakat">Minat dan Bakat</option>
@@ -122,9 +122,9 @@
                     document.getElementById('edit_tahun_mulai').value = data.tahun_mulai;
                     document.getElementById('edit_tahun_selesai').value = data.tahun_selesai;
 
-                    var editIdKlasisSelect = document.getElementById('edit_id_jemaat');
+                    var editIdJemaatSelect = document.getElementById('edit_id_jemaat');
 
-                    fetch('/jemaat/findOne/' + data.id_klasis, {
+                    fetch('/jemaat/findOne/' + data.id_jemaat, {
                             method: 'GET',
                             headers: {
                                 'Content-Type': 'application/json'
@@ -137,7 +137,7 @@
                             return response.json();
                         })
                         .then(data => {
-                            updateOptionsAndSelect2(editIdKlasisSelect, data.id, data.nama_jemaat);
+                            updateOptionsAndSelect2(editIdJemaatSelect, data.id, data.nama_jemaat);
                         })
                         .catch(error => console.error('Error fetching data:', error));
                 })
@@ -238,13 +238,13 @@
 
             $('#filterData').on('change', function() {
                 const selectedFilter = $(this).val();
-                datatable.ajax.url('{{ route('pengurus-klasis.index') }}?filter=' + selectedFilter)
+                datatable.ajax.url('{{ route('pengurus-jemaat.index') }}?filter=' + selectedFilter)
                     .load();
             });
 
             $('#reload').on('click', function() {
                 $('#filterData').val('');
-                datatable.ajax.url('{{ route('pengurus-klasis.index') }}').load();
+                datatable.ajax.url('{{ route('pengurus-jemaat.index') }}').load();
             });
 
         });

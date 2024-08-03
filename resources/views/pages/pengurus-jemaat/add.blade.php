@@ -28,7 +28,7 @@
                                 <hr>
                                 <option value="Kerohanian">Kerohanian</option>
                                 <option value="Kaderisasi">Kaderisasi</option>
-                                <option value="KOMUNIKASI Dan Informasi">INFORMASI Dan Informasi</option>
+                                <option value="Komunikasi Dan Informasi">Komunikasi Dan Informasi</option>
                                 <option value="Dana">Dana</option>
                                 <option value="Minat dan Bakat">Minat dan Bakat</option>
                                 <option value="Kesekretariatan">Kesekretariatan</option>
