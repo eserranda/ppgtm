@@ -15,6 +15,8 @@
                           <span>Dashboard</span>
                       </a>
                   </li>
+                  <li class="menu-title">sinode</li>
+
                   <li>
                       <a href="/pengurus-sinode" class="waves-effect">
                           <i class="mdi mdi-home-flood"></i>
