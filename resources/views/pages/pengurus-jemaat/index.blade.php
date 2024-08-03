@@ -270,7 +270,7 @@
                 if (result.isConfirmed) {
                     var csrfToken = $('meta[name="csrf-token"]').attr('content');
                     $.ajax({
-                        url: '/pengurus-klasis/destroy/' + id,
+                        url: '/pengurus-jemaat/destroy/' + id,
                         type: 'DELETE',
                         data: {
                             _token: csrfToken
