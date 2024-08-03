@@ -19,7 +19,7 @@
         href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.rtl.min.css" />
 @endpush
 @section('page_title')
-    Data Pengurus PPGTM
+    Jadwal Ibadah PPGTM
 @endsection
 
 @section('content')
@@ -29,19 +29,8 @@
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <div class="d-flex align-items-center ">
-                            <select class="form-control custom-select" id="filterData" name="filterData">
-                                <option value="" selected disabled>Pilih bidang</option>
-                                <option value="Penasehat">Penasehat</option>
-                                <option value="KSB">KSB</option>
-                                <hr>
-                                <option value="Kerohanian">Kerohanian</option>
-                                <option value="Kaderisasi">Kaderisasi</option>
-                                <option value="Komunikasi Dan Informasi">Komunikasi Dan Informasi</option>
-                                <option value="Dana">Dana</option>
-                                <option value="Minat dan Bakat">Minat dan Bakat</option>
-                                <option value="Kesekretariatan">Kesekretariatan</option>
-                            </select>
-                            <button type="button" class="btn btn-light waves-effect mx-2 col-2" id="reload">
+                            <input type="date" class="form-control" name="filterData" id="filterData">
+                            <button type="button" class="btn btn-light waves-effect mx-2 col-3" id="reload">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="20" height="20"
                                     viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none"
                                     stroke-linecap="round" stroke-linejoin="round">`
@@ -66,10 +55,11 @@
                         <thead>
                             <tr>
                                 <th>No</th>
+                                <th>Tanggal</th>
                                 <th>Nama</th>
-                                <th>Bidang</th>
-                                <th>Jabatan</th>
-                                <th>Periode</th>
+                                <th>Tempat</th>
+                                <th>Liturgis</th>
+                                <th>Pelayan Firman</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -82,8 +72,8 @@
         </div>
     </div>
 
-    @include('pages.pengurus-jemaat.add')
-    @include('pages.pengurus-jemaat.edit')
+    @include('pages.jadwal-ibadah.add')
+    @include('pages.jadwal-ibadah.edit')
 @endsection
 
 @push('scripts')
@@ -110,17 +100,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
     <script>
         function edit(id) {
-            fetch('/pengurus-jemaat/findById/' + id)
+            fetch('/jadwal-ibadah/findById/' + id)
                 .then(response => response.json())
                 .then(data => {
                     // Asumsi bahwa objek 'data' sudah tersedia dan memiliki struktur yang sesuai
                     document.getElementById('edit_id').value = data.id;
                     document.getElementById('edit_id_jemaat').value = data.id_jemaat;
+                    document.getElementById('edit_tanggal').value = data.tanggal;
                     document.getElementById('edit_nama').value = data.nama;
-                    document.getElementById('edit_bidang').value = data.bidang;
-                    document.getElementById('edit_jabatan').value = data.jabatan;
-                    document.getElementById('edit_tahun_mulai').value = data.tahun_mulai;
-                    document.getElementById('edit_tahun_selesai').value = data.tahun_selesai;
+                    document.getElementById('edit_tempat').value = data.tempat;
+                    document.getElementById('edit_liturgis').value = data.liturgis;
+                    document.getElementById('edit_pelayan_firman').value = data.pelayan_firman;
 
                     var editIdJemaatSelect = document.getElementById('edit_id_jemaat');
 
@@ -173,7 +163,7 @@
                 buttons: [{
                         extend: 'excel',
                         exportOptions: {
-                            columns: [0, 1, 2, 3, 4]
+                            columns: [0, 1, 2, 3, 4, 5]
                         },
                         init: function(api, node, config) {
                             $(node).hide();
@@ -182,14 +172,14 @@
                     {
                         extend: 'print',
                         exportOptions: {
-                            columns: [0, 1, 2, 3, 4]
+                            columns: [0, 1, 2, 3, 4, 5]
                         },
                         init: function(api, node, config) {
                             $(node).hide();
                         }
                     },
                 ],
-                ajax: "{{ route('pengurus-jemaat.index') }}",
+                ajax: "{{ route('jadwal-ibadah.index') }}",
                 columns: [{
                         data: 'DT_RowIndex',
                         name: '#',
@@ -197,20 +187,24 @@
 
                     },
                     {
+                        data: 'tanggal',
+                        name: 'tanggal',
+                    },
+                    {
                         data: 'nama',
                         name: 'nama',
                     },
                     {
-                        data: 'bidang',
-                        name: 'bidang',
+                        data: 'tempat',
+                        name: 'tempat',
                     },
                     {
-                        data: 'jabatan',
-                        name: 'jabatan',
+                        data: 'liturgis',
+                        name: 'liturgis',
                     },
                     {
-                        data: 'periode',
-                        name: 'periode',
+                        data: 'pelayan_firman',
+                        name: 'pelayan_firman',
                     },
                     {
                         data: 'action',
@@ -238,13 +232,13 @@
 
             $('#filterData').on('change', function() {
                 const selectedFilter = $(this).val();
-                datatable.ajax.url('{{ route('pengurus-jemaat.index') }}?filter=' + selectedFilter)
+                datatable.ajax.url('{{ route('jadwal-ibadah.index') }}?filter=' + selectedFilter)
                     .load();
             });
 
             $('#reload').on('click', function() {
                 $('#filterData').val('');
-                datatable.ajax.url('{{ route('pengurus-jemaat.index') }}').load();
+                datatable.ajax.url('{{ route('jadwal-ibadah.index') }}').load();
             });
 
         });
@@ -271,7 +265,7 @@
                 if (result.isConfirmed) {
                     var csrfToken = $('meta[name="csrf-token"]').attr('content');
                     $.ajax({
-                        url: '/pengurus-jemaat/destroy/' + id,
+                        url: '/jadwal-ibadah/destroy/' + id,
                         type: 'DELETE',
                         data: {
                             _token: csrfToken

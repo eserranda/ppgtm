@@ -14,6 +14,7 @@ use App\Http\Controllers\WilayahPelayananController;
 use App\Http\Controllers\ProgramKerjaJemaatController;
 use App\Http\Controllers\ProgramKerjaKlasisController;
 use App\Http\Controllers\AnggotaPemudaJemaatController;
+use App\Http\Controllers\JadwalIbadahController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,6 +53,14 @@ Route::prefix('/dashboard')->controller(DashboardController::class)->group(funct
     Route::get('/', 'index')->name('dashboards.index');
 })->middleware('auth');
 
+
+Route::prefix('jadwal-ibadah')->controller(JadwalIbadahController::class)->group(function () {
+    Route::get('/', 'index')->name('jadwal-ibadah.index');
+    Route::post('/store', 'store');
+    Route::get('/findById/{id}', 'findById');
+    Route::post('/update', 'update');
+    Route::delete('/destroy/{id}', 'destroy');
+})->middleware('auth');
 
 Route::prefix('pengurus-jemaat')->controller(PengurusJemaatController::class)->group(function () {
     Route::get('/', 'index')->name('pengurus-jemaat.index');

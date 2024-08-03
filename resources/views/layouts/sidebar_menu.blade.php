@@ -84,6 +84,13 @@
                           <span>Anggota PPGTM</span>
                       </a>
                   </li>
+
+                  <li>
+                      <a href="jadwal-ibadah" class=" waves-effect">
+                          <i class="mdi mdi-account-supervisor"></i>
+                          <span>Jadwal Ibadah</span>
+                      </a>
+                  </li>
                   {{-- <li>
                       <a href="javascript: void(0);" class="has-arrow waves-effect">
                           <i class="mdi mdi-account-group"></i>
