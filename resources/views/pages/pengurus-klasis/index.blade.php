@@ -31,16 +31,15 @@
                         <div class="d-flex align-items-center ">
                             <select class="form-control custom-select" id="filterData" name="filterData">
                                 <option value="" selected disabled>Pilih bidang</option>
-                                <option value="Pembinaan dan Kerohanian">Pembinaan dan Kerohanian</option>
-                                <option value="Minat dan Bakat">Minat dan Bakat</option>
+                                <option value="Penasehat">Penasehat</option>
+                                <option value="KSB">KSB</option>
+                                <hr>
+                                <option value="Kerohanian">Kerohanian</option>
+                                <option value="Pelayanan">Pelayanan</option>
                                 <option value="Kaderisasi">Kaderisasi</option>
-                                <option value="Pengembangan Organisasi">Pengembangan Organisasi</option>
-                                <option value="Komunikasi">Komunikasi</option>
-                                <option value="Hubungan Antar Lembaga">Hubungan Antar Lembaga</option>
-                                <option value="Kemandirian Dana">Kemandirian Dana</option>
-                                <option value="Diakonia">Diakonia</option>
-                                <option value="Kajian Strategis">Kajian Strategis</option>
-                                <option value="Lingkungan Hidup">Lingkungan Hidup</option>
+                                <option value="Penelitian dan Pengembangan">Penelitian dan Pengembangan</option>
+                                <option value="Minat dan Bakat">Minat dan Bakat</option>
+                                <option value="Informasi dan Komunikasi">Informasi dan Komunikasi</option>
                             </select>
                             <button type="button" class="btn btn-light waves-effect mx-2 col-2" id="reload">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="20" height="20"
