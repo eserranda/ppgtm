@@ -11,6 +11,7 @@ use App\Models\WilayahPelayanan;
 use App\Models\ProgramKerjaJemaat;
 use App\Models\ProgramKerjaKlasis;
 use App\Models\AnggotaPemudaJemaat;
+use App\Models\JadwalIbadah;
 
 class DashboardController extends Controller
 {
@@ -24,7 +25,8 @@ class DashboardController extends Controller
         $proker_jemaat = ProgramKerjaJemaat::count();
         $anggota_ppgtm = AnggotaPemudaJemaat::count();
         $wilayah_pelayanan = WilayahPelayanan::count();
-        return view('pages.dashboard.index', compact('proker_sinode', 'klasis', 'jemaat', 'proker_jemaat', 'proker_klasis',  'wilayah_pelayanan', 'anggota_ppgtm'));
+        $jadwal_ibadah = JadwalIbadah::count();
+        return view('pages.dashboard.index', compact('proker_sinode', 'klasis', 'jemaat', 'proker_jemaat', 'proker_klasis',  'wilayah_pelayanan', 'anggota_ppgtm', 'jadwal_ibadah'));
     }
 
     /**
