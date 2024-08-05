@@ -51,7 +51,7 @@ Route::prefix('roles')->controller(RoleController::class)->group(function () {
     Route::get('/getUserRoles/{id}', 'getUserRoles');
 });
 // sementara
-Route::get('/', [DashboardController::class, 'home'])->middleware('auth');
+Route::get('/', [DashboardController::class, 'home']);
 
 
 Route::prefix('users')->controller(UserController::class)->group(function () {
