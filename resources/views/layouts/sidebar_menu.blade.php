@@ -16,81 +16,107 @@
                       </a>
                   </li>
 
-                  <li>
-                      <a href="javascript: void(0);" class="has-arrow waves-effect">
-                          <i class="mdi mdi-email-multiple-outline"></i>
-                          <span>Administrasi</span>
-                      </a>
-                      <ul class="sub-menu" aria-expanded="false">
-                          <li><a href="/klasis">Klasis</a></li>
-                          <li><a href="/jemaat">Jemaat</a></li>
-                      </ul>
-                  </li>
+                  @if (auth()->user()->hasAnyRole(['super_admin', 'sinode', 'klasis']))
+                      <li>
+                          <a href="javascript: void(0);" class="has-arrow waves-effect">
+                              <i class="mdi mdi-email-multiple-outline"></i>
+                              <span>Administrasi</span>
+                          </a>
+                          <ul class="sub-menu" aria-expanded="false">
+                              <li><a href="/klasis">Klasis</a></li>
+                              <li><a href="/jemaat">Jemaat</a></li>
+                          </ul>
+                      </li>
+                  @endif
 
-                  <li class="menu-title">sinode</li>
+                  @if (auth()->user()->hasAnyRole(['super_admin', 'sinode']))
+                      <li class="menu-title">sinode</li>
 
-                  <li>
-                      <a href="/pengurus-sinode" class="waves-effect">
-                          <i class="mdi mdi-home-flood"></i>
-                          <span>Pengurus Sinode</span>
-                      </a>
-                  </li>
+                      <li>
+                          <a href="/pengurus-sinode" class="waves-effect">
+                              <i class="mdi mdi-home-flood"></i>
+                              <span>Pengurus Sinode</span>
+                          </a>
+                      </li>
 
-                  <li>
-                      <a href="wilayah-pelayanan" class=" waves-effect">
-                          <i class="mdi mdi-shield-cross-outline"></i>
-                          <span>Wilayah Pelayanan</span>
-                      </a>
-                  </li>
+                      <li>
+                          <a href="wilayah-pelayanan" class=" waves-effect">
+                              <i class="mdi mdi-shield-cross-outline"></i>
+                              <span>Wilayah Pelayanan</span>
+                          </a>
+                      </li>
 
-                  <li>
-                      <a href="program-kerja" class=" waves-effect">
-                          <i class="mdi mdi-format-float-left"></i>
-                          <span>Program Kerja Sinode</span>
-                      </a>
-                  </li>
+                      <li>
+                          <a href="program-kerja" class=" waves-effect">
+                              <i class="mdi mdi-format-float-left"></i>
+                              <span>Program Kerja Sinode</span>
+                          </a>
+                      </li>
+                  @endif
 
-                  <li class="menu-title">klasis</li>
-                  <li>
-                      <a href="program-kerja-klasis" class=" waves-effect">
-                          <i class="mdi mdi-format-float-left"></i>
-                          <span>Program Kerja Klasis</span>
-                      </a>
-                  </li>
-                  <li>
-                      <a href="/pengurus-klasis" class="waves-effect">
-                          <i class="mdi mdi-home-flood"></i>
-                          <span>Pengurus Klasis</span>
-                      </a>
-                  </li>
+                  @if (auth()->user()->hasAnyRole(['super_admin', 'klasis']))
+                      <li class="menu-title">klasis</li>
+                      <li>
+                          <a href="program-kerja-klasis" class=" waves-effect">
+                              <i class="mdi mdi-format-float-left"></i>
+                              <span>Program Kerja Klasis</span>
+                          </a>
+                      </li>
+                      <li>
+                          <a href="/pengurus-klasis" class="waves-effect">
+                              <i class="mdi mdi-home-flood"></i>
+                              <span>Pengurus Klasis</span>
+                          </a>
+                      </li>
+                  @endif
 
-                  <li class="menu-title">Jemaat</li>
-                  <li>
-                      <a href="/pengurus-jemaat" class="waves-effect">
-                          <i class="mdi mdi-home-flood"></i>
-                          <span>Pengurus PPGTM</span>
-                      </a>
-                  </li>
+                  @if (auth()->user()->hasAnyRole(['super_admin', 'jemaat']))
+                      <li class="menu-title">Jemaat</li>
+                      <li>
+                          <a href="/pengurus-jemaat" class="waves-effect">
+                              <i class="mdi mdi-home-flood"></i>
+                              <span>Pengurus PPGTM</span>
+                          </a>
+                      </li>
 
-                  <li>
-                      <a href="program-kerja-jemaat" class=" waves-effect">
-                          <i class="mdi mdi-clipboard-text-play-outline"></i>
-                          <span>Program Kerja Jemaat</span>
-                      </a>
-                  </li>
-                  <li>
-                      <a href="anggota-pemuda-jemaat" class=" waves-effect">
-                          <i class="mdi mdi-account-supervisor"></i>
-                          <span>Anggota PPGTM</span>
-                      </a>
-                  </li>
+                      <li>
+                          <a href="program-kerja-jemaat" class=" waves-effect">
+                              <i class="mdi mdi-clipboard-text-play-outline"></i>
+                              <span>Program Kerja Jemaat</span>
+                          </a>
+                      </li>
+                      <li>
+                          <a href="anggota-pemuda-jemaat" class=" waves-effect">
+                              <i class="mdi mdi-account-supervisor"></i>
+                              <span>Anggota PPGTM</span>
+                          </a>
+                      </li>
 
-                  <li>
-                      <a href="jadwal-ibadah" class=" waves-effect">
-                          <i class="mdi mdi-clipboard-list-outline"></i>
-                          <span>Jadwal Ibadah</span>
-                      </a>
-                  </li>
+                      <li>
+                          <a href="jadwal-ibadah" class=" waves-effect">
+                              <i class="mdi mdi-clipboard-list-outline"></i>
+                              <span>Jadwal Ibadah</span>
+                          </a>
+                      </li>
+                  @endif
+
+                  @if (auth()->user()->hasAnyRole(['super_admin', 'sinode']))
+                      <li class="menu-title">Authications</li>
+                      <li>
+                          <a href="users" class=" waves-effect">
+                              <i class="mdi mdi-account-supervisor"></i>
+                              <span>Data User</span>
+                          </a>
+                      </li>
+
+                      <li>
+                          <a href="roles" class=" waves-effect">
+                              <i class="mdi mdi-clipboard-list-outline"></i>
+                              <span>Role</span>
+                          </a>
+                      </li>
+                  @endif
+
                   {{-- <li>
                       <a href="javascript: void(0);" class="has-arrow waves-effect">
                           <i class="mdi mdi-account-group"></i>

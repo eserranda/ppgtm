@@ -111,22 +111,6 @@
             });
         });
 
-        function closeModalAdd() {
-            const invalidInputs = document.querySelectorAll('.is-invalid');
-            invalidInputs.forEach(invalidInput => {
-                invalidInput.value = '';
-                invalidInput.classList.remove('is-invalid');
-                const errorNextSibling = invalidInput.nextElementSibling;
-                if (errorNextSibling && errorNextSibling.classList.contains(
-                        'invalid-feedback')) {
-                    errorNextSibling.textContent = '';
-                }
-            });
-
-            const form = document.getElementById('addForm');
-            form.reset();
-            $('#addModal').modal('hide');
-        }
 
         document.getElementById('addForm').addEventListener('submit', async (event) => {
             event.preventDefault();

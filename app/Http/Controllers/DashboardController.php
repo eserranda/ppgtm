@@ -29,12 +29,11 @@ class DashboardController extends Controller
         return view('pages.dashboard.index', compact('proker_sinode', 'klasis', 'jemaat', 'proker_jemaat', 'proker_klasis',  'wilayah_pelayanan', 'anggota_ppgtm', 'jadwal_ibadah'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+
+    public function home()
     {
-        //
+        $data = JadwalIbadah::all();
+        return view('pages.home.index', compact('data'));
     }
 
     /**

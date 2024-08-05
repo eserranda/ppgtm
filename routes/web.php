@@ -2,10 +2,12 @@
 
 use App\Models\PengurusJemaat;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\JemaatController;
 use App\Http\Controllers\KlasisController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\JadwalIbadahController;
 use App\Http\Controllers\ProgramKerjaController;
 use App\Http\Controllers\PengurusJemaatController;
 use App\Http\Controllers\PengurusKlasisController;
@@ -14,7 +16,6 @@ use App\Http\Controllers\WilayahPelayananController;
 use App\Http\Controllers\ProgramKerjaJemaatController;
 use App\Http\Controllers\ProgramKerjaKlasisController;
 use App\Http\Controllers\AnggotaPemudaJemaatController;
-use App\Http\Controllers\JadwalIbadahController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,13 +33,25 @@ Route::post('login', [UserController::class, 'login'])->middleware('guest');
 
 Route::get('logout', [UserController::class, 'logout'])->name('logout');
 
+Route::prefix('users')->controller(UserController::class)->group(function () {
+    Route::get('/', 'index')->name('users.index')->middleware('role:super_admin');
+    Route::post('/register', 'register');
+    Route::get('/findById/{id}', 'findById');
+    Route::post('/update', 'update');
+    Route::delete('/destroy/{id}', 'destroy');
+});
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
+Route::prefix('roles')->controller(RoleController::class)->group(function () {
+    Route::get('/', 'index')->name('roles.index')->middleware('role:super_admin');
+    Route::post('/store', 'store');
+    Route::get('/findById/{id}', 'findById');
+    Route::post('/update', 'update');
+    Route::delete('/destroy/{id}', 'destroy');
+    Route::get('/getAllRoles', 'getAllRoles');
+    Route::get('/getUserRoles/{id}', 'getUserRoles');
+});
 // sementara
-Route::get('/', [DashboardController::class, 'index'])->middleware('auth');
+Route::get('/', [DashboardController::class, 'home'])->middleware('auth');
 
 
 Route::prefix('users')->controller(UserController::class)->group(function () {
