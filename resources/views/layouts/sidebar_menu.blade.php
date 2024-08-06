@@ -54,7 +54,7 @@
                       </li>
                   @endif
 
-                  @if (auth()->user()->hasAnyRole(['super_admin', 'klasis']))
+                  @if (auth()->user()->hasAnyRole(['super_admin', 'sinode', 'klasis']))
                       <li class="menu-title">klasis</li>
                       <li>
                           <a href="program-kerja-klasis" class=" waves-effect">
@@ -70,7 +70,7 @@
                       </li>
                   @endif
 
-                  @if (auth()->user()->hasAnyRole(['super_admin', 'jemaat']))
+                  @if (auth()->user()->hasAnyRole(['super_admin', 'sinode', 'jemaat']))
                       <li class="menu-title">Jemaat</li>
                       <li>
                           <a href="/pengurus-jemaat" class="waves-effect">
