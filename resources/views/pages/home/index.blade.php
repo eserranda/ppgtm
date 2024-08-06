@@ -132,12 +132,24 @@
         <div class="container">
             <h2 class="section-title">Sejarah Singkat</h2>
             <p>
-                -
+                <span class="fw-bold">Persekutuan Pemuda Gereja Toraja Mamasa</span> disingkat PPGTM adalah merupakan
+                salah satu
+                penatalayanan
+                kategorial dalam lingkup Gereja Toraja Mamasa yang dibentuk pada tanggal 13 Maret 1970 dan melembaga
+                disemua lingkup pelayanan Gereja Toraja Mamasa. PPGTM memiliki tanggung jawab untuk melaksanakan Tri
+                Panggilan Gereja yaitu bersaksi, bersekutu dan melayani sebagai bentuk implementasi iman dan kasih dalam
+                mewujudkan amanat agung Yesus Kristus
             </p>
             <p>
-
+                Bahwa PPGTM adalah juga merupakan bagian yang tidak terpisahkan dari warga Negara Kesatuan Republik
+                Indonesia yang kehadirannya diharapkan memberikan nuansa kasih dan kedamaian, serta terpanggil untuk
+                mewujudkan kesejahteraan dan keadilan sosial di tengah-tengah bangsa dan umat yang majemuk dengan
+                berlandaskan pada Pancasila dan UUD 1945 sebagai dasar Negara.
             </p>
-
+            <p>
+                Bahwa untuk menjalankan dan menata proses kelembagaan dan kepemimpinannya, maka PPGTM memiliki
+                konstitusi penatalayanan yang disebut Pedoman Pelayanan PPGTM.
+            </p>
         </div>
     </section>
 
@@ -152,7 +164,9 @@
                         <div class="card-body">
                             <h3 class="card-title">Visi</h3>
                             <p class="card-text">
-                                Mewujudkan gereja yg utuh mandiri dan misioner.
+                                PPGTM bertujuan untuk mempersekutukan, memperlengkapi dan menggerakkan warganya menjadi
+                                umat Allah yang
+                                mengemban tugas panggilan Allah
                             </p>
                         </div>
                     </div>
@@ -163,7 +177,13 @@
                         <div class="card-body">
                             <h3 class="card-title">Misi</h3>
                             <ul class="card-text">
-                                <li> Mewujudkan gereja yg utuh mandiri dan misioner.</li>
+                                <li>PPGTM berbentuk penatalayanan kategorial yang merupakan wadah pelayanan khusus bagi
+                                    warga Gereja kategori pemuda.
+                                </li>
+
+                                <li>
+                                    PPGTM merupakan bagian yang tidak terpisahkan dari Gereja Toraja Mamasa
+                                </li>
 
                             </ul>
                         </div>
