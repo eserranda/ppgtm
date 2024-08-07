@@ -110,7 +110,7 @@
                         <a class="nav-link" href="#profile">Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#kegiatan">Kegiatan</a>
+                        <a class="nav-link" href="#kegiatan">Jadwal Ibadah </a>
                     </li>
                 </ul>
                 <a href="login" class="btn btn-custom">Login</a>
