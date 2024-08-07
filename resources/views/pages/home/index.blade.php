@@ -215,7 +215,7 @@
                                 <td>{{ Carbon::parse($d->tanggal)->format('d-m-Y') }}</td>
                                 <td>{{ $d->nama }}</td>
                                 <td>{{ $d->pelayan_firman }}</td>
-                                <td>{{ $d->tempat_ibadah }}</td>
+                                <td>{{ $d->tempat }}</td>
                             </tr>
                         @endforeach
                     </tbody>
