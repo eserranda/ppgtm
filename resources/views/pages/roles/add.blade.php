@@ -12,17 +12,12 @@
                     <div class="form-group ">
                         <label class="form-label" for="name">Role</label>
                         <input type="text" class="form-control" id="name" name="name" placeholder="role">
-                        <div class="invalid-feedback">
-
-                        </div>
+                        <div class="invalid-feedback"> </div>
                     </div>
                     <div class="form-group ">
                         <label class="form-label" for="description">Deskripsi</label>
                         <textarea class="form-control" placeholder="deskripsi" rows="3" name="description" id="description"></textarea>
-
-                        <div class="invalid-feedback">
-
-                        </div>
+                        <div class="invalid-feedback"> </div>
                     </div>
 
                     <div class="float-end">

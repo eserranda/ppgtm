@@ -45,9 +45,10 @@
                                 <i class="mdi mdi-printer"></i></button>
                             <button type="button" class="btn btn-outline-success " id ="btnExcel">
                                 <i class="mdi mdi-file-excel"></i></button>
-
-                            <button type="button" class="btn btn-primary    waves-light" data-toggle="modal"
-                                data-target="#addModal">Tambah Data</button>
+                            @if (auth()->user()->hasAnyRole(['super_admin', 'jemaat']))
+                                <button type="button" class="btn btn-primary    waves-light" data-toggle="modal"
+                                    data-target="#addModal">Tambah Data</button>
+                            @endif
                         </div>
                     </div>
                     <table id="datatable" class="table table-bordered dt-responsive"

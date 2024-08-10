@@ -50,9 +50,10 @@
                             <button type="button" class="btn btn-outline-info" id="btnPrint"><i
                                     class="mdi mdi-printer"></i></button>
                             <button type="button" class="btn btn-outline-success" id ="btnExcel">Excel</button>
-
-                            <button type="button" class="btn btn-primary " data-toggle="modal"
-                                data-target="#addModal">Tambah Data</button>
+                            @if (auth()->user()->hasAnyRole(['super_admin', 'jemaat']))
+                                <button type="button" class="btn btn-primary " data-toggle="modal"
+                                    data-target="#addModal">Tambah Data</button>
+                            @endif
                         </div>
                     </div>
                     <table id="datatable" class="table table-bordered dt-responsive"
