@@ -29,7 +29,7 @@
                       </li>
                   @endif
 
-                  @if (auth()->user()->hasAnyRole(['super_admin', 'sinode', 'ketua_1', 'ketua_2', 'ketua_3']))
+                  @if (auth()->user()->hasAnyRole(['super_admin', 'sinode']))
                       <li class="menu-title">sinode</li>
 
                       <li>
@@ -70,8 +70,17 @@
                       </li>
                   @endif
 
-                  @if (auth()->user()->hasAnyRole(['super_admin', 'sinode', 'jemaat']))
+                  @if (auth()->user()->hasAnyRole(['super_admin', 'sinode', 'jemaat', 'sekretaris', 'ketua_1', 'ketua_2', 'ketua_3']))
                       <li class="menu-title">Jemaat</li>
+                      <li>
+                          <a href="program-kerja-jemaat" class=" waves-effect">
+                              <i class="mdi mdi-clipboard-text-play-outline"></i>
+                              <span>Program Kerja Jemaat</span>
+                          </a>
+                      </li>
+                  @endif
+
+                  @if (auth()->user()->hasAnyRole(['super_admin', 'sinode', 'jemaat']))
                       <li>
                           <a href="/pengurus-jemaat" class="waves-effect">
                               <i class="mdi mdi-home-flood"></i>
@@ -79,12 +88,6 @@
                           </a>
                       </li>
 
-                      <li>
-                          <a href="program-kerja-jemaat" class=" waves-effect">
-                              <i class="mdi mdi-clipboard-text-play-outline"></i>
-                              <span>Program Kerja Jemaat</span>
-                          </a>
-                      </li>
                       <li>
                           <a href="anggota-pemuda-jemaat" class=" waves-effect">
                               <i class="mdi mdi-account-supervisor"></i>

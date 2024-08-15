@@ -39,8 +39,8 @@
                                     <td>{{ $d->name }}</td>
                                     <td>{{ $d->description }}</td>
                                     <td>
-                                        {{-- <a class="btn btn-sm btn-primary text-white" title="Edit"
-                                            onclick="edit('{{ $d->id }}')"> <i class="fas fa-pencil-alt"></i></a> --}}
+                                        <a class="btn btn-sm btn-primary text-white" title="Edit"
+                                            onclick="edit('{{ $d->id }}')"> <i class="fas fa-pencil-alt"></i></a>
 
                                         <a class="btn btn-sm btn-danger text-white" title="Hapus"
                                             onclick="hapus('{{ $d->id }}')"> <i class="far fa-trash-alt"></i></a>
@@ -55,7 +55,7 @@
     </div>
 
     @include('pages.roles.add')
-    {{-- @include('pages.roles.edit') --}}
+    @include('pages.roles.edit')
 @endsection
 
 @push('scripts')
@@ -67,10 +67,8 @@
                 .then(response => response.json())
                 .then(data => {
                     document.getElementById('edit_id').value = data.id;
-                    document.getElementById('edit_nama_pengurus').value = data.nama_pengurus;
-                    document.getElementById('edit_jabatan').value = data.jabatan;
-                    document.getElementById('edit_tahun_mulai').value = data.tahun_mulai;
-                    document.getElementById('edit_tahun_selesai').value = data.tahun_selesai;
+                    document.getElementById('edit_name').value = data.name;
+                    document.getElementById('edit_description').value = data.description;
                 })
                 .catch(error => console.error(error));
             // show modal edit

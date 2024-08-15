@@ -23,12 +23,18 @@
                             <label class="form-label" for="bidang">Bidang</label>
                             <select class="form-control custom-select" id="bidang" name="bidang">
                                 <option value="" selected disabled>Pilih bidang</option>
-                                <option value="Kerohanian">Kerohanian</option>
-                                <option value="Komunikasi dan Informasi">Komunikasi dan Informasi</option>
-                                <option value="Dana">Dana</option>
-                                <option value="Kaderisasi">Kaderisasi</option>
-                                <option value="Minat Dan Bakat">Minat Dan Bakat</option>
-                                <option value="Kesekretariatan">Kesekretariatan</option>
+                                @if (auth()->user()->hasAnyRole(['super_admin', 'sekretaris', 'ketua_1']))
+                                    <option value="Kerohanian">Kerohanian</option>
+                                    <option value="Komunikasi dan Informasi">Komunikasi dan Informasi</option>
+                                @endif
+                                @if (auth()->user()->hasAnyRole(['super_admin', 'sekretaris', 'ketua_2']))
+                                    <option value="Dana">Dana</option>
+                                    <option value="Kaderisasi">Kaderisasi</option>
+                                @endif
+                                @if (auth()->user()->hasAnyRole(['super_admin', 'sekretaris', 'ketua_3']))
+                                    <option value="Minat Dan Bakat">Minat Dan Bakat</option>
+                                    <option value="Kesekretariatan">Kesekretariatan</option>
+                                @endif
                             </select>
                             <div class="invalid-feedback"></div>
                         </div>

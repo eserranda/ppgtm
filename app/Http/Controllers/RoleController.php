@@ -67,25 +67,45 @@ class RoleController extends Controller
     }
 
 
-    public function show(Role $role)
+    public function findById($id)
     {
-        //
+        $data = Role::find($id);
+        return response()->json($data);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Role $role)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Role $role)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'edit_name' => 'required',
+            'edit_description' => 'required',
+        ], [
+            'required' => ':attribute harus diisi'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'messages' => $validator->errors()
+            ], 422);
+        }
+
+        $update = Role::where('id', $request->id)->update([
+            'name' => $request->edit_name,
+            'description' => $request->edit_description,
+        ]);
+
+        if ($update) {
+            return response()->json([
+                'success' => true,
+                'messages' => 'Data berhasil diubah'
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'messages' => 'Data gagal diubah'
+            ]);
+        }
     }
 
     /**

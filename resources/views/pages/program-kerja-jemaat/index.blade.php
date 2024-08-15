@@ -28,17 +28,29 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center mb-3">
-                        <div class="d-flex align-items-center ">
+                        <div class="d-flex align-items-center col-4">
                             <select class="form-control custom-select" id="filterData" name="filterData">
                                 <option value="" selected disabled>Pilih bidang</option>
-                                <option value="Kerohanian">Kerohanian</option>
+                                @if (auth()->user()->hasAnyRole(['super_admin', 'sekretaris', 'ketua_1']))
+                                    <option value="Kerohanian">Kerohanian</option>
+                                    <option value="Komunikasi dan Informasi">Komunikasi dan Informasi</option>
+                                @endif
+                                @if (auth()->user()->hasAnyRole(['super_admin', 'sekretaris', 'ketua_2']))
+                                    <option value="Dana">Dana</option>
+                                    <option value="Kaderisasi">Kaderisasi</option>
+                                @endif
+                                @if (auth()->user()->hasAnyRole(['super_admin', 'sekretaris', 'ketua_3']))
+                                    <option value="Minat Dan Bakat">Minat Dan Bakat</option>
+                                    <option value="Kesekretariatan">Kesekretariatan</option>
+                                @endif
+                                {{-- <option value="Kerohanian">Kerohanian</option>
                                 <option value="Komunikasi dan Informasi">Komunikasi dan Informasi</option>
                                 <option value="Dana">Dana</option>
                                 <option value="Kaderisasi">Kaderisasi</option>
                                 <option value="Minat Dan Bakat">Minat Dan Bakat</option>
-                                <option value="Kesekretariatan">Kesekretariatan</option>
+                                <option value="Kesekretariatan">Kesekretariatan</option> --}}
                             </select>
-                            <button type="button" class="btn btn-light waves-effect mx-2 col-2" id="reload">
+                            <button type="button" class="btn btn-light waves-effect mx-2 col-3" id="reload">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="20" height="20"
                                     viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none"
                                     stroke-linecap="round" stroke-linejoin="round">`
@@ -52,7 +64,8 @@
                             <button type="button" class="btn btn-outline-info " id="btnPrint"><i
                                     class="mdi mdi-printer"></i></button>
                             <button type="button" class="btn btn-outline-success " id ="btnExcel">Excel</button>
-                            @if (auth()->user()->hasAnyRole(['super_admin', 'jemaat']))
+                            {{-- @if (auth()->user()->hasAnyRole(['super_admin', 'jemaat'])) --}}
+                            @if (auth()->user()->hasAnyRole(['super_admin', 'jemaat', 'ketua_1', 'ketua_2', 'ketua_3', 'sekretaris']))
                                 <button type="button" class="btn btn-primary    waves-light" data-toggle="modal"
                                     data-target="#addModal">Tambah Data</button>
                             @endif

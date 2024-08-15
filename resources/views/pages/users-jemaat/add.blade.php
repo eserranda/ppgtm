@@ -83,6 +83,36 @@
 
 @push('scripts')
     <script>
+        // $('#addModal').on('shown.bs.modal', function() {
+        //     fetch('/roles/getAllRoles')
+        //         .then(response => response.json())
+        //         .then(data => {
+        //             const rolesContainer = document.getElementById('rolesContainer');
+        //             rolesContainer.innerHTML = ''; // Clear any existing content
+        //             data.forEach(role => {
+        //                 const div = document.createElement('div');
+        //                 div.className = 'custom-control custom-checkbox custom-control-inline';
+
+        //                 const checkbox = document.createElement('input');
+        //                 checkbox.type = 'checkbox';
+        //                 checkbox.className = 'custom-control-input';
+        //                 checkbox.id = `role_${role.id}`;
+        //                 checkbox.name = 'roles[]';
+        //                 checkbox.value = role.name;
+
+        //                 const label = document.createElement('label');
+        //                 label.className = 'custom-control-label';
+        //                 label.htmlFor = `role_${role.id}`;
+        //                 label.appendChild(document.createTextNode(role.name));
+
+        //                 div.appendChild(checkbox);
+        //                 div.appendChild(label);
+        //                 rolesContainer.appendChild(div);
+        //             });
+        //         })
+        //         .catch(error => console.error('Error fetching data:', error));
+        // });
+
         $(document).ready(function() {
             $('#id_jemaat').select2({
                 theme: "bootstrap-5",
