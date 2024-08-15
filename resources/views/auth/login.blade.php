@@ -50,6 +50,12 @@
                                             <li>{{ $message }}</li>
                                         </ul>
                                     @enderror
+
+                                    @if (session('status'))
+                                        <div class="alert alert-success" role="alert">
+                                            {{ session('status') }}
+                                        </div>
+                                    @endif
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group mb-4">
@@ -90,6 +96,14 @@
                                         </div>
                                     </div>
                                 </form>
+
+                                <div class="row mt-4 justify-content-end">
+                                    <div class="col-sm-12">
+                                        <a href="/forgot-password" class="text-muted"><i class="mdi mdi-lock"></i>
+                                            Lupa password?
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

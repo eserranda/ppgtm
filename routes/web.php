@@ -7,8 +7,11 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\JemaatController;
 use App\Http\Controllers\KlasisController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\UserJemaatController;
+use App\Http\Controllers\UserKlasisController;
 use App\Http\Controllers\JadwalIbadahController;
 use App\Http\Controllers\ProgramKerjaController;
+use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\PengurusJemaatController;
 use App\Http\Controllers\PengurusKlasisController;
 use App\Http\Controllers\PengurusSinodeController;
@@ -27,6 +30,12 @@ use App\Http\Controllers\AnggotaPemudaJemaatController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::get('/forgot-password', [ResetPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+Route::post('/forgot-password', [ResetPasswordController::class, 'resetPassword'])->name('password.email');
+Route::get('/password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+Route::post('/password/reset', [ResetPasswordController::class, 'updatePassword'])->name('password.update');
+
 
 Route::get('login', [UserController::class, 'showLoginForm'])->name('login')->middleware('guest');
 Route::post('login', [UserController::class, 'login'])->middleware('guest');
@@ -53,6 +62,21 @@ Route::prefix('roles')->controller(RoleController::class)->group(function () {
 // sementara
 Route::get('/', [DashboardController::class, 'home']);
 
+Route::prefix('users-jemaat')->controller(UserJemaatController::class)->group(function () {
+    Route::get('/', 'index')->name('users-jemaat.index')->middleware('auth');
+    Route::post('/register', 'register');
+    Route::get('/findById/{id}', 'findById');
+    Route::post('/update', 'update');
+    Route::delete('/destroy/{id}', 'destroy');
+})->middleware('auth');
+
+Route::prefix('users-klasis')->controller(UserKlasisController::class)->group(function () {
+    Route::get('/', 'index')->name('users-klasis.index')->middleware('auth');
+    Route::post('/register', 'register');
+    Route::get('/findById/{id}', 'findById');
+    Route::post('/update', 'update');
+    Route::delete('/destroy/{id}', 'destroy');
+})->middleware('auth');
 
 Route::prefix('users')->controller(UserController::class)->group(function () {
     Route::get('/', 'index')->name('users.index')->middleware('auth');

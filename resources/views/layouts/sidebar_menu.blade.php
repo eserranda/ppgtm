@@ -29,7 +29,7 @@
                       </li>
                   @endif
 
-                  @if (auth()->user()->hasAnyRole(['super_admin', 'sinode']))
+                  @if (auth()->user()->hasAnyRole(['super_admin', 'sinode', 'ketua_1', 'ketua_2', 'ketua_3']))
                       <li class="menu-title">sinode</li>
 
                       <li>
@@ -102,12 +102,25 @@
 
                   @if (auth()->user()->hasAnyRole(['super_admin', 'sinode']))
                       <li class="menu-title">Authications</li>
+
                       <li>
+                          <a href="javascript: void(0);" class="has-arrow waves-effect">
+                              <i class="mdi mdi-account-supervisor"></i>
+                              <span>Data Users</span>
+                          </a>
+                          <ul class="sub-menu" aria-expanded="false">
+                              <li><a href="/users-klasis">Klasis</a></li>
+                              <li><a href="/users-jemaat">Jemaat</a></li>
+                              <li><a href="/users">Users</a></li>
+                          </ul>
+                      </li>
+
+                      {{-- <li>
                           <a href="users" class=" waves-effect">
                               <i class="mdi mdi-account-supervisor"></i>
                               <span>Data User</span>
                           </a>
-                      </li>
+                      </li> --}}
 
                       <li>
                           <a href="roles" class=" waves-effect">

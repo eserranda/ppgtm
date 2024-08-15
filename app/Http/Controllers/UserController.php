@@ -16,7 +16,11 @@ class UserController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = User::latest('created_at')->get();
+            $data = User::whereHas('roles', function ($query) {
+                $query->where('name', '!=', 'jemaat')
+                    ->where('name', '!=', 'klasis');
+            })->latest('created_at')->get();
+            // $data = User::latest('created_at')->get();
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('role', function ($user) {
