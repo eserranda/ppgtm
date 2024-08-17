@@ -14,15 +14,18 @@ class PengurusKlasisController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $id_klasis = Auth::user()->id_klasis;
             $dataFilter = $request->input('filter');
 
             $query = PengurusKlasis::query();
             if ($dataFilter) {
                 $query->where('bidang', $dataFilter);
             }
-
-            $data = $query->where('id_klasis', $id_klasis)->latest('created_at')->get();
+            if (auth()->user()->role == 'klasis') {
+                $id_klasis = Auth::user()->id_klasis;
+                $data = $query->where('id_klasis', $id_klasis)->latest('created_at')->get();
+            } else {
+                $data = $query->latest('created_at')->get();
+            }
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('periode', function ($row) {

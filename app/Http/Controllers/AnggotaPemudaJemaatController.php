@@ -13,7 +13,6 @@ class AnggotaPemudaJemaatController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $id_jemaat = Auth::user()->id_jemaat;
             $dataFilter = $request->input('filter');
 
             $query = AnggotaPemudaJemaat::query();
@@ -21,7 +20,12 @@ class AnggotaPemudaJemaatController extends Controller
                 $query->where('dapel', $dataFilter);
             }
 
-            $data =  $query->where('id_jemaat', $id_jemaat)->latest('created_at')->get();
+            if (auth()->user()->role == 'jemaat') {
+                $id_jemaat = Auth::user()->id_jemaat;
+                $data = $query->where('id_jemaat', $id_jemaat)->latest('created_at')->get();
+            } else {
+                $data = $query->latest('created_at')->get();
+            }
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->editColumn('tgl_lahir', function ($row) {

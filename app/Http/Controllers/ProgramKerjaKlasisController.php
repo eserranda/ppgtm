@@ -14,7 +14,6 @@ class ProgramKerjaKlasisController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $id_klasis = Auth::user()->id_klasis;
             $filterData = $request->input('filter');
 
             $query = ProgramKerjaKlasis::query();
@@ -22,7 +21,13 @@ class ProgramKerjaKlasisController extends Controller
                 $query->where('bidang', $filterData);
             }
 
-            $data = $query->where('id_klasis', $id_klasis)->latest('created_at')->get();
+            if (auth()->user()->role == 'klasis') {
+                $id_klasis = Auth::user()->id_klasis;
+                $data = $query->where('id_klasis', $id_klasis)->latest('created_at')->get();
+            } else {
+                $data = $query->latest('created_at')->get();
+            }
+
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {

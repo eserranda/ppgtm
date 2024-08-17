@@ -18,7 +18,8 @@ class UserController extends Controller
         if ($request->ajax()) {
             $data = User::whereHas('roles', function ($query) {
                 $query->where('name',  'super_admin')
-                    ->orWhere('name', 'admin');
+                    ->orWhere('name', 'user')
+                    ->orWhere('name', 'sinode');
             })->latest('created_at')->get();
             // $data = User::latest('created_at')->get();
             return DataTables::of($data)
