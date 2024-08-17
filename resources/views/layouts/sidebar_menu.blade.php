@@ -70,7 +70,7 @@
                       </li>
                   @endif
 
-                  @if (auth()->user()->hasAnyRole(['super_admin', 'sinode', 'jemaat', 'sekretaris', 'ketua_1', 'ketua_2', 'ketua_3']))
+                  @if (auth()->user()->hasAnyRole(['super_admin', 'sinode', 'jemaat', 'ketua_umum', 'sekretaris', 'ketua_1', 'ketua_2', 'ketua_3']))
                       <li class="menu-title">Jemaat</li>
                       <li>
                           <a href="program-kerja-jemaat" class=" waves-effect">
