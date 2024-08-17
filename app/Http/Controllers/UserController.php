@@ -21,25 +21,44 @@ class UserController extends Controller
                     ->orWhere('name', 'user')
                     ->orWhere('name', 'sinode');
             })->latest('created_at')->get();
-            // $data = User::latest('created_at')->get();
+
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('role', function ($user) {
                     return $user->roles->pluck('name')->implode(', ');
                 })
+                ->addColumn('status', function ($row) {
+                    if ($row->last_session_id !== null) {
+                        $data = '<span class="badge bg-success">Online</span>';
+                    } else {
+                        $data = '<span class="badge bg-danger">Offline</span>';
+                    }
+                    return $data;
+                })
                 ->addColumn('action', function ($row) {
                     $btn = '<div class="d-flex justify-content-start align-items-center">';
+                    $btn .= '<a class="btn btn-outline-secondary btn-sm text-warning" title="Delete Session" onclick="deleteSession(' . $row->id . ')">  <i class="mdi mdi-logout"></i> </a>';
                     $btn .= '<a class="btn btn-outline-secondary btn-sm mx-1" title="Edit" onclick="edit(' . $row->id . ')"> <i class="fas fa-pencil-alt"></i> </a>';
                     $btn .= '<a class="btn btn-outline-secondary btn-sm text-danger" title="Hapus" onclick="hapus(' . $row->id . ')"> <i class="fas fa-trash-alt"></i> </a>';
                     $btn .= '</div>';
                     return $btn;
                 })
-                ->rawColumns(['action'])
+                ->rawColumns(['status', 'action']) // Gabungkan kedua kolom yang memerlukan raw HTML
                 ->make(true);
         }
 
         return view('pages.users.index');
     }
+
+    public function deleteSession($id)
+    {
+        $user = User::find($id);
+        $user->last_session_id = null;
+        $user->save();
+
+        return response()->json(['success' => true], 200);
+    }
+
 
     public function showRegistrationForm()
     {

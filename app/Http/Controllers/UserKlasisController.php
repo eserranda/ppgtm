@@ -24,12 +24,22 @@ class UserKlasisController extends Controller
                 ->addColumn('role', function ($user) {
                     return $user->roles->pluck('name')->implode(', ');
                 })
+                ->addColumn('status', function ($row) {
+                    if ($row->last_session_id !== null) {
+                        $data = '<span class="badge bg-success">Online</span>';
+                    } else {
+                        $data = '<span class="badge bg-danger">Offline</span>';
+                    }
+                    return $data;
+                })
                 ->addColumn('action', function ($row) {
-                    // $btn = '<a class="btn btn-outline-secondary btn-sm" title="Edit" onclick="edit(' . $row->id . ')"> <i class="fas fa-pencil-alt"></i> </a>';
-                    $btn = '<a class="btn btn-outline-secondary btn-sm  text-danger mx-2" title="Hapus" onclick="hapus(' . $row->id . ')"> <i class="fas fa-trash-alt"></i> </a>';
+                    $btn = '<div class="d-flex justify-content-start align-items-center">';
+                    $btn .= '<a class="btn btn-outline-secondary btn-sm text-warning" title="Delete Session" onclick="deleteSession(' . $row->id . ')">  <i class="mdi mdi-logout"></i> </a>';
+                    $btn .= '<a class="btn btn-outline-secondary btn-sm text-danger mx-1" title="Hapus" onclick="hapus(' . $row->id . ')"> <i class="fas fa-trash-alt"></i> </a>';
+                    $btn .= '</div>';
                     return $btn;
                 })
-                ->rawColumns(['action'])
+                ->rawColumns(['action', 'status'])
                 ->make(true);
         }
         return view('pages.users-klasis.index');

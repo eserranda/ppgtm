@@ -47,7 +47,8 @@
                                 <th>Nama</th>
                                 <th>Username</th>
                                 <th>Email</th>
-                                <th>Role/User Akses</th>
+                                <th>Role</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -103,6 +104,17 @@
             $('#editModal').modal('show');
         }
 
+        async function deleteSession(id) {
+            fetch('/users/deleteSession/' + id)
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Response:', data);
+                    if (data.success) {
+                        $('#datatable').DataTable().ajax.reload();
+                    }
+                })
+                .catch(error => console.error(error));
+        }
 
         async function hapus(id) {
             Swal.fire({
@@ -211,7 +223,11 @@
                         name: 'role',
                         orderable: false,
                     },
-
+                    {
+                        data: 'status',
+                        name: 'status',
+                        orderable: false,
+                    },
                     {
                         data: 'action',
                         name: 'action',

@@ -19,6 +19,7 @@ use App\Http\Controllers\WilayahPelayananController;
 use App\Http\Controllers\ProgramKerjaJemaatController;
 use App\Http\Controllers\ProgramKerjaKlasisController;
 use App\Http\Controllers\AnggotaPemudaJemaatController;
+use App\Models\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,6 +84,7 @@ Route::prefix('users')->controller(UserController::class)->group(function () {
     Route::post('/register', 'register');
     Route::get('/findById/{id}', 'findById');
     Route::post('/update', 'update');
+    Route::get('/deleteSession/{id}', 'deleteSession');
     Route::delete('/destroy/{id}', 'destroy');
 })->middleware('auth');
 
