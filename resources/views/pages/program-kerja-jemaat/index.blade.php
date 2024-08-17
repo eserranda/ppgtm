@@ -19,7 +19,11 @@
         href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.rtl.min.css" />
 @endpush
 @section('page_title')
-    Program Kerja Jemaat
+    @if (auth()->user()->hasAnyRole(['jemaat']))
+        Program Kerja {{ auth()->user()->name }}
+    @else
+        Program Kerja
+    @endif
 @endsection
 
 @section('content')
@@ -31,15 +35,15 @@
                         <div class="d-flex align-items-center col-4">
                             <select class="form-control custom-select" id="filterData" name="filterData">
                                 <option value="" selected disabled>Pilih bidang</option>
-                                @if (auth()->user()->hasAnyRole(['super_admin', 'sekretaris', 'ketua_1']))
+                                @if (auth()->user()->hasAnyRole(['super_admin', 'sekretaris', 'ketua_umum', 'ketua_1']))
                                     <option value="Kerohanian">Kerohanian</option>
                                     <option value="Komunikasi dan Informasi">Komunikasi dan Informasi</option>
                                 @endif
-                                @if (auth()->user()->hasAnyRole(['super_admin', 'sekretaris', 'ketua_2']))
+                                @if (auth()->user()->hasAnyRole(['super_admin', 'sekretaris', 'ketua_umum', 'ketua_2']))
                                     <option value="Dana">Dana</option>
                                     <option value="Kaderisasi">Kaderisasi</option>
                                 @endif
-                                @if (auth()->user()->hasAnyRole(['super_admin', 'sekretaris', 'ketua_3']))
+                                @if (auth()->user()->hasAnyRole(['super_admin', 'sekretaris', 'ketua_umum', 'ketua_3']))
                                     <option value="Minat Dan Bakat">Minat Dan Bakat</option>
                                     <option value="Kesekretariatan">Kesekretariatan</option>
                                 @endif

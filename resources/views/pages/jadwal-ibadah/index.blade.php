@@ -19,7 +19,11 @@
         href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.rtl.min.css" />
 @endpush
 @section('page_title')
-    Jadwal Ibadah PPGTM
+    @if (auth()->user()->hasAnyRole(['jemaat']))
+        Jadwal Ibadah PPGTM {{ auth()->user()->name }}
+    @else
+        Jadwal Ibadah PPGTM
+    @endif
 @endsection
 
 @section('content')

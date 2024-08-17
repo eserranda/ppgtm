@@ -15,13 +15,21 @@
                 <div class="card-body">
 
                     <div class="d-flex justify-content-between align-items-center mb-3">
-                        <h5 class="header-title"><b>Data Role</b></h5>
+                        <h5 class="header-title"><b>Data Role Users Akses</b></h5>
+
                         <div>
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">
                                 Tambah Role
                             </button>
                         </div>
+
+
                     </div>
+                    <h5 class="text-danger">Warning!</h5>
+                    <p class="card-title-desc font-size-15">*Role ini digunakan untuk hak akses menu dan
+                        terhubung ke masing-masing user, <b>Menghapus Role</b> akan menghapus hak akses menu dan menyebapkan
+                        menu yang terhubung ke users akan error
+                    </p>
                     <table class="table table-striped table-bordered dt-responsive nowrap"
                         style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                         <thead>

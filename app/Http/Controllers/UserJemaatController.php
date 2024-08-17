@@ -16,7 +16,10 @@ class UserJemaatController extends Controller
     {
         if ($request->ajax()) {
             $data = User::whereHas('roles', function ($query) {
-                $query->where('name', 'jemaat');
+                $query->where('name', '!=', 'super_admin')
+                    ->where('name', '!=', 'user')
+                    ->where('name', '!=', 'klasis')
+                    ->where('name', '!=', 'sinode');
             })->latest('created_at')->get();
 
             // $data = User::latest('created_at')->get();
@@ -39,11 +42,13 @@ class UserJemaatController extends Controller
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'id_jemaat' => 'required|unique:users',
+            'id_jemaat' => 'required',
             'name' => 'required|string|max:255',
             'username' => 'required|string|max:255|unique:users',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
+            'roles' => 'required|array',
+            'roles.*' => 'exists:roles,name',
         ]);
 
         if ($validator->fails()) {
@@ -61,8 +66,9 @@ class UserJemaatController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        $roles = ['jemaat'];
-        $user->roles()->attach(Role::whereIn('name', $roles)->get());
+        // $roles = ['jemaat'];
+        // $user->roles()->attach(Role::whereIn('name', $roles)->get());
+        $user->roles()->attach(Role::whereIn('name', $request->roles)->get());
 
         return response()->json([
             'success' => true,

@@ -18,20 +18,36 @@
                             <div class="invalid-feedback"></div>
                         </div>
 
-                        {{-- <div class="form-group col-md-6">
-                            <label class="form-label" for="name">Nama Lengkap</label>
+                        <div class="form-group col-md-6">
+                            <label class="form-label" for="name">Nama Users
+                                <sup class=" text-danger">
+                                    *sesuaikan dengan Nama User yang ingin dibuat
+                                </sup>
+                            </label>
                             <input type="text" class="form-control" id="name" name="name"
                                 placeholder="Nama Lengkap">
+                            <div class="invalid-feedback"> </div>
+                        </div>
+                        <!-- end col -->
+                        <div class="form-group col-md-6">
+                            <label class="form-label" for="username">Username
+                                <sup class=" text-danger">*Digunkan untuk login</sup>
+                            </label>
+                            {{-- <input type="hidden" class="form-control" id="name" name="name"> --}}
+                            <input type="text" class="form-control" id="username" name="username"
+                                placeholder="Username">
                             <div class="invalid-feedback">
 
                             </div>
-                        </div> --}}
-                        <!-- end col -->
+                        </div>
+
                         <div class="form-group col-md-6">
-                            <label class="form-label" for="username">Username</label>
-                            <input type="hidden" class="form-control" id="name" name="name">
-                            <input type="text" class="form-control" id="username" name="username"
-                                placeholder="Username">
+                            <label class="form-label" for="email">Email
+                                <sup class=" text-danger">*Digunkan untuk login</sup>
+                            </label>
+
+                            <input type="text" class="form-control" id="email" name="email"
+                                placeholder="Email">
                             <div class="invalid-feedback">
 
                             </div>
@@ -57,20 +73,18 @@
                     </div>
 
                     <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label class="form-label" for="email">Email</label>
-                            <input type="text" class="form-control" id="email" name="email"
-                                placeholder="Email">
-                            <div class="invalid-feedback">
+                        <div class="form-group col-md-12">
+                            <label class="form-col-form-label" for="role">Role</label>
+                            <div id="rolesContainer">
 
                             </div>
+                            <div class="invalid-feedback"></div>
                         </div>
-
                     </div>
 
                     <div class="float-end">
-                        <button type="button" class="btn btn-light waves-effect mx-2"
-                            data-bs-dismiss="modal">Batal</button>
+                        <button type="button" class="btn btn-light waves-effect"
+                            onclick="closeModalAdd()">Batal</button>
                         <button class="btn btn-primary  " type="submit">Simpan</button>
                     </div>
                 </form>
@@ -83,35 +97,35 @@
 
 @push('scripts')
     <script>
-        // $('#addModal').on('shown.bs.modal', function() {
-        //     fetch('/roles/getAllRoles')
-        //         .then(response => response.json())
-        //         .then(data => {
-        //             const rolesContainer = document.getElementById('rolesContainer');
-        //             rolesContainer.innerHTML = ''; // Clear any existing content
-        //             data.forEach(role => {
-        //                 const div = document.createElement('div');
-        //                 div.className = 'custom-control custom-checkbox custom-control-inline';
+        $('#addModal').on('shown.bs.modal', function() {
+            fetch('/roles/getAllRoles')
+                .then(response => response.json())
+                .then(data => {
+                    const rolesContainer = document.getElementById('rolesContainer');
+                    rolesContainer.innerHTML = ''; // Clear any existing content
+                    data.forEach(role => {
+                        const div = document.createElement('div');
+                        div.className = 'custom-control custom-checkbox custom-control-inline mb-1';
 
-        //                 const checkbox = document.createElement('input');
-        //                 checkbox.type = 'checkbox';
-        //                 checkbox.className = 'custom-control-input';
-        //                 checkbox.id = `role_${role.id}`;
-        //                 checkbox.name = 'roles[]';
-        //                 checkbox.value = role.name;
+                        const checkbox = document.createElement('input');
+                        checkbox.type = 'checkbox';
+                        checkbox.className = 'custom-control-input';
+                        checkbox.id = `role_${role.id}`;
+                        checkbox.name = 'roles[]';
+                        checkbox.value = role.name;
 
-        //                 const label = document.createElement('label');
-        //                 label.className = 'custom-control-label';
-        //                 label.htmlFor = `role_${role.id}`;
-        //                 label.appendChild(document.createTextNode(role.name));
+                        const label = document.createElement('label');
+                        label.className = 'custom-control-label';
+                        label.htmlFor = `role_${role.id}`;
+                        label.appendChild(document.createTextNode(role.name));
 
-        //                 div.appendChild(checkbox);
-        //                 div.appendChild(label);
-        //                 rolesContainer.appendChild(div);
-        //             });
-        //         })
-        //         .catch(error => console.error('Error fetching data:', error));
-        // });
+                        div.appendChild(checkbox);
+                        div.appendChild(label);
+                        rolesContainer.appendChild(div);
+                    });
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        });
 
         $(document).ready(function() {
             $('#id_jemaat').select2({

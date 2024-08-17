@@ -16,7 +16,7 @@
                       </a>
                   </li>
 
-                  @if (auth()->user()->hasAnyRole(['super_admin', 'sinode', 'klasis']))
+                  @if (auth()->user()->hasAnyRole(['super_admin', 'sinode']))
                       <li>
                           <a href="javascript: void(0);" class="has-arrow waves-effect">
                               <i class="mdi mdi-email-multiple-outline"></i>

@@ -19,7 +19,11 @@
         href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.rtl.min.css" />
 @endpush
 @section('page_title')
-    Program Kerja klasis
+    @if (auth()->user()->hasAnyRole(['klasis']))
+        Program Kerja {{ auth()->user()->name }}
+    @else
+        Program Kerja Klasis
+    @endif
 @endsection
 
 @section('content')

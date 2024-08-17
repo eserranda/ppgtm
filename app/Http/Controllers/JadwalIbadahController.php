@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\JadwalIbadah;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Validator;
 
@@ -13,6 +14,7 @@ class JadwalIbadahController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
+            $id_jemaat = Auth::user()->id_jemaat;
             $dataFilter = $request->input('filter');
 
             $query = JadwalIbadah::query();
@@ -20,7 +22,7 @@ class JadwalIbadahController extends Controller
                 $query->where('tanggal', $dataFilter);
             }
 
-            $data = $query->latest('created_at')->get();
+            $data = $query->where('id_jemaat', $id_jemaat)->latest('created_at')->get();
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('periode', function ($row) {

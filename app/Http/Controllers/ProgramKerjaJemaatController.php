@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ProgramKerjaJemaat;
+use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Validator;
 
@@ -12,6 +13,7 @@ class ProgramKerjaJemaatController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
+            $id_jemaat = Auth::user()->id_jemaat;
             $filterData = $request->input('filter');
 
             $query = ProgramKerjaJemaat::query();
@@ -19,7 +21,7 @@ class ProgramKerjaJemaatController extends Controller
                 $query->where('bidang', $filterData);
             }
 
-            $data = $query->latest('created_at')->get();
+            $data = $query->where('id_jemaat', $id_jemaat)->latest('created_at')->get();
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {

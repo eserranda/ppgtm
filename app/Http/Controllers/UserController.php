@@ -17,8 +17,8 @@ class UserController extends Controller
     {
         if ($request->ajax()) {
             $data = User::whereHas('roles', function ($query) {
-                $query->where('name', '!=', 'jemaat')
-                    ->where('name', '!=', 'klasis');
+                $query->where('name',  'super_admin')
+                    ->orWhere('name', 'admin');
             })->latest('created_at')->get();
             // $data = User::latest('created_at')->get();
             return DataTables::of($data)
@@ -95,6 +95,17 @@ class UserController extends Controller
         $loginType = filter_var($request->login, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
         $credentials = [$loginType => $request->login, 'password' => $request->password];
         if (Auth::attempt($credentials)) {
+            $user = Auth::user();
+            // Cek jika user sudah memiliki sesi aktif
+            if ($user->last_session_id && $user->last_session_id !== session()->getId()) {
+                // Melakukan logout jika pengguna sudah login di perangkat lain.
+                Auth::logout();
+                return redirect()->back()->withErrors(['login' => 'Anda sudah login di perangkat lain.'])->withInput();
+            }
+
+            // simpan sesi aktif ke database berdasarkan id user yang sedang login
+            User::where('id', $user->id)->update(['last_session_id' => session()->getId()]);
+
             return redirect()->intended('/dashboard');
         }
 
@@ -103,7 +114,15 @@ class UserController extends Controller
 
     public function logout(Request $request)
     {
+        $user = Auth::user();
+        if ($user) {
+            User::where('id', $user->id)->update(['last_session_id' => null]);
+        }
+
         Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
         return redirect()->route('login');
     }
 

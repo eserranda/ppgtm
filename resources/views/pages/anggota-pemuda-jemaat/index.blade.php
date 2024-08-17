@@ -19,7 +19,11 @@
         href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.rtl.min.css" />
 @endpush
 @section('page_title')
-    Anggota Pemuda Jemaat
+    @if (auth()->user()->hasAnyRole(['jemaat']))
+        Anggota Pemuda {{ auth()->user()->name }}
+    @else
+        Anggota Pemuda
+    @endif
 @endsection
 
 @section('content')

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ProgramKerjaKlasis;
+use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Validator;
 
@@ -13,6 +14,7 @@ class ProgramKerjaKlasisController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
+            $id_klasis = Auth::user()->id_klasis;
             $filterData = $request->input('filter');
 
             $query = ProgramKerjaKlasis::query();
@@ -20,7 +22,7 @@ class ProgramKerjaKlasisController extends Controller
                 $query->where('bidang', $filterData);
             }
 
-            $data = $query->latest('created_at')->get();
+            $data = $query->where('id_klasis', $id_klasis)->latest('created_at')->get();
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
