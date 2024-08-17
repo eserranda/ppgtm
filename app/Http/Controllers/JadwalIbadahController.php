@@ -30,6 +30,9 @@ class JadwalIbadahController extends Controller
 
             return DataTables::of($data)
                 ->addIndexColumn()
+                ->editColumn('tanggal', function ($row) {
+                    return date('d-m-Y', strtotime($row->tanggal));
+                })
                 ->addColumn('periode', function ($row) {
                     return $row->tahun_mulai . ' - ' . $row->tahun_selesai;
                 })
