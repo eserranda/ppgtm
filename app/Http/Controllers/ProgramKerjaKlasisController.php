@@ -21,7 +21,7 @@ class ProgramKerjaKlasisController extends Controller
                 $query->where('bidang', $filterData);
             }
 
-            if (auth()->user()->role == 'klasis') {
+            if (auth()->user()->roles->first()->name == 'klasis') {
                 $id_klasis = Auth::user()->id_klasis;
                 $data = $query->where('id_klasis', $id_klasis)->latest('created_at')->get();
             } else {

@@ -44,7 +44,15 @@
                 <div class="dropdown-menu dropdown-menu-right">
                     <!-- item-->
                     <a class="dropdown-item" href="#"><i
-                            class="mdi mdi-face-profile font-size-16 align-middle mr-1"></i> Profile</a>
+                            class="mdi mdi-face-profile font-size-16 align-middle mr-1"></i>
+                        {{ Auth::user()->username }}
+
+                        {{-- <a class="dropdown-item" href="#"><i
+                                class="mdi mdi-account-lock-outline font-size-16 align-middle mr-1"></i>
+                            {{ Auth::user()->roles->first()->name }}</a> --}}
+                    </a>
+                    {{-- <a class="dropdown-item" href="#"><i
+                            class="mdi mdi-face-profile font-size-16 align-middle mr-1"></i> Profile</a> --}}
 
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="/logout">

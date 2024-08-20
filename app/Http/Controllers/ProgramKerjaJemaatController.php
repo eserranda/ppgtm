@@ -20,7 +20,7 @@ class ProgramKerjaJemaatController extends Controller
                 $query->where('bidang', $filterData);
             }
 
-            if (auth()->user()->role == 'jemaat') {
+            if (auth()->user()->roles->first()->name === 'jemaat') {
                 $id_jemaat = Auth::user()->id_jemaat;
                 $data = $query->where('id_jemaat', $id_jemaat)->latest('created_at')->get();
             } else {

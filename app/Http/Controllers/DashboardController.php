@@ -32,7 +32,7 @@ class DashboardController extends Controller
 
     public function home()
     {
-        $data = JadwalIbadah::all();
+        $data = Jemaat::all();
         return view('pages.home.index', compact('data'));
     }
 

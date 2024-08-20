@@ -20,7 +20,7 @@ class PengurusKlasisController extends Controller
             if ($dataFilter) {
                 $query->where('bidang', $dataFilter);
             }
-            if (auth()->user()->role == 'klasis') {
+            if (auth()->user()->roles->first()->name == 'klasis') {
                 $id_klasis = Auth::user()->id_klasis;
                 $data = $query->where('id_klasis', $id_klasis)->latest('created_at')->get();
             } else {
