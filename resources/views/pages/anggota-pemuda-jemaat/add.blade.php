@@ -92,6 +92,23 @@
 
 @push('scripts')
     <script>
+        function closeModalAdd() {
+            const invalidInputs = document.querySelectorAll('.is-invalid');
+            invalidInputs.forEach(invalidInput => {
+                invalidInput.value = '';
+                invalidInput.classList.remove('is-invalid');
+                const errorNextSibling = invalidInput.nextElementSibling;
+                if (errorNextSibling && errorNextSibling.classList.contains(
+                        'invalid-feedback')) {
+                    errorNextSibling.textContent = '';
+                }
+            });
+
+            const form = document.getElementById('addForm');
+            form.reset();
+            $('#addModal').modal('hide');
+        }
+
         $(document).ready(function() {
             $('#id_jemaat').select2({
                 theme: "bootstrap-5",
