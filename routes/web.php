@@ -62,6 +62,12 @@ Route::prefix('roles')->controller(RoleController::class)->group(function () {
 });
 // sementara
 Route::get('/', [DashboardController::class, 'home']);
+Route::get('/visi-misi', [DashboardController::class, 'visiMisi']);
+Route::get('/sejarah', [DashboardController::class, 'sejarah']);
+Route::get('/home-pengurus', [DashboardController::class, 'pengurus']);
+Route::get('/list-gereja', [DashboardController::class, 'listGereja']);
+Route::get('/gereja/{id}', [DashboardController::class, 'gereja']);
+Route::get('/home-klasis', [DashboardController::class, 'klasis']);
 
 Route::prefix('users-jemaat')->controller(UserJemaatController::class)->group(function () {
     Route::get('/', 'index')->name('users-jemaat.index')->middleware('auth');

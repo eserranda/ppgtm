@@ -5,16 +5,54 @@ namespace App\Http\Controllers;
 use App\Models\Jemaat;
 use App\Models\Klasis;
 use App\Models\Dashboard;
+use App\Models\JadwalIbadah;
 use App\Models\ProgramKerja;
 use Illuminate\Http\Request;
+use App\Models\PengurusJemaat;
+use App\Models\PengurusKlasis;
 use App\Models\WilayahPelayanan;
 use App\Models\ProgramKerjaJemaat;
 use App\Models\ProgramKerjaKlasis;
 use App\Models\AnggotaPemudaJemaat;
-use App\Models\JadwalIbadah;
 
 class DashboardController extends Controller
 {
+
+    public function visiMisi()
+    {
+        return view('pages.home.visi-misi');
+    }
+
+    public function sejarah()
+    {
+        return view('pages.home.sejarah');
+    }
+
+    public function pengurus()
+    {
+        return view('pages.home.pengurus');
+    }
+
+    public function listGereja()
+    {
+        $data = Jemaat::all();
+        return view('pages.home.list-gereja', compact('data'));
+    }
+
+    public function gereja($id)
+    {
+        $data = Jemaat::find($id);
+        $pengurus = PengurusJemaat::all();
+        $jadwal_ibadah = JadwalIbadah::all();
+        return view('pages.home.gereja', compact('data', 'pengurus', 'jadwal_ibadah'));
+    }
+
+    public function klasis()
+    {
+        $pengurus_klasis = PengurusKlasis::all();
+        $klasis = Klasis::all();
+        return view('pages.home.klasis', compact('klasis', 'pengurus_klasis'));
+    }
 
     public function index()
     {
@@ -33,7 +71,9 @@ class DashboardController extends Controller
     public function home()
     {
         $data = Jemaat::all();
-        return view('pages.home.index', compact('data'));
+        $program_kerja = ProgramKerja::all();
+
+        return view('pages.home.index', compact('data', 'program_kerja'));
     }
 
     /**
