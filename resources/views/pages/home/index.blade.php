@@ -163,7 +163,7 @@
 
     <section class="faq-2 section ">
         <div class="container section-title" data-aos="fade-up">
-            <h2>Program Kerja Sinode GTM</h2>
+            <h2>Program Kerja Sinode PPGTM</h2>
         </div>
 
         <div class="container">
