@@ -310,7 +310,7 @@
                 let url = '{{ route('program-kerja-klasis.index') }}?';
 
                 if (selectedFilter) {
-                    url += 'filter=' + selectedFilter;
+                    url += '&filter=' + selectedFilter + '&tanggal=' + selectedTanggal;
                 }
 
                 if (selectedFilter && selectedTanggal) {

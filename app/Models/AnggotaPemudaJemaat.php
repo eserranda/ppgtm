@@ -16,6 +16,7 @@ class AnggotaPemudaJemaat extends Model
         'no_telp',
         'keterangan',
         'data_time',
+        'tanggal',
     ];
 
     use HasFactory;

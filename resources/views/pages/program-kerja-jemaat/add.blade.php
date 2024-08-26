@@ -121,6 +121,14 @@
                         </div>
                     </div>
 
+                    <div class="form-row">
+                        <div class="form-group col-md-6 mb-2">
+                            <label class="col-form-label" for="tanggal">Tanggal</label>
+                            <input type="date" class="form-control" id="tanggal" name="tanggal">
+                            <div class="invalid-feedback"> </div>
+                        </div>
+                    </div>
+
                     <div class="float-end">
                         <button type="button" class="btn btn-light waves-effect mr-2"
                             onclick="closeModalAdd()">Batal</button>

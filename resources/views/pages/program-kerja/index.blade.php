@@ -222,7 +222,7 @@
                 }
 
                 if (selectedFilter && selectedTanggal) {
-                    url += '&';
+                    url += '&filter=' + selectedFilter + '&tanggal=' + selectedTanggal;
                 }
 
                 if (selectedTanggal) {

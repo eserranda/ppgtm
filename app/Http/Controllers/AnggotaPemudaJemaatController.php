@@ -14,10 +14,14 @@ class AnggotaPemudaJemaatController extends Controller
     {
         if ($request->ajax()) {
             $dataFilter = $request->input('filter');
+            $filterTanggal = $request->input('tanggal');
 
             $query = AnggotaPemudaJemaat::query();
             if ($dataFilter) {
                 $query->where('dapel', $dataFilter);
+            }
+            if ($filterTanggal) {
+                $query->where('tanggal', $filterTanggal);
             }
 
             if (auth()->user()->roles->first()->name == 'jemaat') {
@@ -55,11 +59,13 @@ class AnggotaPemudaJemaatController extends Controller
             'alamat' => 'required|string|max:255',
             'no_telp' => 'required|numeric',
             'data_time' => 'required ',
+            'tanggal' => 'required|date',
         ], [
             'required' => ':attribute harus diisi',
             'string' => ':attribute harus berupa string',
             'numeric' => ':attribute harus berupa angka',
             'date' => ':attribute harus berupa tanggal',
+            'max' => ':attribute maksimal :max karakter',
         ]);
 
         if ($validator->fails()) {
@@ -97,6 +103,7 @@ class AnggotaPemudaJemaatController extends Controller
             'edit_alamat' => 'required|string|max:255',
             'edit_no_telp' => 'required|numeric',
             'edit_data_time' => 'required ',
+            'edit_tanggal' => 'required|date',
         ], [
             'required' => ':attribute harus diisi',
             'string' => ':attribute harus berupa string',
@@ -119,6 +126,7 @@ class AnggotaPemudaJemaatController extends Controller
             'alamat' => $request->edit_alamat,
             'no_telp' => $request->edit_no_telp,
             'data_time' => $request->edit_data_time,
+            'tanggal' => $request->edit_tanggal,
         ]);
 
         if ($updated) {

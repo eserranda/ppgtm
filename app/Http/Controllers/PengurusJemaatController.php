@@ -15,10 +15,15 @@ class PengurusJemaatController extends Controller
     {
         if ($request->ajax()) {
             $dataFilter = $request->input('filter');
+            $filterTanggal = $request->input('tanggal');
 
             $query = PengurusJemaat::query();
             if ($dataFilter) {
-                $query->where('bidang', $dataFilter);
+                $data = $query->where('bidang', $dataFilter);
+            }
+
+            if ($filterTanggal) {
+                $data = $query->where('tanggal', $filterTanggal);
             }
             if (auth()->user()->roles->first()->name == 'jemaat') {
                 $id_jemaat = Auth::user()->id_jemaat;
@@ -53,6 +58,7 @@ class PengurusJemaatController extends Controller
             'bidang' => 'required',
             'tahun_mulai' => 'required|numeric',
             'tahun_selesai' => 'required|numeric',
+            'tanggal' => 'required',
         ], [
             'required' => ':attribute harus diisi',
         ]);
@@ -91,6 +97,7 @@ class PengurusJemaatController extends Controller
             'edit_bidang' => 'required',
             'edit_tahun_mulai' => 'required|numeric',
             'edit_tahun_selesai' => 'required|numeric',
+            'edit_tanggal' => 'required',
             // 'edit_jabatan' => 'required',
         ], [
             'required' => ':attribute harus diisi',
@@ -111,6 +118,7 @@ class PengurusJemaatController extends Controller
             'jabatan' => $request->input('edit_jabatan'),
             'tahun_mulai' => $request->input('edit_tahun_mulai'),
             'tahun_selesai' => $request->input('edit_tahun_selesai'),
+            'tanggal' => $request->input('edit_tanggal'),
         ]);
 
         if ($update) {

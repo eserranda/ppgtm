@@ -14,10 +14,15 @@ class ProgramKerjaJemaatController extends Controller
     {
         if ($request->ajax()) {
             $filterData = $request->input('filter');
+            $filterTanggal = $request->input('tanggal');
 
             $query = ProgramKerjaJemaat::query();
             if ($filterData) {
                 $query->where('bidang', $filterData);
+            }
+
+            if ($filterTanggal) {
+                $query->where('tanggal', $filterTanggal);
             }
 
             if (auth()->user()->roles->first()->name === 'jemaat') {
@@ -58,6 +63,7 @@ class ProgramKerjaJemaatController extends Controller
             'pelaksana' => 'required|string',
             'sumber_dana' => 'required|string',
             'implementasi' => 'required|string',
+            'tanggal' => 'required|string',
         ], [
             'required' => ':attribute harus diisi',
         ]);
@@ -102,6 +108,7 @@ class ProgramKerjaJemaatController extends Controller
             'edit_waktu' => 'required|string',
             'edit_pelaksana' => 'required|string',
             'edit_sumber_dana' => 'required|string',
+            'edit_tanggal' => 'required|string',
         ], [
             'required' => ':attribute harus diisi',
         ]);
@@ -119,6 +126,7 @@ class ProgramKerjaJemaatController extends Controller
             'pelaksana' => $request->edit_pelaksana,
             'sumber_dana' => $request->edit_sumber_dana,
             'implementasi' => $request->edit_implementasi,
+            'tanggal' => $request->edit_tanggal,
         ]);
 
         if ($update) {
