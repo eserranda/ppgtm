@@ -15,11 +15,17 @@ class PengurusKlasisController extends Controller
     {
         if ($request->ajax()) {
             $dataFilter = $request->input('filter');
+            $filterTanggal = $request->input('tanggal');
 
             $query = PengurusKlasis::query();
             if ($dataFilter) {
-                $query->where('bidang', $dataFilter);
+                $data = $query->where('bidang', $dataFilter);
             }
+
+            if ($filterTanggal) {
+                $data = $query->where('tanggal', $filterTanggal);
+            }
+
             if (auth()->user()->roles->first()->name == 'klasis') {
                 $id_klasis = Auth::user()->id_klasis;
                 $data = $query->where('id_klasis', $id_klasis)->latest('created_at')->get();
@@ -51,6 +57,7 @@ class PengurusKlasisController extends Controller
             'id_klasis' => 'required',
             'nama' => 'required',
             'bidang' => 'required',
+            'tanggal' => 'required',
         ], [
             'required' => ':attribute harus diisi',
         ]);
@@ -87,7 +94,7 @@ class PengurusKlasisController extends Controller
             'edit_id_klasis' => 'required',
             'edit_nama' => 'required',
             'edit_bidang' => 'required',
-            // 'edit_jabatan' => 'required',
+            'edit_tanggal' => 'required',
         ], [
             'required' => ':attribute harus diisi',
         ],);
@@ -105,6 +112,7 @@ class PengurusKlasisController extends Controller
             'nama' => $request->input('edit_nama'),
             'bidang' => $request->input('edit_bidang'),
             'jabatan' => $request->input('edit_jabatan'),
+            'tanggal' => $request->input('edit_tanggal'),
         ]);
 
         if ($update) {

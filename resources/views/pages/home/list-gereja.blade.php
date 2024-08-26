@@ -19,12 +19,10 @@
     </section>
 
     <section id="gereja" class="faq-2 section light-background">
-
-        <!-- Section Title -->
         <div class="container section-title" data-aos="fade-up">
             <h2>Daftar Gereja </h2>
             <p>Daftar Gereja Anggota Persekutuan Pemuda Gereja Toraja Mamasa</p>
-        </div><!-- End Section Title -->
+        </div>
 
         <div class="container">
             <table class="table table-striped">
@@ -52,5 +50,5 @@
                 </tbody>
             </table>
         </div>
-    </section><!-- /Faq 2 Section -->
+    </section>
 @endsection

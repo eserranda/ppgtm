@@ -57,6 +57,16 @@
                         </div>
                     </div>
 
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="koordinator">Tanggal</label>
+                            <input type="date" class="form-control" id="tanggal" name="tanggal"
+                                placeholder="Tanggal">
+                            <div class="invalid-feedback">
+                            </div>
+                        </div>
+                    </div>
+
                     <button class="btn btn-primary" type="submit">Tambah</button>
                 </form>
             </div>

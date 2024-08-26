@@ -15,8 +15,7 @@
             </nav>
             <h1>Info Klasis</h1>
         </div>
-    </div><!-- End Page Title -->
-
+    </div>
 
     <section class="faq-2 section light-background">
         <div class="container section-title" data-aos="fade-up">

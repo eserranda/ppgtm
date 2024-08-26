@@ -14,10 +14,15 @@ class PengurusSinodeController extends Controller
     {
         if ($request->ajax()) {
             $dataFilter = $request->input('filter');
+            $tanggalFilter = $request->input('tanggal');
 
             $query = PengurusSinode::query();
             if ($dataFilter) {
-                $query->where('bidang', $dataFilter);
+                $data = $query->where('bidang', $dataFilter);
+            }
+
+            if ($tanggalFilter) {
+                $data =  $query->whereDate('tanggal', $tanggalFilter);
             }
 
             $data = $query->latest('created_at')->get();
@@ -48,6 +53,7 @@ class PengurusSinodeController extends Controller
             // 'jabatan' => 'required',
             'tahun_mulai' => 'required',
             'tahun_selesai' => 'required',
+            'tanggal' => 'required',
         ], [
             'required' => ':attribute harus diisi',
         ]);
@@ -86,6 +92,7 @@ class PengurusSinodeController extends Controller
             // 'edit_jabatan' => 'required',
             'edit_tahun_mulai' => 'required',
             'edit_tahun_selesai' => 'required',
+            'edit_tanggal' => 'required',
         ], [
             'required' => ':attribute harus diisi',
         ],);
@@ -104,6 +111,7 @@ class PengurusSinodeController extends Controller
             'jabatan' => $request->input('edit_jabatan'),
             'tahun_mulai' => $request->input('edit_tahun_mulai'),
             'tahun_selesai' => $request->input('edit_tahun_selesai'),
+            'tanggal' => $request->input('edit_tanggal'),
         ]);
 
         if ($update) {

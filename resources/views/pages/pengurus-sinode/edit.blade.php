@@ -39,6 +39,13 @@
                             </select>
                             <div class="invalid-feedback"></div>
                         </div>
+
+                        <div class=" col-md-6 mb-3">
+                            <label class="form-label" for="nama">Tanggal</label>
+                            <input type="date" class="form-control" id="edit_tanggal" name="edit_tanggal"
+                                placeholder="Tanggal">
+                            <div class="invalid-feedback"> </div>
+                        </div>
                     </div>
 
 

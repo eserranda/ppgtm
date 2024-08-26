@@ -1,9 +1,7 @@
 @extends('pages.home.layouts.master')
 
 @section('hero')
-    <!-- Hero Section -->
     <section id="hero" class="hero section dark-background">
-
         <div class="container">
             <div class="row gy-4">
                 <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center" data-aos="zoom-out">
@@ -19,16 +17,12 @@
     </section>
 
     <section id="about" class="about section">
-
-        <!-- Section Title -->
         <div class="container section-title" data-aos="fade-up">
             <h2>Profile</h2>
-        </div><!-- End Section Title -->
+        </div>
 
         <div class="container">
-
             <div class="row gy-4">
-
                 <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
                     <h4>Misi</h4>
                     <ul>
@@ -44,20 +38,13 @@
                     <p>PPGTM bertujuan untuk mempersekutukan, memperlengkapi dan menggerakkan warganya menjadi umat
                         Allah yang mengemban tugas panggilan Allah. </p>
                 </div>
-
             </div>
-
         </div>
+    </section>
 
-    </section><!-- /About Section -->
-
-    <!-- Why Us Section -->
     <section id="sejarah" class="section why-us light-background" data-builder="section">
-
         <div class="container-fluid">
-
             <div class="row gy-4">
-
                 <div class="col-lg-12 d-flex flex-column justify-content-center order-2 order-lg-1">
 
                     <div class="content px-xl-5" data-aos="fade-up" data-aos-delay="100">
@@ -83,34 +70,23 @@
                             memiliki konstitusi penatalayanan yang disebut Pedoman Pelayanan PPGTM.
                         </p>
                     </div>
-
-
                 </div>
-
                 {{-- <div class="col-lg-5 order-1 order-lg-2 why-us-img">
                     <img src="{{ asset('home_assets') }}/img/why-us.png" class="img-fluid" alt=""
                         data-aos="zoom-in" data-aos-delay="100">
                 </div> --}}
             </div>
-
         </div>
+    </section>
 
-    </section><!-- /Why Us Section -->
-
-
-    <!-- Team Section -->
     <section id="team" class="team section">
-
-        <!-- Section Title -->
         <div class="container section-title" data-aos="fade-up">
             <h2>Pengurus</h2>
             <p>Pengurus KSB PPGTM Sinode Periode 2021-2026</p>
-        </div><!-- End Section Title -->
+        </div>
 
         <div class="container">
-
             <div class="row gy-4">
-
                 <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
                     <div class="team-member d-flex align-items-start">
                         <div class="pic"><img src="{{ asset('home_assets') }}/img/team/no_image.png" class="img-fluid"
@@ -120,7 +96,7 @@
                             <span>Ketua Umum</span>
                         </div>
                     </div>
-                </div><!-- End Team Member -->
+                </div>
 
                 <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
                     <div class="team-member d-flex align-items-start">
@@ -131,7 +107,7 @@
                             <span>Sekretaris Umum</span>
                         </div>
                     </div>
-                </div><!-- End Team Member -->
+                </div>
 
                 <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
                     <div class="team-member d-flex align-items-start">
@@ -142,7 +118,7 @@
                             <span>Bendahara Umum</span>
                         </div>
                     </div>
-                </div><!-- End Team Member -->
+                </div>
 
                 {{-- <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
                     <div class="team-member d-flex align-items-start">
@@ -153,13 +129,11 @@
                             <span>Accountant</span>
                         </div>
                     </div>
-                </div><!-- End Team Member --> --}}
+                </div> --}}
 
             </div>
-
         </div>
-
-    </section><!-- /Team Section -->
+    </section>
 
     <section class="faq-2 section ">
         <div class="container section-title" data-aos="fade-up">
@@ -192,5 +166,5 @@
                 </tbody>
             </table>
         </div>
-    </section><!-- /Faq 2 Section -->
+    </section>
 @endsection

@@ -15,10 +15,15 @@ class ProgramKerjaKlasisController extends Controller
     {
         if ($request->ajax()) {
             $filterData = $request->input('filter');
+            $filterTanggal = $request->input('tanggal');
 
             $query = ProgramKerjaKlasis::query();
             if ($filterData) {
-                $query->where('bidang', $filterData);
+                $data = $query->where('bidang', $filterData);
+            }
+
+            if ($filterTanggal) {
+                $data = $query->where('tanggal', $filterData);
             }
 
             if (auth()->user()->roles->first()->name == 'klasis') {
@@ -61,6 +66,7 @@ class ProgramKerjaKlasisController extends Controller
             'pelaksana' => 'required|string',
             'biaya' => 'required|string',
             'data_time' => 'required|string',
+            'tanggal' => 'required|string',
         ], [
             'required' => ':attribute harus diisi',
         ]);
@@ -110,6 +116,7 @@ class ProgramKerjaKlasisController extends Controller
             'edit_pelaksana' => 'required|string',
             'edit_biaya' => 'required|string',
             'edit_data_time' => 'required|string',
+            'edit_tanggal' => 'required|string',
         ], [
             'required' => ':attribute harus diisi',
         ]);
@@ -136,6 +143,7 @@ class ProgramKerjaKlasisController extends Controller
             'pelaksana' => $request->edit_pelaksana,
             'biaya' => $request->edit_biaya,
             'data_time' => $request->edit_data_time,
+            'tanggal' => $request->edit_tanggal
         ]);
 
         if ($update) {

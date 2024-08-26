@@ -22,6 +22,7 @@ class ProgramKerjaKlasis extends Model
         'pelaksana',
         'biaya',
         'data_time',
+        'tanggal',
     ];
 
     use HasFactory;

@@ -119,6 +119,12 @@
                                 placeholder="ex. 2022-2024">
                             <div class="invalid-feedback"> </div>
                         </div>
+
+                        <div class="form-group col-md-4 mb-3">
+                            <label class="col-form-label" for="data_time">Tanggal</label>
+                            <input type="date" class="form-control" id="tanggal" name="tanggal">
+                            <div class="invalid-feedback"> </div>
+                        </div>
                     </div>
 
                     <div class="float-end">

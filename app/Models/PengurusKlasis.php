@@ -13,6 +13,7 @@ class PengurusKlasis extends Model
         'nama',
         'bidang',
         'jabatan',
+        'tanggal',
     ];
 
     public function klasis(): BelongsTo

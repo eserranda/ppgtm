@@ -45,7 +45,22 @@
                                 <option value="Minat dan Bakat">Minat dan Bakat</option>
                                 <option value="Informasi dan Komunikasi">Informasi dan Komunikasi</option>
                             </select>
-                            <button type="button" class="btn btn-light waves-effect mx-2 col-2" id="reload">
+
+                            <input type="date" class="form-control mx-2" name="filterTanggal" id="filterTanggal">
+
+                            <a class="btn btn-icon" aria-label="Button" id="search">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <circle cx="10" cy="10" r="7" />
+                                    <line x1="21" y1="21" x2="15" y2="15" />
+                                </svg>
+                            </a>
+
+                        </div>
+                        <div>
+                            <button type="button" class="btn btn-light waves-effect" id="reload">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="20" height="20"
                                     viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none"
                                     stroke-linecap="round" stroke-linejoin="round">`
@@ -54,9 +69,8 @@
                                     <path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4" />
                                 </svg>
                             </button>
-                        </div>
-                        <div>
-                            <button type="button" class="btn btn-outline-info " id="btnPrint"><i
+
+                            <button type="button" class="btn btn-outline-info mx-2" id="btnPrint"><i
                                     class="mdi mdi-printer"></i></button>
                             <button type="button" class="btn btn-outline-success " id ="btnExcel">Excel</button>
                             @if (auth()->user()->hasAnyRole(['super_admin', 'klasis']))
@@ -122,6 +136,7 @@
                     document.getElementById('edit_nama').value = data.nama;
                     document.getElementById('edit_bidang').value = data.bidang;
                     document.getElementById('edit_jabatan').value = data.jabatan;
+                    document.getElementById('edit_tanggal').value = data.tanggal;
 
                     var editIdKlasisSelect = document.getElementById('edit_id_klasis');
 
@@ -218,11 +233,37 @@
                 ],
             });
 
-            $('#filterData').on('change', function() {
-                const selectedFilter = $(this).val();
-                datatable.ajax.url('{{ route('pengurus-klasis.index') }}?filter=' + selectedFilter)
-                    .load();
+            $('#search').on('click', function() {
+                var selectedFilter = $('#filterData').val();
+                var selectedTanggal = $('#filterTanggal').val();
+
+
+                if (!selectedFilter && !selectedTanggal) {
+                    alert('Pilih salah satu filter');
+                    return;
+                }
+                let url = "{{ route('pengurus-klasis.index') }}?";
+
+                if (selectedFilter) {
+                    url += 'filter=' + selectedFilter;
+                }
+
+                if (selectedFilter && selectedTanggal) {
+                    url += '&';
+                }
+
+                if (selectedTanggal) {
+                    url += 'tanggal=' + selectedTanggal;
+                }
+
+                datatable.ajax.url(url).load();
             });
+
+            // $('#filterData').on('change', function() {
+            //     const selectedFilter = $(this).val();
+            //     datatable.ajax.url('{{ route('pengurus-klasis.index') }}?filter=' + selectedFilter)
+            //         .load();
+            // });
 
             $('#reload').on('click', function() {
                 $('#filterData').val('');

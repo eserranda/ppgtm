@@ -13,21 +13,15 @@
                 <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-out" data-aos-delay="200">
                     <img src="{{ asset('home_assets') }}/img/ppgtm.png" class="img-fluid animated" alt="">
                 </div>
-
             </div>
         </div>
-
     </section>
 
     <!-- Why Us Section -->
     <section id="sejarah" class="section why-us light-background" data-builder="section">
-
         <div class="container-fluid">
-
             <div class="row gy-4">
-
                 <div class="col-lg-12 d-flex flex-column justify-content-center order-2 order-lg-1">
-
                     <div class="content px-xl-5" data-aos="fade-up" data-aos-delay="100">
                         <h3><span>Sejara Singkat </span><strong>Persekutuan Pemuda Gereja Toraja Mamasa</strong>
                         </h3>
@@ -51,17 +45,12 @@
                             memiliki konstitusi penatalayanan yang disebut Pedoman Pelayanan PPGTM.
                         </p>
                     </div>
-
-
                 </div>
-
                 {{-- <div class="col-lg-5 order-1 order-lg-2 why-us-img">
                 <img src="{{ asset('home_assets') }}/img/why-us.png" class="img-fluid" alt=""
                     data-aos="zoom-in" data-aos-delay="100">
             </div> --}}
             </div>
-
         </div>
-
     </section><!-- /Why Us Section -->
 @endsection

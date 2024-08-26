@@ -13,16 +13,14 @@ class WilayahPelayananController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            // $filterData = $request->input('filter');
+            $filterTanggal = $request->input('tanggal');
 
-            // $query = WilayahPelayanan::query();
-            // if ($filterData) {
-            //     $query->where('wilayah', $filterData);
-            // }
+            $query = WilayahPelayanan::query();
+            if ($filterTanggal) {
+                $query->where('tanggal', $filterTanggal);
+            }
 
-            // $data = $query->latest('created_at')->get();
-            $data = WilayahPelayanan::latest('created_at')->get();
-
+            $data = $query->latest('created_at')->get();
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('id_klasis', function ($row) {
@@ -33,8 +31,8 @@ class WilayahPelayananController extends Controller
                     }
                 })
                 ->addColumn('action', function ($row) {
-                    // $btn = '<a class="btn btn-outline-secondary btn-sm" title="Edit" onclick="edit(' . $row->id . ')"> <i class="fas fa-pencil-alt"></i> </a>';
-                    $btn = '<a class="btn btn-outline-secondary btn-sm  text-danger mx-2" title="Hapus" onclick="hapus(' . $row->id . ')"> <i class="fas fa-trash-alt"></i> </a>';
+                    $btn = '<a class="btn btn-outline-secondary btn-sm" title="Edit" onclick="edit(' . $row->id . ')"> <i class="fas fa-pencil-alt"></i> </a>';
+                    $btn .= '<a class="btn btn-outline-secondary btn-sm  text-danger mx-2" title="Hapus" onclick="hapus(' . $row->id . ')"> <i class="fas fa-trash-alt"></i> </a>';
                     return $btn;
                 })
                 ->rawColumns(['action'])
@@ -51,6 +49,7 @@ class WilayahPelayananController extends Controller
             'wilayah' => 'required',
             'koordinator' => 'required',
             'no_telp' => 'required|numeric',
+            'tanggal' => 'required',
         ], [
             'required' => ':attribute harus diisi',
             'numeric' => ':attribute harus angka',
@@ -68,6 +67,7 @@ class WilayahPelayananController extends Controller
             'wilayah' => $request->wilayah,
             'koordinator' => $request->koordinator,
             'no_telp' => $request->no_telp,
+            'tanggal' => $request->tanggal
         ]);
 
         if ($save) {
@@ -83,28 +83,49 @@ class WilayahPelayananController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(WilayahPelayanan $wilayahPelayanan)
+    public function findById($id)
     {
-        //
+        $wilayahPelayanan = WilayahPelayanan::find($id);
+        return response()->json($wilayahPelayanan);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(WilayahPelayanan $wilayahPelayanan)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, WilayahPelayanan $wilayahPelayanan)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'edit_id_klasis' => 'required',
+            'edit_wilayah' => 'required',
+            'edit_koordinator' => 'required',
+            'edit_no_telp' => 'required|numeric',
+            'edit_tanggal' => 'required',
+        ], [
+            'required' => ':attribute harus diisi',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'messages' => $validator->errors()
+            ], 422);
+        }
+
+        $update = WilayahPelayanan::where('id', $request->id)->update([
+            'id_klasis' => $request->edit_id_klasis,
+            'wilayah' => $request->edit_wilayah,
+            'koordinator' => $request->edit_koordinator,
+            'no_telp' => $request->edit_no_telp,
+            'tanggal' => $request->edit_tanggal
+        ]);
+
+        if ($update) {
+            return response()->json([
+                'success' => true
+            ], 200);
+        } else {
+            return response()->json([
+                'success' => false
+            ], 500);
+        }
     }
 
     /**

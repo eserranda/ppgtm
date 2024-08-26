@@ -20,6 +20,7 @@ class ProgramKerjaJemaat extends Model
         'pelaksana',
         'sumber_dana',
         'implementasi',
+        'tanggal',
     ];
 
     use HasFactory;

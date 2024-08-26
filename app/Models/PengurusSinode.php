@@ -14,6 +14,7 @@ class PengurusSinode extends Model
         'jabatan',
         'tahun_mulai',
         'tahun_selesai',
+        'tanggal',
     ];
 
     use HasFactory;

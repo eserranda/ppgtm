@@ -14,10 +14,15 @@ class ProgramKerjaController extends Controller
     {
         if ($request->ajax()) {
             $filterData = $request->input('filter');
+            $tanggalFilter = $request->input('tanggal');
 
             $query = ProgramKerja::query();
             if ($filterData) {
-                $query->where('bidang', $filterData);
+                $data = $query->where('bidang', $filterData);
+            }
+
+            if ($tanggalFilter) {
+                $data = $query->where('tanggal', $tanggalFilter);
             }
 
             $data = $query->latest('created_at')->get();
@@ -50,6 +55,7 @@ class ProgramKerjaController extends Controller
             'waktu_dan_tempat' => 'required',
             'tujuan' => 'required',
             'bidang' => 'required',
+            'tanggal' => 'required',
         ], [
             'required' => ':attribute harus diisi',
         ]);
@@ -67,6 +73,7 @@ class ProgramKerjaController extends Controller
             'waktu_dan_tempat' => $request->waktu_dan_tempat,
             'tujuan' => $request->tujuan,
             'bidang' => $request->bidang,
+            'tanggal' => $request->tanggal
         ]);
 
         if ($save) {
@@ -91,6 +98,7 @@ class ProgramKerjaController extends Controller
             'edit_tujuan' => 'required',
             'edit_waktu_dan_tempat' => 'required',
             'edit_bidang' => 'required',
+            'edit_tanggal' => 'required',
         ], [
             'required' => ':attribute harus diisi',
         ]);
@@ -108,6 +116,7 @@ class ProgramKerjaController extends Controller
             'tujuan' => $request->edit_tujuan,
             'waktu_dan_tempat' => $request->edit_waktu_dan_tempat,
             'bidang' => $request->edit_bidang,
+            'tanggal' => $request->edit_tanggal
         ]);
 
         if ($update) {

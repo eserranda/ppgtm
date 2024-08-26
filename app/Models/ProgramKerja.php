@@ -14,6 +14,7 @@ class ProgramKerja extends Model
         'tujuan',
         'waktu_dan_tempat',
         'bidang',
+        'tanggal',
     ];
 
     use HasFactory;

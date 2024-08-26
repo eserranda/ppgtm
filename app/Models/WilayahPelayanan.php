@@ -13,6 +13,7 @@ class WilayahPelayanan extends Model
         'wilayah',
         'koordinator',
         'no_telp',
+        'tanggal',
     ];
 
     public function klasis(): BelongsTo

@@ -29,7 +29,19 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center mb-3">
-                        <h5 class="header-title"><b>Data Wilayah Pelayanan</b></h5>
+                        <div class="d-flex align-items-center col-3">
+                            <input type="date" class="form-control" name="filterTanggal" id="filterTanggal">
+
+                            <button type="button" class="btn btn-light waves-effect mx-2 col-2" id="reload">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="20" height="20"
+                                    viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none"
+                                    stroke-linecap="round" stroke-linejoin="round">`
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4" />
+                                    <path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4" />
+                                </svg>
+                            </button>
+                        </div>
                         <div>
                             <button type="button" class="btn btn-info waves-effect" id="btnPrint">Print</button>
                             <button type="button" class="btn btn-success waves-effect" id ="btnExcel">Excel</button>
@@ -38,6 +50,7 @@
                                 data-target="#addModal">Tambah Data</button>
                         </div>
                     </div>
+
                     <table id="datatable" class="table table-bordered dt-responsive nowrap"
                         style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                         <thead>
@@ -60,6 +73,7 @@
     </div>
 
     @include('pages.wilayah-pelayanan.add')
+    @include('pages.wilayah-pelayanan.edit')
 @endsection
 
 @push('scripts')
@@ -85,6 +99,52 @@
     <!-- Sweet Alerts js -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
+        function edit(id) {
+            fetch('/wilayah-pelayanan/findById/' + id)
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    document.getElementById('edit_id').value = data.id;
+                    document.getElementById('edit_wilayah').value = data.wilayah;
+                    document.getElementById('edit_koordinator').value = data.koordinator;
+                    document.getElementById('edit_no_telp').value = data.no_telp;
+                    document.getElementById('edit_tanggal').value = data.tanggal;
+
+                    var editIdKlasisSelect = document.getElementById('edit_id_klasis');
+
+                    fetch('/klasis/findOne/' + data.id_klasis, {
+                            method: 'GET',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        })
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Gagal mengambil data');
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            updateOptionsAndSelect2Klasis(editIdKlasisSelect, data.id, data.nama_klasis);
+                        })
+                        .catch(error => console.error('Error fetching data:', error));
+                })
+                .catch(error => console.error(error));
+            $('#editModal').modal('show');
+        }
+
+        function updateOptionsAndSelect2Klasis(selectElement, id, name) {
+            // Hapus semua opsi yang ada di elemen <select>
+            $(selectElement).empty();
+
+            // Tambahkan opsi baru ke elemen <select>
+            var option = new Option(name, id, true, true);
+            $(selectElement).append(option);
+
+            // Perbarui tampilan Select2
+            $(selectElement).trigger('change');
+        }
+
         var datatable;
         $(document).ready(function() {
             datatable = $('#datatable').DataTable({
@@ -149,6 +209,18 @@
                         searchable: false
                     },
                 ],
+            });
+
+            $('#filterTanggal').on('change', function() {
+                const selectedFilter = $(this).val();
+                datatable.ajax.url('{{ route('wilayah-pelayanan.index') }}?tanggal=' + selectedFilter)
+                    .load();
+            });
+
+            $('#reload').on('click', function() {
+                $('#filterData').val('');
+                $('#filterTanggal').val('');
+                datatable.ajax.url('{{ route('wilayah-pelayanan.index') }}').load();
             });
         });
 

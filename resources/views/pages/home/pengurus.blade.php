@@ -19,19 +19,14 @@
 
     </section>
 
-    <!-- Team Section -->
     <section id="team" class="team section">
-
-        <!-- Section Title -->
         <div class="container section-title" data-aos="fade-up">
             <h2>Pengurus</h2>
             <p>Pengurus KSB PPGTM Sinode Periode 2021-2026</p>
-        </div><!-- End Section Title -->
+        </div>
 
         <div class="container">
-
             <div class="row gy-4">
-
                 <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
                     <div class="team-member d-flex align-items-start">
                         <div class="pic"><img src="{{ asset('home_assets') }}/img/team/no_image.png" class="img-fluid"
@@ -41,7 +36,7 @@
                             <span>Ketua Umum</span>
                         </div>
                     </div>
-                </div><!-- End Team Member -->
+                </div>
 
                 <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
                     <div class="team-member d-flex align-items-start">
@@ -52,7 +47,7 @@
                             <span>Sekretaris Umum</span>
                         </div>
                     </div>
-                </div><!-- End Team Member -->
+                </div>
 
                 <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
                     <div class="team-member d-flex align-items-start">
@@ -63,7 +58,7 @@
                             <span>Bendahara Umum</span>
                         </div>
                     </div>
-                </div><!-- End Team Member -->
+                </div>
 
                 {{-- <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
                     <div class="team-member d-flex align-items-start">
@@ -74,11 +69,8 @@
                             <span>Accountant</span>
                         </div>
                     </div>
-                </div><!-- End Team Member --> --}}
-
+                </div> --}}
             </div>
-
         </div>
-
-    </section><!-- /Team Section -->
+    </section>
 @endsection

@@ -46,10 +46,7 @@
                     <p>PPGTM bertujuan untuk mempersekutukan, memperlengkapi dan menggerakkan warganya menjadi umat
                         Allah yang mengemban tugas panggilan Allah. </p>
                 </div>
-
             </div>
-
         </div>
-
     </section><!-- /About Section -->
 @endsection
