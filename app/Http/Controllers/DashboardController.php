@@ -42,8 +42,8 @@ class DashboardController extends Controller
     public function gereja($id)
     {
         $data = Jemaat::find($id);
-        $pengurus = PengurusJemaat::all();
-        $jadwal_ibadah = JadwalIbadah::all();
+        $pengurus = PengurusJemaat::find($id);
+        $jadwal_ibadah = JadwalIbadah::find($id);
         return view('pages.home.gereja', compact('data', 'pengurus', 'jadwal_ibadah'));
     }
 
