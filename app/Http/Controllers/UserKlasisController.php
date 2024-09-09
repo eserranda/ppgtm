@@ -18,7 +18,6 @@ class UserKlasisController extends Controller
                 $query->where('name', 'klasis');
             })->latest('created_at')->get();
 
-            // $data = User::latest('created_at')->get();
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('role', function ($user) {
